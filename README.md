@@ -1,6 +1,4 @@
-# sakshyambanjade
-Personal Website
----------------------------------------------------------WHAT HAVE I DONE?-----------------------------------------------------------------------------------------------
+
 •	Worked with Html-5,Css-3 and Javascript.
 •	Web design that is mobile responsive.
 •	Worked with Bootstrap 5.
