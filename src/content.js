@@ -16,14 +16,17 @@ export const profile = {
 };
 
 export const navItems = [
-  ["home", "top"],
-  ["work", "work"],
-  ["done", "done"],
-  ["research", "research"],
-  ["fellowship", "fellowship"],
-  ["leadership", "leadership"],
-  ["writing", "writing"],
-  ["contact", "contact"],
+  ["home", "/#top"],
+  ["work", "/#work"],
+  ["done", "/#done"],
+  ["research", "/#research"],
+  ["recognitions", "/#recognitions"],
+  ["fellowship", "/#fellowship"],
+  ["leadership", "/#leadership"],
+  ["skills", "/#skills"],
+  ["writing", "/writing"],
+  ["education", "/#education"],
+  ["contact", "/#contact"],
 ];
 
 export const trustSignals = [
@@ -36,44 +39,44 @@ export const trustSignals = [
 
 export const workItems = [
   {
-    label: "agriculture",
+    label: "2026",
     title: "SeedSure AI",
     featured: true,
     body:
-      "AI-powered climate-smart seed and crop advisory platform built for Nepal's smallholder farmers. It helps farmers make better planting decisions using location, weather, season, soil type, and local farming conditions.",
+      "SeedSure AI is an AI-powered climate-smart seed and crop advisory platform focused on Nepal's smallholder farmers. It helps farmers make better seed and crop decisions using location, weather, season, soil type, and local farming conditions. The project was selected among the top 6 out of 50+ pitches at UNDP Nepal.",
   },
   {
-    label: "AI systems",
-    title: "Multi-AI Orchestrator",
-    featured: true,
-    body:
-      "Unified system for coordinating multiple language models and providers. Explores routing, consensus, benchmarking, structured outputs, and parallel reasoning across providers.",
-  },
-  {
-    label: "scientific tools",
-    title: "MolVis Pro",
-    featured: true,
-    body:
-      "Browser-based molecular visualization and AI-assisted chemistry platform designed around SMILES input, molecular properties, descriptors, and accessible scientific workflows.",
-  },
-  {
-    label: "media intelligence",
+    label: "2026",
     title: "FastNewsOrg",
     featured: true,
     body:
-      "AI-powered news aggregation, curation, summarization, and automated publishing system built for politics, finance, technology, and election monitoring workflows.",
+      "FastNewsOrg is an AI-powered news aggregation, curation, summarization, and automated publishing system. It is designed for politics, finance, technology news, and election monitoring workflows, and grew from my work publishing 20+ articles on international affairs, technology, and financial markets.",
   },
   {
-    label: "job systems",
-    title: "Job and opportunity aggregation",
+    label: "2025",
+    title: "MolVis Pro",
+    featured: true,
     body:
-      "Built and explored systems that collect, organize, and surface useful opportunities, with a focus on making discovery easier for students and early-career builders.",
+      "MolVis Pro is a browser-based molecular visualization and AI-assisted chemistry platform. It works with SMILES input, molecular properties, descriptors, visualization, and accessible browser-based workflows for students, researchers, and material scientists.",
   },
   {
-    label: "market tools",
-    title: "NEPSE and quantitative experiments",
+    label: "2025",
+    title: "Multi-AI Orchestrator",
+    featured: true,
     body:
-      "Explored Nepal-focused market systems, broker workflows, backtesting ideas, financial analysis, and automation pipelines around public market data.",
+      "Multi-AI Orchestrator is a unified system for coordinating multiple language models and providers. It explores routing, consensus, benchmarking, structured outputs, and parallel reasoning across providers such as Gemini, Groq, Mistral, Cohere, and Hugging Face.",
+  },
+  {
+    label: "ongoing",
+    title: "NEPSE / Quant Systems",
+    body:
+      "NEPSE / Quant Systems is an ongoing area of experimentation around Nepal stock market systems, including market tools, strategy backtesting, news-sensitive signals, and automation pipelines.",
+  },
+  {
+    label: "2024",
+    title: "JobKhojdeu",
+    body:
+      "JobKhojdeu is a job aggregation platform built to address fragmented job information in Nepal. It brings listings into a searchable interface and explores automated collection and filtering.",
   },
   {
     label: "public writing",
@@ -82,16 +85,32 @@ export const workItems = [
       "Published technology and systems-focused writing through FastNewsOrg and personal essays, connecting technical ideas with public communication.",
   },
   {
-    label: "selected",
-    title: "Selections and external signals",
-    body:
-      "Selected for Youth Leadership Workshop Seoul, participated in Youth Innovation Lab's FutureFront program, contributed to UNDP-related AI pitch spaces, and represented work across leadership, innovation, and technology-journalism environments.",
-  },
-  {
     label: "language",
     title: "Google Crowdsource recognition",
     body:
       "Recognized through Google Crowdsource contribution work, including translation and community participation that connects Nepali language knowledge with global technology systems.",
+  },
+];
+
+export const recognitionItems = [
+  {
+    label: "2025",
+    title: "Google Crowdsource",
+    href: "https://crowdsource.google.com/csf/#/leaderboard/translation",
+    body:
+      "Global Top 3 Translator on the Google Crowdsource translation leaderboard, contributing to language data that helps improve AI systems for underrepresented languages.",
+  },
+  {
+    label: "2025",
+    title: "Google Crowdsource Influencer",
+    body:
+      "Selected as an official Google Crowdsource influencer and became the first from Nepal in that role.",
+  },
+  {
+    label: "age 17",
+    title: "Tech journalism at Avenues TV",
+    body:
+      "At 17, I began publishing technology segments on Avenues TV, covering emerging technologies, digital trends, and innovation for a broad national audience.",
   },
 ];
 
@@ -160,6 +179,12 @@ export const researchItems = [
     body:
       "A research paper proposing a federated digital identity architecture for Nepal through integration of the National Identity Card with cross-domain government services. DOI: 10.2139/ssrn.6392278.",
   },
+  {
+    label: "direction",
+    title: "Current research direction",
+    body:
+      "Building a stronger publication record while developing AI systems with real-world use cases across agriculture, scientific tooling, information workflows, robotics, and memory-inspired AI systems.",
+  },
 ];
 
 export const leadershipItems = [
@@ -174,16 +199,111 @@ export const leadershipItems = [
     body: "Tech Mentor, supporting others in technology and early career direction.",
   },
   {
-    label: "community",
+    label: "service",
     title: "Broader community work",
     body:
       "Background includes Scouts, Red Cross involvement, youth leadership programs, community service, and direct mentorship initiatives.",
+  },
+  {
+    label: "service",
+    title: "Community initiative lead",
+    body:
+      "Organized and managed a high-traffic shoe collection stall during Teej at Pashupatinath Temple, coordinating volunteers and supporting efficient service for large crowds.",
+  },
+  {
+    label: "mentor",
+    title: "Youth mentorship in Kalikot",
+    body:
+      "Mentored a student from Kalikot through a remote learning initiative, supporting independent web development learning despite limited access to structured education and resources.",
   },
   {
     label: "recognitions",
     title: "Selected programs and recognitions",
     body:
       "Youth Leadership Workshop Seoul, FutureFront by Youth Innovation Lab, UNDP AI pitch participation, Google Crowdsource Global Top 3 Translator, and startup / AI program selections.",
+  },
+];
+
+export const fellowshipItems = [
+  {
+    label: "2026",
+    title: "Youth Leadership Workshop Seoul",
+    body: "Selected participant for an international youth leadership program in South Korea.",
+  },
+  {
+    label: "2025",
+    title: "Youth Innovation Lab",
+    body: "FutureFront: Powering Digital Innovation through Content & AI initiative.",
+  },
+  {
+    label: "2025",
+    title: "UNDP AI pitch",
+    href: "https://diplomatnepal.com/news/undp-launches-regional-ai-report-highlights-nepals-ai-choices/",
+    body: "Regional AI report and Nepal AI choices event.",
+  },
+  {
+    label: "2025",
+    title: "SeedSure AI Selection",
+    body: "Recognized in innovation ecosystems supporting responsible AI and development.",
+  },
+  {
+    label: "2025",
+    title: "Technology and journalism workshop",
+    href: "https://stanforddaily.com/2025/09/05/summer-workshop-exhibition-the-combined-future-of-technology-and-journalism/",
+    body: "Summer workshop exhibition: the combined future of technology and journalism.",
+  },
+];
+
+export const skillGroups = [
+  {
+    title: "technical",
+    body:
+      "Python, JavaScript, React, Next.js, the MERN stack, FastAPI, SQL, Docker, APIs, and machine learning workflows. Python work includes Pandas, NumPy, Scikit-learn, TensorFlow, and PyTorch; database experience includes MySQL, PostgreSQL, and MongoDB.",
+  },
+  {
+    title: "AI / research",
+    body:
+      "Model experimentation, prompt engineering, system design, data pipelines, evaluation systems, regression, classification, time series modeling, feature engineering, backtesting, and applied ML workflows.",
+  },
+  {
+    title: "professional",
+    body: "Leadership, communication, operations, project execution, mentorship, and cross-domain thinking.",
+  },
+];
+
+export const educationItems = [
+  {
+    label: "ongoing",
+    title: "Asia Pacific University of Technology & Innovation",
+    body: "Bachelor's in Information Technology.",
+  },
+  {
+    label: "past",
+    title: "Canvas International College",
+    body: "High school education.",
+  },
+  {
+    label: "past",
+    title: "Api School",
+    body: "Earlier schooling.",
+  },
+];
+
+export const trainingItems = [
+  {
+    label: "course",
+    title: "Quantitative Research Job Simulation",
+    body: "J.P. Morgan / Forage",
+  },
+  {
+    label: "course",
+    title: "Machine Learning with Python",
+    body: "Broadway Infosys",
+  },
+  {
+    label: "course",
+    title: "MERN Stack Development",
+    body: "Broadway Infosys",
   },
 ];
 

@@ -38,3 +38,16 @@ for (const thought of thoughts) {
   await writeFile(path.join(routeDir, "index.html"), html);
   await writeFile(path.join(distDir, "thoughts", `${thought.slug}.html`), html);
 }
+
+const writingHtml = baseHtml
+  .replace(/<title>.*?<\/title>/, "<title>Writing | Sakshyam Banjade</title>")
+  .replace(/content="Personal website of Sakshyam Banjade featuring AI projects, research, leadership, fellowship work, and product building from Nepal\."/,
+    'content="Essays and notes by Sakshyam Banjade on technology, AI, education, patience, community, and building things early."')
+  .replace(/<meta property="og:title" content=".*?" \/>/, '<meta property="og:title" content="Writing | Sakshyam Banjade" />')
+  .replace(/<meta property="og:description" content=".*?" \/>/,
+    '<meta property="og:description" content="Essays and notes by Sakshyam Banjade on technology, AI, education, patience, community, and building things early." />')
+  .replace(/<meta property="og:url" content=".*?" \/>/, `<meta property="og:url" content="${siteUrl}/writing" />`)
+  .replace(/<link rel="canonical" href=".*?" \/>/, `<link rel="canonical" href="${siteUrl}/writing" />`);
+
+await mkdir(path.join(distDir, "writing"), { recursive: true });
+await writeFile(path.join(distDir, "writing", "index.html"), writingHtml);

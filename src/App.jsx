@@ -2,11 +2,16 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, Navigate, Route, Routes, useLocation, useNavigate, useParams } from "react-router-dom";
 import {
   doneItems,
+  educationItems,
+  fellowshipItems,
   leadershipItems,
   navItems,
   profile,
+  recognitionItems,
   researchItems,
+  skillGroups,
   thoughts,
+  trainingItems,
   trustSignals,
   workItems,
 } from "./content.js";
@@ -155,17 +160,22 @@ function Header() {
         </button>
 
         <ul className={`nav-menu ${isOpen ? "open" : ""}`} id="nav-menu">
-          {navItems.map(([label, id]) => (
-            <li key={id}>
+          {navItems.map(([label, to]) => {
+            const hash = to.includes("#") ? to.split("#")[1] : "";
+            const isActive = onHome && hash && activeId === hash;
+
+            return (
+            <li key={to}>
               <Link
-                className={onHome && activeId === id ? "active" : ""}
-                to={`/#${id}`}
+                className={isActive || (!onHome && location.pathname === to) ? "active" : ""}
+                to={to}
                 onClick={() => setIsOpen(false)}
               >
                 {label}
               </Link>
             </li>
-          ))}
+            );
+          })}
         </ul>
       </nav>
     </header>
@@ -221,11 +231,11 @@ function WritingArchive() {
     <section id="writing">
       <h2>writing</h2>
       <p>
-        A small public archive of notes and essays on technology, AI, education, patience, community, and the
-        reality of building things early.
+        A dedicated writing space for essays, notes, reflections, and longer ideas. This archive is powered by React
+        Router, so each piece can have its own clean page, metadata, and shareable URL.
       </p>
 
-      {thoughts.map((thought) => (
+      {thoughts.slice(0, 4).map((thought) => (
         <article className="entry thought-link" key={thought.slug}>
           <time>{thought.slug}</time>
           <div>
@@ -237,6 +247,110 @@ function WritingArchive() {
           </div>
         </article>
       ))}
+
+      <p className="action-links">
+        <Link to="/writing">Open writing archive</Link>
+      </p>
+    </section>
+  );
+}
+
+function RecognitionSection() {
+  return (
+    <section id="recognitions">
+      <h2>recognitions</h2>
+      <p>
+        Signals from language work, technology media, international communities, and public contribution.
+      </p>
+      {recognitionItems.map((item) => (
+        <Entry item={item} key={`${item.label}-${item.title}`} />
+      ))}
+    </section>
+  );
+}
+
+function FellowshipSection() {
+  return (
+    <section id="fellowship">
+      <h2>fellowships / selections / programs</h2>
+      <p>
+        Programs, workshops, pitch spaces, and ecosystem moments connected to leadership, AI, innovation, and public
+        technology work.
+      </p>
+      {fellowshipItems.map((item) => (
+        <Entry item={item} key={`${item.label}-${item.title}`} />
+      ))}
+    </section>
+  );
+}
+
+function SkillsSection() {
+  return (
+    <section id="skills">
+      <h2>skills</h2>
+      {skillGroups.map((group) => (
+        <article className="entry" key={group.title}>
+          <time>{group.title}</time>
+          <div>
+            <h3>{group.title}</h3>
+            <p>{group.body}</p>
+          </div>
+        </article>
+      ))}
+    </section>
+  );
+}
+
+function EducationSection() {
+  return (
+    <section id="education">
+      <h2>education</h2>
+      {educationItems.map((item) => (
+        <Entry item={item} key={`${item.label}-${item.title}`} />
+      ))}
+    </section>
+  );
+}
+
+function TrainingSection() {
+  return (
+    <section id="training">
+      <h2>training / certifications</h2>
+      {trainingItems.map((item) => (
+        <Entry item={item} key={`${item.label}-${item.title}`} />
+      ))}
+    </section>
+  );
+}
+
+function TweetsSection() {
+  return (
+    <section id="tweets">
+      <h2>latest tweets</h2>
+      <p>
+        Recent posts from <a href="https://x.com/SakshyamBanjade/">@SakshyamBanjade</a>. If the timeline does not load,
+        open the profile directly.
+      </p>
+      <div className="tweet-box">
+        <a
+          className="twitter-timeline"
+          data-height="620"
+          data-dnt="true"
+          data-chrome="noheader nofooter noborders transparent"
+          href="https://twitter.com/SakshyamBanjade"
+        >
+          Tweets by SakshyamBanjade
+        </a>
+      </div>
+      <p className="tweet-action">
+        <a
+          href="https://twitter.com/intent/tweet?button_hashtag=sakshyambanjade&ref_src=twsrc%5Etfw"
+          className="twitter-hashtag-button"
+          data-show-count="false"
+        >
+          Tweet #sakshyambanjade
+        </a>
+      </p>
     </section>
   );
 }
@@ -300,10 +414,11 @@ function HomePage() {
 
         <hr />
 
-        <section id="fellowship">
-          <h2>fellowship</h2>
-          <p>Next cohort soon.</p>
-        </section>
+        <RecognitionSection />
+
+        <hr />
+
+        <FellowshipSection />
 
         <hr />
 
@@ -319,7 +434,25 @@ function HomePage() {
         </section>
 
         <hr />
+
+        <SkillsSection />
+
+        <hr />
+
         <WritingArchive />
+
+        <hr />
+
+        <TweetsSection />
+
+        <hr />
+
+        <EducationSection />
+
+        <hr />
+
+        <TrainingSection />
+
         <hr />
 
         <section id="contact">
@@ -335,8 +468,49 @@ function HomePage() {
                 {label}
               </a>
             ))}
+            <a href="/Sakshyam_Banjade_CV.pdf">CV PDF</a>
           </p>
         </section>
+      </main>
+      <Footer />
+    </>
+  );
+}
+
+function WritingPage() {
+  useSeo({
+    title: "Writing | Sakshyam Banjade",
+    description:
+      "Essays and notes by Sakshyam Banjade on technology, AI, education, patience, community, and building things early.",
+    path: "/writing",
+  });
+
+  return (
+    <>
+      <main className="page writing-page" id="main">
+        <p className="subtitle">writing archive</p>
+        <h1>Writing</h1>
+        <p>
+          Essays, notes, and reflections I want to keep in one place. This route is built with React Router, and each
+          piece opens into its own page for cleaner reading and sharing.
+        </p>
+        <p className="action-links">
+          <Link to="/#writing">Back to home section</Link>
+          <Link to="/">Home</Link>
+        </p>
+
+        {thoughts.map((thought) => (
+          <article className="entry thought-link" key={thought.slug}>
+            <time>{thought.slug}</time>
+            <div>
+              <h3>
+                <Link to={`/thoughts/${thought.slug}`}>{thought.title}</Link>
+              </h3>
+              <p>{thought.summary}</p>
+              <span className="path">/thoughts/{thought.slug}</span>
+            </div>
+          </article>
+        ))}
       </main>
       <Footer />
     </>
@@ -419,6 +593,7 @@ function AppShell() {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/writing" element={<WritingPage />} />
         <Route path="/thoughts/:slug" element={<ThoughtPage />} />
         <Route path="/thoughts/:slug.html" element={<ThoughtPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
