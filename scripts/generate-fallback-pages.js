@@ -1,8 +1,11 @@
 import { copyFile, mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { profile, thoughts } from "../src/content.js";
+import { fellowshipItems, profile, researchItems, sitePages, thoughts, workItems } from "../src/content.js";
 
 const siteUrl = "https://sakshyambanjade.com.np";
+const lastmod = "2026-04-18";
+const defaultImagePath = "/og-image.png";
+const defaultImageUrl = `${siteUrl}${defaultImagePath}`;
 const rootDir = path.resolve(process.env.OUTPUT_DIR || ".");
 const sourceRoot = path.resolve(".");
 
@@ -15,9 +18,9 @@ function escapeHtml(value) {
     .replaceAll("'", "&#39;");
 }
 
-function pageShell({ title, description, canonicalPath, body, type = "article" }) {
+function pageShell({ title, description, canonicalPath, body, type = "article", breadcrumbs }) {
   const fullUrl = `${siteUrl}${canonicalPath}`;
-  const breadcrumbItems = canonicalPath === "/"
+  const breadcrumbItems = breadcrumbs || (canonicalPath === "/"
     ? []
     : [
         { name: "Home", path: "/" },
@@ -27,7 +30,7 @@ function pageShell({ title, description, canonicalPath, body, type = "article" }
               { name: "Writing", path: "/writing/" },
               { name: title.replace(" | Sakshyam Banjade", ""), path: canonicalPath },
             ]),
-      ];
+      ]);
   const breadcrumbJson = breadcrumbItems.length
     ? {
         "@context": "https://schema.org",
@@ -66,11 +69,13 @@ function pageShell({ title, description, canonicalPath, body, type = "article" }
     "@id": `${siteUrl}/#organization`,
     name: "Sakshyam Banjade",
     url: `${siteUrl}/`,
+    image: defaultImageUrl,
     founder: {
       "@type": "Person",
       "@id": `${siteUrl}/#person`,
       name: "Sakshyam Banjade",
       url: `${siteUrl}/`,
+      image: defaultImageUrl,
     },
     sameAs: profile.links.map(([, href]) => href),
   };
@@ -88,9 +93,15 @@ function pageShell({ title, description, canonicalPath, body, type = "article" }
     <meta property="og:description" content="${escapeHtml(description)}" />
     <meta property="og:type" content="${type}" />
     <meta property="og:url" content="${fullUrl}" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content="${defaultImageUrl}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Sakshyam Banjade - AI builder, researcher, and founder" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${escapeHtml(title)}" />
     <meta name="twitter:description" content="${escapeHtml(description)}" />
+    <meta name="twitter:image" content="${defaultImageUrl}" />
+    <meta name="twitter:image:alt" content="Sakshyam Banjade - AI builder, researcher, and founder" />
     <link rel="canonical" href="${fullUrl}" />
     <link rel="stylesheet" href="/style.css" />
     <title>${escapeHtml(title)}</title>
@@ -102,9 +113,9 @@ function pageShell({ title, description, canonicalPath, body, type = "article" }
       <nav class="nav page" aria-label="Primary navigation">
         <a class="site-name" href="/">Sakshyam Banjade</a>
         <ul class="nav-menu">
-          <li><a href="/#work">work</a></li>
+          <li><a href="/projects/">work</a></li>
           <li><a href="/writing/">writing</a></li>
-          <li><a href="/#contact">contact</a></li>
+          <li><a href="/contact/">contact</a></li>
         </ul>
       </nav>
     </header>
@@ -114,6 +125,78 @@ ${body}
     </footer>
   </body>
 </html>
+`;
+}
+
+function entryList(items) {
+  return items
+    .map(
+      (item) => `        <article class="entry${item.featured ? " featured" : ""}">
+          <time>${escapeHtml(item.label)}</time>
+          <div>
+            <h3>${item.href ? `<a href="${escapeHtml(item.href)}">${escapeHtml(item.title)}</a>` : escapeHtml(item.title)}</h3>
+            <p>${escapeHtml(item.body)}</p>
+          </div>
+        </article>`
+    )
+    .join("\n");
+}
+
+const standaloneContent = {
+  projects: {
+    intro:
+      "Selected AI, software, research, and product systems I have built or contributed to, with a focus on useful execution and public-facing work.",
+    items: workItems,
+  },
+  research: {
+    intro:
+      "Research work and directions across applied AI, civic identity infrastructure, scientific tooling, market systems, and human-centered technology.",
+    items: researchItems,
+  },
+  fellowship: {
+    intro:
+      "Fellowships, selections, workshops, pitch spaces, and ecosystem moments connected to leadership, AI, innovation, and public technology work.",
+    items: fellowshipItems,
+  },
+  contact: {
+    intro:
+      "I am interested in research collaboration, product conversations, mentorship initiatives, fellowship partnerships, and other work aligned with technology and impact.",
+    items: [],
+  },
+};
+
+function standaloneBody(page) {
+  const content = standaloneContent[page.slug];
+  const title = escapeHtml(page.label);
+  const body = page.slug === "contact"
+    ? `        <article class="entry">
+          <time>email</time>
+          <div>
+            <h2>Start a conversation</h2>
+            <p>The fastest path is email. You can also use the public profiles below for research, code, writing, and professional context.</p>
+            <p class="contact-list">
+              <a href="mailto:${escapeHtml(profile.email)}">${escapeHtml(profile.email)}</a>
+${profile.links.map(([label, href]) => `              <a href="${escapeHtml(href)}">${escapeHtml(label)}</a>`).join("\n")}
+            </p>
+          </div>
+        </article>`
+    : `        <h2>${page.slug === "projects" ? "Selected work" : title}</h2>
+${entryList(content.items)}`;
+
+  return `    <main class="page writing-page" id="main">
+      <section class="archive-intro" aria-labelledby="${escapeHtml(page.slug)}-title">
+        <p class="subtitle">${escapeHtml(page.label.toLowerCase())}</p>
+        <h1 id="${escapeHtml(page.slug)}-title">${title}</h1>
+        <p>${escapeHtml(content.intro)}</p>
+        <p class="action-links">
+          <a href="/">Home</a>
+          <a href="/writing/">Writing</a>
+        </p>
+      </section>
+      <section aria-label="${title}">
+${body}
+      </section>
+    </main>
 `;
 }
 
@@ -201,8 +284,71 @@ ${thoughts
 `;
 }
 
+function robotsText() {
+  return `User-agent: *
+Allow: /
+
+Sitemap: ${siteUrl}/sitemap.xml
+`;
+}
+
+function sitemapXml() {
+  const urls = [
+    { path: "/", priority: "1.0", changefreq: "weekly" },
+    ...sitePages.map((page) => ({ path: `/${page.slug}/`, priority: "0.8", changefreq: "monthly" })),
+    { path: "/writing/", priority: "0.8", changefreq: "weekly" },
+    ...thoughts.map((thought) => ({ path: `/thoughts/${thought.slug}/`, priority: "0.6", changefreq: "monthly" })),
+  ];
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls
+  .map(
+    (url) => `  <url>
+    <loc>${siteUrl}${url.path}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>${url.changefreq}</changefreq>
+    <priority>${url.priority}</priority>
+  </url>`
+  )
+  .join("\n")}
+</urlset>
+`;
+}
+
+async function writeSeoFiles(targetDir) {
+  await writeFile(path.join(targetDir, "robots.txt"), robotsText());
+  await writeFile(path.join(targetDir, "sitemap.xml"), sitemapXml());
+}
+
 if (rootDir !== sourceRoot) {
   await copyFile(path.join(sourceRoot, "style.css"), path.join(rootDir, "style.css"));
+  await copyFile(path.join(sourceRoot, "public", "og-image.png"), path.join(rootDir, "og-image.png"));
+}
+
+await writeSeoFiles(rootDir);
+
+if (rootDir === sourceRoot) {
+  await writeSeoFiles(path.join(sourceRoot, "public"));
+}
+
+for (const page of sitePages) {
+  const routeDir = path.join(rootDir, page.slug);
+  await mkdir(routeDir, { recursive: true });
+  await writeFile(
+    path.join(routeDir, "index.html"),
+    pageShell({
+      title: page.title,
+      description: page.description,
+      canonicalPath: `/${page.slug}/`,
+      body: standaloneBody(page),
+      type: "website",
+      breadcrumbs: [
+        { name: "Home", path: "/" },
+        { name: page.label, path: `/${page.slug}/` },
+      ],
+    })
+  );
 }
 
 await mkdir(path.join(rootDir, "writing"), { recursive: true });

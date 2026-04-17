@@ -16,9 +16,40 @@ export const profile = {
 };
 
 export const navItems = [
-  ["work", "/#work"],
+  ["work", "/projects/"],
   ["writing", "/writing/"],
-  ["contact", "/#contact"],
+  ["contact", "/contact/"],
+];
+
+export const sitePages = [
+  {
+    slug: "projects",
+    label: "Projects",
+    title: "Projects | Sakshyam Banjade",
+    description:
+      "Selected AI, software, research, and product projects by Sakshyam Banjade, including SeedSure AI, FastNewsOrg, MolVis Pro, and market systems.",
+  },
+  {
+    slug: "research",
+    label: "Research",
+    title: "Research | Sakshyam Banjade",
+    description:
+      "Research direction and publications by Sakshyam Banjade across applied AI, civic identity infrastructure, scientific tooling, and technology systems.",
+  },
+  {
+    slug: "fellowship",
+    label: "Fellowship",
+    title: "Fellowship | Sakshyam Banjade",
+    description:
+      "Fellowships, selections, programs, and innovation spaces connected to Sakshyam Banjade's work in AI, leadership, and public technology.",
+  },
+  {
+    slug: "contact",
+    label: "Contact",
+    title: "Contact | Sakshyam Banjade",
+    description:
+      "Contact Sakshyam Banjade for research collaboration, product conversations, mentorship initiatives, fellowship partnerships, and technology work.",
+  },
 ];
 
 export const trustSignals = [

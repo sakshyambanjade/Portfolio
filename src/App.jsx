@@ -9,6 +9,7 @@ import {
   profile,
   recognitionItems,
   researchItems,
+  sitePages,
   skillGroups,
   thoughts,
   trainingItems,
@@ -17,6 +18,8 @@ import {
 } from "./content.js";
 
 const siteUrl = "https://sakshyambanjade.com.np";
+const defaultImagePath = "/og-image.png";
+const defaultImageUrl = `${siteUrl}${defaultImagePath}`;
 const defaultDescription =
   "Sakshyam Banjade is an AI builder, researcher, and founder from Nepal working on applied AI systems, research, fellowship programs, and technology writing.";
 
@@ -66,9 +69,15 @@ function useSeo({ title, description, path = "/", type = "website", structuredDa
     setMeta("og:description", description, "property");
     setMeta("og:type", type, "property");
     setMeta("og:url", url, "property");
-    setMeta("twitter:card", "summary");
+    setMeta("og:image", defaultImageUrl, "property");
+    setMeta("og:image:width", "1200", "property");
+    setMeta("og:image:height", "630", "property");
+    setMeta("og:image:alt", "Sakshyam Banjade - AI builder, researcher, and founder", "property");
+    setMeta("twitter:card", "summary_large_image");
     setMeta("twitter:title", title);
     setMeta("twitter:description", description);
+    setMeta("twitter:image", defaultImageUrl);
+    setMeta("twitter:image:alt", "Sakshyam Banjade - AI builder, researcher, and founder");
 
     let canonical = document.head.querySelector('link[rel="canonical"]');
     if (!canonical) {
@@ -236,10 +245,10 @@ function Hero() {
       <p className="hero-copy">{profile.location}</p>
 
       <p className="action-links" aria-label="Primary actions">
-        <Link to="/#work">View Work</Link>
-        <Link to="/#research">Research</Link>
-        <Link to="/#fellowship">Fellowship</Link>
-        <Link to="/#contact">Contact</Link>
+        <Link to="/projects/">View Work</Link>
+        <Link to="/research/">Research</Link>
+        <Link to="/fellowship/">Fellowship</Link>
+        <Link to="/contact/">Contact</Link>
       </p>
 
       <p className="current-focus">{profile.focus}</p>
@@ -426,6 +435,7 @@ function HomePage() {
           "@id": `${siteUrl}/#organization`,
           name: "Sakshyam Banjade",
           url: `${siteUrl}/`,
+          image: defaultImageUrl,
           founder: {
             "@id": `${siteUrl}/#person`,
           },
@@ -436,6 +446,7 @@ function HomePage() {
           "@id": `${siteUrl}/#person`,
           name: "Sakshyam Banjade",
           url: `${siteUrl}/`,
+          image: defaultImageUrl,
           email: `mailto:${profile.email}`,
           jobTitle: "AI Builder, Researcher and Founder",
           nationality: "Nepalese",
@@ -567,6 +578,90 @@ function HomePage() {
   );
 }
 
+const pageContent = {
+  projects: {
+    intro:
+      "Selected AI, software, research, and product systems I have built or contributed to, with a focus on useful execution and public-facing work.",
+    items: workItems,
+  },
+  research: {
+    intro:
+      "Research work and directions across applied AI, civic identity infrastructure, scientific tooling, market systems, and human-centered technology.",
+    items: researchItems,
+  },
+  fellowship: {
+    intro:
+      "Fellowships, selections, workshops, pitch spaces, and ecosystem moments connected to leadership, AI, innovation, and public technology work.",
+    items: fellowshipItems,
+  },
+  contact: {
+    intro:
+      "I am interested in research collaboration, product conversations, mentorship initiatives, fellowship partnerships, and other work aligned with technology and impact.",
+    items: [],
+  },
+};
+
+function StandalonePage({ slug }) {
+  const page = sitePages.find((item) => item.slug === slug);
+  const content = pageContent[slug];
+
+  useSeo({
+    title: page.title,
+    description: page.description,
+    path: `/${slug}/`,
+    structuredData: breadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: page.label, path: `/${slug}/` },
+    ]),
+  });
+
+  return (
+    <>
+      <main className="page writing-page" id="main">
+        <section className="archive-intro" aria-labelledby={`${slug}-title`}>
+          <p className="subtitle">{page.label.toLowerCase()}</p>
+          <h1 id={`${slug}-title`}>{page.label}</h1>
+          <p>{content.intro}</p>
+          <p className="action-links">
+            <Link to="/">Home</Link>
+            {slug !== "writing" ? <Link to="/writing/">Writing</Link> : null}
+          </p>
+        </section>
+
+        {slug === "contact" ? (
+          <section aria-label="Contact links">
+            <article className="entry">
+              <time>email</time>
+              <div>
+                <h2>Start a conversation</h2>
+                <p>
+                  The fastest path is email. You can also use the public profiles below for research, code, writing,
+                  and professional context.
+                </p>
+                <p className="contact-list">
+                  <a href={`mailto:${profile.email}`}>{profile.email}</a>
+                  {profile.links.map(([label, href]) => (
+                    <a href={href} key={label}>
+                      {label}
+                    </a>
+                  ))}
+                </p>
+              </div>
+            </article>
+          </section>
+        ) : (
+          <section aria-label={page.label}>
+            {content.items.map((item) => (
+              <Entry item={item} key={`${item.label}-${item.title}`} />
+            ))}
+          </section>
+        )}
+      </main>
+      <Footer />
+    </>
+  );
+}
+
 function WritingPage() {
   useSeo({
     title: "Writing | Sakshyam Banjade",
@@ -640,7 +735,8 @@ function ThoughtPage() {
           url: `${siteUrl}/`,
         },
         publisher: {
-          "@type": "Person",
+          "@type": "Organization",
+          "@id": `${siteUrl}/#organization`,
           name: "Sakshyam Banjade",
           url: `${siteUrl}/`,
         },
@@ -656,7 +752,7 @@ function ThoughtPage() {
           <h1>{thought.title}</h1>
           <p className="meta">{thought.summary}</p>
           <p className="reading-actions">
-            <Link to="/writing">Back to archive</Link>
+            <Link to="/writing/">Back to archive</Link>
             <Link to="/">Home</Link>
           </p>
         </header>
@@ -676,7 +772,7 @@ function ThoughtPage() {
           ) : (
             <span />
           )}
-          <Link className="archive-link" to="/writing">
+          <Link className="archive-link" to="/writing/">
             All writing
           </Link>
           {nextThought ? (
@@ -736,6 +832,14 @@ function AppShell() {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/projects" element={<StandalonePage slug="projects" />} />
+        <Route path="/projects/" element={<StandalonePage slug="projects" />} />
+        <Route path="/research" element={<StandalonePage slug="research" />} />
+        <Route path="/research/" element={<StandalonePage slug="research" />} />
+        <Route path="/fellowship" element={<StandalonePage slug="fellowship" />} />
+        <Route path="/fellowship/" element={<StandalonePage slug="fellowship" />} />
+        <Route path="/contact" element={<StandalonePage slug="contact" />} />
+        <Route path="/contact/" element={<StandalonePage slug="contact" />} />
         <Route path="/writing" element={<WritingPage />} />
         <Route path="/writing/" element={<WritingPage />} />
         <Route path="/thoughts/:slug" element={<ThoughtPage />} />
