@@ -283,6 +283,14 @@ h3 {
   margin-bottom: 0.35rem;
 }
 
+.thought-link .path {
+  display: inline-block;
+  margin-top: 4px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
 .featured h3::after {
   content: "";
   display: inline-block;
