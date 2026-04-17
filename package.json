@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "postbuild": "node scripts/postbuild.js",
+    "fallback": "node scripts/generate-fallback-pages.js",
     "preview": "vite preview"
   },
   "dependencies": {
