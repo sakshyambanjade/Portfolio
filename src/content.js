@@ -1,0 +1,294 @@
+export const profile = {
+  name: "Sakshyam Banjade",
+  tagline: "Building AI systems, research, and emerging talent networks.",
+  intro:
+    "I work across applied AI, product development, research, and leadership. My focus is on building useful systems, publishing meaningful work, and creating opportunities for ambitious people through technology.",
+  location: "Based in Nepal / studying internationally.",
+  focus: "Currently focused on applied AI systems, publications, and building globally relevant work from Nepal.",
+  email: "hi@sakshyambanjade.com.np",
+  links: [
+    ["GitHub", "https://github.com/sakshyambanjade"],
+    ["LinkedIn", "https://www.linkedin.com/in/sakshyam/"],
+    ["X / Twitter", "https://x.com/SakshyamBanjade/"],
+    ["Google Scholar", "https://scholar.google.com/citations?user=ltUdGkgAAAAJ&hl=en"],
+    ["ResearchGate", "https://www.researchgate.net/profile/Sakshyam-Banjade-2"],
+  ],
+};
+
+export const navItems = [
+  ["home", "top"],
+  ["work", "work"],
+  ["done", "done"],
+  ["research", "research"],
+  ["fellowship", "fellowship"],
+  ["leadership", "leadership"],
+  ["writing", "writing"],
+  ["contact", "contact"],
+];
+
+export const trustSignals = [
+  "Published Research",
+  "International Program Selectee",
+  "Multi-Domain Experience",
+  "Leadership & Community Work",
+  "Building Since Early Career",
+];
+
+export const workItems = [
+  {
+    label: "agriculture",
+    title: "SeedSure AI",
+    featured: true,
+    body:
+      "AI-powered climate-smart seed and crop advisory platform built for Nepal's smallholder farmers. It helps farmers make better planting decisions using location, weather, season, soil type, and local farming conditions.",
+  },
+  {
+    label: "AI systems",
+    title: "Multi-AI Orchestrator",
+    featured: true,
+    body:
+      "Unified system for coordinating multiple language models and providers. Explores routing, consensus, benchmarking, structured outputs, and parallel reasoning across providers.",
+  },
+  {
+    label: "scientific tools",
+    title: "MolVis Pro",
+    featured: true,
+    body:
+      "Browser-based molecular visualization and AI-assisted chemistry platform designed around SMILES input, molecular properties, descriptors, and accessible scientific workflows.",
+  },
+  {
+    label: "media intelligence",
+    title: "FastNewsOrg",
+    featured: true,
+    body:
+      "AI-powered news aggregation, curation, summarization, and automated publishing system built for politics, finance, technology, and election monitoring workflows.",
+  },
+  {
+    label: "job systems",
+    title: "Job and opportunity aggregation",
+    body:
+      "Built and explored systems that collect, organize, and surface useful opportunities, with a focus on making discovery easier for students and early-career builders.",
+  },
+  {
+    label: "market tools",
+    title: "NEPSE and quantitative experiments",
+    body:
+      "Explored Nepal-focused market systems, broker workflows, backtesting ideas, financial analysis, and automation pipelines around public market data.",
+  },
+  {
+    label: "public writing",
+    title: "Technology writing and publishing",
+    body:
+      "Published technology and systems-focused writing through FastNewsOrg and personal essays, connecting technical ideas with public communication.",
+  },
+  {
+    label: "selected",
+    title: "Selections and external signals",
+    body:
+      "Selected for Youth Leadership Workshop Seoul, participated in Youth Innovation Lab's FutureFront program, contributed to UNDP-related AI pitch spaces, and represented work across leadership, innovation, and technology-journalism environments.",
+  },
+  {
+    label: "language",
+    title: "Google Crowdsource recognition",
+    body:
+      "Recognized through Google Crowdsource contribution work, including translation and community participation that connects Nepali language knowledge with global technology systems.",
+  },
+];
+
+export const doneItems = [
+  {
+    label: "systems",
+    title: "Built AI and software systems",
+    body:
+      "Built and prototyped systems across crop advisory, media intelligence, molecular visualization, multi-model orchestration, job aggregation, and Nepal-focused market workflows.",
+  },
+  {
+    label: "founder",
+    title: "Started and operated projects",
+    body:
+      "Started SeedSure AI and FastNewsOrg, moving ideas from concept into working products, content systems, and public-facing execution.",
+  },
+  {
+    label: "media",
+    title: "Published and worked around technology media",
+    body:
+      "Published 20+ articles through Fast News Org and worked in technology/media environments, including Avenues TV and public-facing tech journalism.",
+  },
+  {
+    label: "research",
+    title: "Published research",
+    body:
+      "Published an SSRN research paper on Nepal's civic identity infrastructure and continue building an applied AI research pipeline across agriculture, systems, and scientific tooling.",
+  },
+  {
+    label: "finance",
+    title: "Explored market systems",
+    body:
+      "Worked around trading workflows, financial analysis, quantitative research simulation, and NEPSE-focused experimentation.",
+  },
+  {
+    label: "leadership",
+    title: "Led community initiatives",
+    body:
+      "Served as Vice President II at Leo Club of Kathmandu Deurali, supporting service projects, volunteer coordination, youth leadership, and community engagement.",
+  },
+  {
+    label: "mentorship",
+    title: "Mentored early builders",
+    body:
+      "Supported students and early-stage builders through DEV Community Nepal, remote learning efforts, direct mentorship, and practical guidance around technology careers.",
+  },
+  {
+    label: "language",
+    title: "Contributed to language data",
+    body:
+      "Contributed through Google Crowdsource work, including translation and community participation that connects local language knowledge with global technology platforms.",
+  },
+  {
+    label: "global",
+    title: "Entered international and innovation programs",
+    body:
+      "Participated in leadership, innovation, AI, and technology-journalism spaces including Youth Leadership Workshop Seoul, Youth Innovation Lab FutureFront, and UNDP-related AI pitch environments.",
+  },
+];
+
+export const researchItems = [
+  {
+    label: "publication",
+    title: "Towards a Unified Civic Identity Stack",
+    href: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6392278",
+    body:
+      "A research paper proposing a federated digital identity architecture for Nepal through integration of the National Identity Card with cross-domain government services. DOI: 10.2139/ssrn.6392278.",
+  },
+];
+
+export const leadershipItems = [
+  {
+    label: "leadership",
+    title: "Leo Club of Kathmandu Deurali",
+    body: "Vice President II, supporting volunteer coordination, community projects, and youth initiatives.",
+  },
+  {
+    label: "community",
+    title: "DEV Community Nepal",
+    body: "Tech Mentor, supporting others in technology and early career direction.",
+  },
+  {
+    label: "community",
+    title: "Broader community work",
+    body:
+      "Background includes Scouts, Red Cross involvement, youth leadership programs, community service, and direct mentorship initiatives.",
+  },
+  {
+    label: "recognitions",
+    title: "Selected programs and recognitions",
+    body:
+      "Youth Leadership Workshop Seoul, FutureFront by Youth Innovation Lab, UNDP AI pitch participation, Google Crowdsource Global Top 3 Translator, and startup / AI program selections.",
+  },
+];
+
+export const thoughts = [
+  {
+    slug: "thoughts-1",
+    title: "Microsoft: Bids Farewell to Diagnostic Tool",
+    summary: "On Microsoft's move away from MSDT and toward modern Windows support tools.",
+    meta: "Thought 1",
+    paragraphs: [
+      "Microsoft is officially discontinuing the Microsoft Support Diagnostic Tool, also known as MSDT, and its troubleshooters. This signals a transition toward more modern support solutions. Introduced years ago to help users diagnose and fix system issues, MSDT is being phased out as Microsoft encourages users to rely on newer tools such as Get Help and Feedback Hub.",
+      "One reason for the change is security. MSDT has been connected to vulnerabilities, including remote code execution risks. In a world where cybersecurity threats keep changing, removing older support tools can reduce the attack surface and make Windows support safer.",
+      "Another reason is modernization. Microsoft's troubleshooting approach is moving toward more integrated tools. The Get Help app can guide users toward direct solutions and response paths, while Feedback Hub gives Microsoft a more interactive way to understand issues, collect feedback, and improve Windows over time.",
+      "Starting with newer Windows 11 versions, Microsoft has begun disabling some MSDT troubleshooters. The broader deprecation process is expected to continue through the 2024-2025 period as Microsoft phases out older technologies and support paths.",
+      "For most users, this should create a simpler troubleshooting experience. Microsoft has already started embedding AI-based support into Get Help, offering more targeted and real-time resolutions without requiring people to manually download older diagnostic tools.",
+      "For enterprise users, the transition means internal support protocols should be updated early. IT teams will need to prepare users for newer tools and make sure their workflows no longer depend on MSDT.",
+      "While the end of MSDT marks the end of an era, it also reflects Microsoft's push toward a more secure, intelligent, and user-friendly support environment. With AI and newer tools, Windows troubleshooting may become more responsive in future versions.",
+    ],
+  },
+  {
+    slug: "thoughts-2",
+    title: "AI: The Future of Aviation Safety and Efficiency",
+    summary: "How AI could support safer, more efficient aviation systems.",
+    meta: "Thought 2",
+    paragraphs: [
+      "Each day, around 100,000 flights take off worldwide. Airlines spend billions of dollars every year on fuel, logistics, maintenance, and pilot compensation. Aviation is one of the most high-stakes and high-cost industries in the world.",
+      "Even with strong safety records, aviation still faces incidents and accidents every year. The numbers remind us that there is always room to make flying safer, more efficient, and more adaptive to unexpected conditions.",
+      "This is where AI and machine learning could play a transformative role. Imagine systems embedded in aircraft that can learn from millions of flights, detect patterns, understand risks, and support pilots with useful warnings and real-time recommendations.",
+      "With millions of flights happening annually, AI could help build a form of collective aviation intelligence. A system trained on historical flight data could assist with risk anticipation, response time, route optimization, maintenance planning, and decision support.",
+      "This does not mean replacing pilots. It means giving them better tools. Like an advanced co-pilot with knowledge from countless flight experiences, AI could help reduce human error and support safer decision-making under pressure.",
+      "The same technology could also improve efficiency. Better predictions can reduce fuel waste, maintenance uncertainty, delays, and insurance costs. In a field where small improvements can create huge impact, AI has serious potential.",
+      "Bill Gates once said that a computer is a great tool for those who know how to use it. In the same way, AI can help us work smarter, focus on the bigger picture, and unlock new levels of safety and efficiency in aviation.",
+    ],
+  },
+  {
+    slug: "thoughts-3",
+    title: "Art of Waiting",
+    summary: "On patience, timing, and preparing while life has not yet opened the next door.",
+    meta: "Thought 3",
+    paragraphs: [
+      "Yes, the art of waiting. It is not exactly a tech topic, but it connects deeply to everyday life. Waiting may sound strange for a Gen Z person like me, because our generation is used to getting things done with just a few clicks.",
+      "We do not really like waiting. Either we want everything perfectly done, or we quickly jump to something else if our first plan does not work out. But sometimes waiting is not weakness. Sometimes it is part of the process.",
+      "Imagine if Elon Musk had panicked and sold Tesla too early, or if Mark Zuckerberg had sold Facebook because he thought his plan would not succeed. They waited. They had faith in their vision even when others doubted them.",
+      "When plans succeed, people notice the outcome. They call the person a role model, write news stories, and talk about success. But people rarely talk about the waiting: how difficult it is, how much patience it takes, and how much belief it requires.",
+      "You might be rushing right now to get into a good company, a dream university, or a life-changing opportunity. But pause for a moment and ask yourself whether the thing you are chasing is worth it.",
+      "Waiting is not about doing nothing. It is about preparing, learning, improving, and believing in yourself while things align. Everything may not happen immediately, but that does not mean it will never happen.",
+      "So remember the art of waiting. Keep moving, keep learning, and have faith in yourself.",
+    ],
+  },
+  {
+    slug: "thoughts-4",
+    title: "Art of Hating",
+    summary: "On jealousy, discouragement, mentorship, and building better rooms for young people.",
+    meta: "Thought 4",
+    paragraphs: [
+      "Art of hating. It sounds strange, but some people have mastered it. Why does it happen? Is it because someone is winning and you are not? Is it because someone is trying to learn, ask questions, or grow, and instead of supporting them, people decide to mock them?",
+      "I have seen people in tech who have knowledge, but instead of helping younger people, they taunt them or make sarcastic comments. Sometimes it feels like they cannot stand seeing someone else try. Sometimes it feels like frustration being passed from one person to another.",
+      "I have been lucky to have mentors who inspire others and help people succeed. That kind of mindset matters. A good mentor does not make someone feel small for asking a question. A good mentor remembers what it felt like to be a beginner.",
+      "If you cannot handle seeing others grow, it may be better to log off and work on yourself instead of spreading hate. Build something. Learn something. Step into the field and do something worthwhile.",
+      "This is an open challenge to anyone who thinks they know everything but spends their time bringing others down. Let us create an atmosphere where people who are trying to learn are supported, not discouraged.",
+      "We need a garden of people who want to explore, achieve, and make a difference. Hate does not build anything. Encouragement does.",
+    ],
+  },
+  {
+    slug: "thoughts-5",
+    title: "I Used to Hate Sports",
+    summary: "On school, practical learning, computers, and how skills are often misunderstood.",
+    meta: "Thought 5",
+    paragraphs: [
+      "This is a story about me, a person who used to absolutely hate sports. I do not have a perfect reason, but the real problem was simple: I was a complete computer nerd.",
+      "All I cared about was waiting for school to end or waiting for computer class. But in Nepal, studying computers often does not mean doing things practically. We write notes, definitions, and even code in notebooks.",
+      "Our curriculum may talk about AI, programming, and futuristic ideas, but many students still write code on paper. It is like learning to swim by reading about water instead of getting into a pool.",
+      "I never loved sports. I even used to bunk sports class to get extra time for homework, not because I was a topper, but because finishing homework meant more time at home to play games or do actual programming.",
+      "Imagine if programming or e-sports were treated as real skills in school. But the common mindset often says these things are not good for kids. Even if a school wanted to support them, parents might not understand the value.",
+      "I loved computers, surfing the internet, learning new things, and coding. My brain was often at home where my laptop was. In class, I saw how students could memorize concepts, but practical work was a different story.",
+      "I had to memorize programming concepts instead of truly learning them. It felt pointless to mock up lines of code on paper instead of writing them on a real computer.",
+      "I am not a high-class executive, a PhD holder, or a genius. I am a student who experienced this system, and I do not want the next generation to experience the same thing. Teachers may be doing their best, but curriculum designers need to think from a student's perspective too.",
+    ],
+  },
+  {
+    slug: "thoughts-6",
+    title: "I'm from Tech, Not IT - Please Stop Handing Me Wires",
+    summary: "On the funny but real confusion between technology builders and IT support.",
+    meta: "Thought 6",
+    paragraphs: [
+      "Being from Nepal, I have noticed that people often do not see the difference between IT and tech. It is funny until it happens to you.",
+      "One time, an aunty handed me a tangled wire and asked, \"You are from IT, right? Can you fix this?\" I stood there thinking: I build websites, not antennas.",
+      "If you are known as the tech person, you have probably been asked to fix Wi-Fi, printers, or even something completely unrelated. Yes, I can replace an SSD or reassemble a CPU after watching a tutorial, but that does not mean it is my profession.",
+      "When I say I am from tech, I mean I code, design, and build things like websites and apps. IT is more about system management, networks, and support. IT professionals keep things running smoothly. Tech builders create things from scratch.",
+      "In Nepal, everything technical often gets mixed together. People think coding makes you a hacker or that CSS can break into systems. But tech is more than fixing problems. It is creativity, building, and solving real problems.",
+      "Our education system does not always help because it often teaches theoretical computer science instead of practical skills. So next time you see me, ask about the app I am working on, not whether I can fix your printer.",
+    ],
+  },
+  {
+    slug: "thoughts-7",
+    title: "The Eye Makes You Work",
+    summary: "On vision, exposure, perspective, and how what we see shapes what we chase.",
+    meta: "Thought 7",
+    paragraphs: [
+      "Have you ever noticed how much your eyes shape your life? What we see often becomes what we chase. A kid who grows up watching technology may dream of building apps or machines. Someone exposed to finance may see their future in banking or markets.",
+      "Our eyes introduce us to the world, and what we see can become our path forward. But imagine not seeing at all. A blind person may not know what a plane looks like or what a screen interface feels like visually. Their world is shaped more by touch, sound, and instinct.",
+      "That does not make their world less meaningful. It makes it different. Sight gives many of us direction, curiosity, and a visual sense of possibility.",
+      "The eye is not just for sight. It is a starting point for everything. It influences who we become, what we build, and what we believe is possible.",
+      "And this is not only about physical blindness. If a person is blind in their thoughts, how can they truly see the beauty of the world?",
+      "In the end, perspective matters. How you look at the world shapes what you do with it.",
+    ],
+  },
+];
