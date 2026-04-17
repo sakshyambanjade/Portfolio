@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "postbuild": "node scripts/postbuild.js",
+    "postbuild": "node scripts/postbuild.js && OUTPUT_DIR=dist node scripts/generate-fallback-pages.js",
     "fallback": "node scripts/generate-fallback-pages.js",
     "preview": "vite preview"
   },

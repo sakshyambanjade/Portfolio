@@ -1,20 +1,80 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { copyFile, mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { thoughts } from "../src/content.js";
+import { profile, thoughts } from "../src/content.js";
 
 const siteUrl = "https://sakshyambanjade.com.np";
-const rootDir = path.resolve(".");
+const rootDir = path.resolve(process.env.OUTPUT_DIR || ".");
+const sourceRoot = path.resolve(".");
 
 function escapeHtml(value) {
   return value
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;");
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
 }
 
 function pageShell({ title, description, canonicalPath, body, type = "article" }) {
   const fullUrl = `${siteUrl}${canonicalPath}`;
+  const breadcrumbItems = canonicalPath === "/"
+    ? []
+    : [
+        { name: "Home", path: "/" },
+        ...(canonicalPath === "/writing/"
+          ? [{ name: "Writing", path: "/writing/" }]
+          : [
+              { name: "Writing", path: "/writing/" },
+              { name: title.replace(" | Sakshyam Banjade", ""), path: canonicalPath },
+            ]),
+      ];
+  const breadcrumbJson = breadcrumbItems.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: breadcrumbItems.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: item.name,
+          item: `${siteUrl}${item.path}`,
+        })),
+      }
+    : null;
+  const articleJson = type === "article"
+    ? {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: title.replace(" | Sakshyam Banjade", ""),
+        description,
+        mainEntityOfPage: fullUrl,
+        author: {
+          "@type": "Person",
+          name: "Sakshyam Banjade",
+          url: `${siteUrl}/`,
+        },
+        publisher: {
+          "@type": "Organization",
+          "@id": `${siteUrl}/#organization`,
+          name: "Sakshyam Banjade",
+          url: `${siteUrl}/`,
+        },
+      }
+    : null;
+  const organizationJson = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${siteUrl}/#organization`,
+    name: "Sakshyam Banjade",
+    url: `${siteUrl}/`,
+    founder: {
+      "@type": "Person",
+      "@id": `${siteUrl}/#person`,
+      name: "Sakshyam Banjade",
+      url: `${siteUrl}/`,
+    },
+    sameAs: profile.links.map(([, href]) => href),
+  };
+  const jsonLd = [organizationJson, breadcrumbJson, articleJson].filter(Boolean);
 
   return `<!doctype html>
 <html lang="en">
@@ -28,19 +88,21 @@ function pageShell({ title, description, canonicalPath, body, type = "article" }
     <meta property="og:description" content="${escapeHtml(description)}" />
     <meta property="og:type" content="${type}" />
     <meta property="og:url" content="${fullUrl}" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="${escapeHtml(title)}" />
+    <meta name="twitter:description" content="${escapeHtml(description)}" />
     <link rel="canonical" href="${fullUrl}" />
     <link rel="stylesheet" href="/style.css" />
     <title>${escapeHtml(title)}</title>
+    ${jsonLd.length ? `<script type="application/ld+json">${JSON.stringify(jsonLd.length === 1 ? jsonLd[0] : jsonLd)}</script>` : ""}
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
     <header class="site-header">
       <nav class="nav page" aria-label="Primary navigation">
-        <a class="site-name" href="/#top">Sakshyam Banjade</a>
+        <a class="site-name" href="/">Sakshyam Banjade</a>
         <ul class="nav-menu">
           <li><a href="/#work">work</a></li>
-          <li><a href="/#research">research</a></li>
-          <li><a href="/#recognitions">recognitions</a></li>
           <li><a href="/writing/">writing</a></li>
           <li><a href="/#contact">contact</a></li>
         </ul>
@@ -60,13 +122,6 @@ function thoughtBody(thought, index) {
   const nextThought = index < thoughts.length - 1 ? thoughts[index + 1] : null;
 
   return `    <main class="page thought-page" id="main">
-      <nav class="breadcrumb" aria-label="Writing navigation">
-        <a href="/">Home</a>
-        <span>/</span>
-        <a href="/writing/">Writing</a>
-        <span>/</span>
-        <span>${escapeHtml(thought.meta)}</span>
-      </nav>
       <header class="reading-header">
         <p class="subtitle">writing</p>
         <h1>${escapeHtml(thought.title)}</h1>
@@ -96,13 +151,26 @@ ${thought.paragraphs.map((paragraph) => `        <p>${escapeHtml(paragraph)}</p>
 `;
 }
 
+function redirectPage(targetPath) {
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href="${siteUrl}${targetPath}" />
+    <meta http-equiv="refresh" content="0; url=${targetPath}" />
+    <title>Redirecting | Sakshyam Banjade</title>
+  </head>
+  <body>
+    <p><a href="${targetPath}">Continue reading</a></p>
+  </body>
+</html>
+`;
+}
+
 function writingBody() {
   return `    <main class="page writing-page" id="main">
-      <nav class="breadcrumb" aria-label="Writing navigation">
-        <a href="/">Home</a>
-        <span>/</span>
-        <span>Writing</span>
-      </nav>
       <section class="archive-intro" aria-labelledby="writing-title">
         <p class="subtitle">writing archive</p>
         <h1 id="writing-title">Writing</h1>
@@ -133,6 +201,10 @@ ${thoughts
 `;
 }
 
+if (rootDir !== sourceRoot) {
+  await copyFile(path.join(sourceRoot, "style.css"), path.join(rootDir, "style.css"));
+}
+
 await mkdir(path.join(rootDir, "writing"), { recursive: true });
 await writeFile(
   path.join(rootDir, "writing", "index.html"),
@@ -147,14 +219,21 @@ await writeFile(
 );
 
 for (const [index, thought] of thoughts.entries()) {
+  const canonicalPath = `/thoughts/${thought.slug}/`;
   const html = pageShell({
     title: `${thought.title} | Sakshyam Banjade`,
     description: thought.summary,
-    canonicalPath: `/thoughts/${thought.slug}/`,
+    canonicalPath,
     body: thoughtBody(thought, index),
   });
   const routeDir = path.join(rootDir, "thoughts", thought.slug);
   await mkdir(routeDir, { recursive: true });
   await writeFile(path.join(routeDir, "index.html"), html);
-  await writeFile(path.join(rootDir, "thoughts", `${thought.slug}.html`), html);
+
+  if (thought.legacySlug) {
+    const legacyRouteDir = path.join(rootDir, "thoughts", thought.legacySlug);
+    await mkdir(legacyRouteDir, { recursive: true });
+    await writeFile(path.join(legacyRouteDir, "index.html"), redirectPage(canonicalPath));
+    await writeFile(path.join(rootDir, "thoughts", `${thought.legacySlug}.html`), redirectPage(canonicalPath));
+  }
 }

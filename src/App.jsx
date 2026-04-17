@@ -17,6 +17,8 @@ import {
 } from "./content.js";
 
 const siteUrl = "https://sakshyambanjade.com.np";
+const defaultDescription =
+  "Sakshyam Banjade is an AI builder, researcher, and founder from Nepal working on applied AI systems, research, fellowship programs, and technology writing.";
 
 function setMeta(name, content, attribute = "name") {
   let tag = document.head.querySelector(`meta[${attribute}="${name}"]`);
@@ -28,7 +30,31 @@ function setMeta(name, content, attribute = "name") {
   tag.setAttribute("content", content);
 }
 
-function useSeo({ title, description, path = "/", type = "website" }) {
+function setJsonLd(data) {
+  let tag = document.head.querySelector('script[data-seo-jsonld="true"]');
+  if (!tag) {
+    tag = document.createElement("script");
+    tag.type = "application/ld+json";
+    tag.setAttribute("data-seo-jsonld", "true");
+    document.head.appendChild(tag);
+  }
+  tag.textContent = JSON.stringify(data);
+}
+
+function breadcrumbJsonLd(items) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: `${siteUrl}${item.path}`,
+    })),
+  };
+}
+
+function useSeo({ title, description, path = "/", type = "website", structuredData }) {
   useEffect(() => {
     const url = `${siteUrl}${path}`;
     document.title = title;
@@ -40,6 +66,9 @@ function useSeo({ title, description, path = "/", type = "website" }) {
     setMeta("og:description", description, "property");
     setMeta("og:type", type, "property");
     setMeta("og:url", url, "property");
+    setMeta("twitter:card", "summary");
+    setMeta("twitter:title", title);
+    setMeta("twitter:description", description);
 
     let canonical = document.head.querySelector('link[rel="canonical"]');
     if (!canonical) {
@@ -48,7 +77,9 @@ function useSeo({ title, description, path = "/", type = "website" }) {
       document.head.appendChild(canonical);
     }
     canonical.setAttribute("href", url);
-  }, [description, path, title, type]);
+
+    if (structuredData) setJsonLd(structuredData);
+  }, [description, path, structuredData, title, type]);
 }
 
 function useRedirectFallback() {
@@ -115,7 +146,7 @@ function useRouteEffects() {
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeId, setActiveId] = useState("top");
+  const [activeId, setActiveId] = useState("about");
   const location = useLocation();
   const onHome = location.pathname === "/";
 
@@ -142,7 +173,7 @@ function Header() {
   return (
     <header className="site-header">
       <nav className="nav page" aria-label="Primary navigation">
-        <Link className="site-name" to="/#top" aria-label="Sakshyam Banjade home" onClick={() => setIsOpen(false)}>
+        <Link className="site-name" to="/" aria-label="Sakshyam Banjade home" onClick={() => setIsOpen(false)}>
           Sakshyam Banjade
         </Link>
 
@@ -198,7 +229,7 @@ function Entry({ item }) {
 
 function Hero() {
   return (
-    <section className="hero" id="top">
+    <section className="hero" id="about">
       <h1>{profile.name}</h1>
       <p className="subtitle">{profile.tagline}</p>
       <p className="hero-copy">{profile.intro}</p>
@@ -240,7 +271,7 @@ function WritingArchive() {
           <time>{thought.slug}</time>
           <div>
             <h3>
-              <Link to={`/thoughts/${thought.slug}`}>{thought.title}</Link>
+              <Link to={`/thoughts/${thought.slug}/`}>{thought.title}</Link>
             </h3>
             <p>{thought.summary}</p>
             <span className="path">/thoughts/{thought.slug}</span>
@@ -249,7 +280,7 @@ function WritingArchive() {
       ))}
 
       <p className="action-links">
-        <Link to="/writing">Open writing archive</Link>
+        <Link to="/writing/">Open writing archive</Link>
       </p>
     </section>
   );
@@ -261,10 +292,10 @@ function WritingCard({ thought }) {
       <time>{thought.slug}</time>
       <div>
         <h3>
-          <Link to={`/thoughts/${thought.slug}`}>{thought.title}</Link>
+          <Link to={`/thoughts/${thought.slug}/`}>{thought.title}</Link>
         </h3>
         <p>{thought.summary}</p>
-        <Link className="read-link" to={`/thoughts/${thought.slug}`} aria-label={`Read ${thought.title}`}>
+        <Link className="read-link" to={`/thoughts/${thought.slug}/`} aria-label={`Read ${thought.title}`}>
           Read essay
         </Link>
       </div>
@@ -374,9 +405,52 @@ function TweetsSection() {
 
 function HomePage() {
   useSeo({
-    title: "Sakshyam Banjade | AI Systems, Research & Emerging Talent Networks",
-    description:
-      "Personal website of Sakshyam Banjade featuring AI projects, research, leadership, fellowship work, and product building from Nepal.",
+    title: "Sakshyam Banjade | AI Builder, Researcher & Founder",
+    description: defaultDescription,
+    structuredData: {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": `${siteUrl}/#website`,
+          name: "Sakshyam Banjade",
+          url: `${siteUrl}/`,
+          description: defaultDescription,
+          inLanguage: "en",
+          publisher: {
+            "@id": `${siteUrl}/#organization`,
+          },
+        },
+        {
+          "@type": "Organization",
+          "@id": `${siteUrl}/#organization`,
+          name: "Sakshyam Banjade",
+          url: `${siteUrl}/`,
+          founder: {
+            "@id": `${siteUrl}/#person`,
+          },
+          sameAs: profile.links.map(([, href]) => href),
+        },
+        {
+          "@type": "Person",
+          "@id": `${siteUrl}/#person`,
+          name: "Sakshyam Banjade",
+          url: `${siteUrl}/`,
+          email: `mailto:${profile.email}`,
+          jobTitle: "AI Builder, Researcher and Founder",
+          nationality: "Nepalese",
+          sameAs: profile.links.map(([, href]) => href),
+          knowsAbout: [
+            "Artificial Intelligence",
+            "Machine Learning",
+            "Applied AI",
+            "Research",
+            "Technology writing",
+            "Startup building",
+          ],
+        },
+      ],
+    },
   });
 
   return (
@@ -485,7 +559,6 @@ function HomePage() {
                 {label}
               </a>
             ))}
-            <a href="/Sakshyam_Banjade_CV.pdf">CV PDF</a>
           </p>
         </section>
       </main>
@@ -499,18 +572,16 @@ function WritingPage() {
     title: "Writing | Sakshyam Banjade",
     description:
       "Essays and notes by Sakshyam Banjade on technology, AI, education, patience, community, and building things early.",
-    path: "/writing",
+    path: "/writing/",
+    structuredData: breadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: "Writing", path: "/writing/" },
+    ]),
   });
 
   return (
     <>
       <main className="page writing-page" id="main">
-        <nav className="breadcrumb" aria-label="Writing navigation">
-          <Link to="/">Home</Link>
-          <span>/</span>
-          <span>Writing</span>
-        </nav>
-
         <section className="archive-intro" aria-labelledby="writing-title">
           <p className="subtitle">writing archive</p>
           <h1 id="writing-title">Writing</h1>
@@ -538,30 +609,48 @@ function WritingPage() {
 function ThoughtPage() {
   const { slug } = useParams();
   const thought = useMemo(() => thoughts.find((item) => item.slug === slug), [slug]);
+  const legacyThought = useMemo(() => thoughts.find((item) => item.legacySlug === slug), [slug]);
   const thoughtIndex = useMemo(() => thoughts.findIndex((item) => item.slug === slug), [slug]);
   const previousThought = thoughtIndex > 0 ? thoughts[thoughtIndex - 1] : null;
   const nextThought = thoughtIndex >= 0 && thoughtIndex < thoughts.length - 1 ? thoughts[thoughtIndex + 1] : null;
 
+  if (!thought && legacyThought) return <Navigate to={`/thoughts/${legacyThought.slug}/`} replace />;
   if (!thought) return <Navigate to="/#writing" replace />;
 
   useSeo({
     title: `${thought.title} | Sakshyam Banjade`,
     description: thought.summary,
-    path: `/thoughts/${thought.slug}`,
+    path: `/thoughts/${thought.slug}/`,
     type: "article",
+    structuredData: [
+      breadcrumbJsonLd([
+        { name: "Home", path: "/" },
+        { name: "Writing", path: "/writing/" },
+        { name: thought.title, path: `/thoughts/${thought.slug}/` },
+      ]),
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: thought.title,
+        description: thought.summary,
+        mainEntityOfPage: `${siteUrl}/thoughts/${thought.slug}/`,
+        author: {
+          "@type": "Person",
+          name: "Sakshyam Banjade",
+          url: `${siteUrl}/`,
+        },
+        publisher: {
+          "@type": "Person",
+          name: "Sakshyam Banjade",
+          url: `${siteUrl}/`,
+        },
+      },
+    ],
   });
 
   return (
     <>
       <main id="main" className="page thought-page">
-        <nav className="breadcrumb" aria-label="Writing navigation">
-          <Link to="/">Home</Link>
-          <span>/</span>
-          <Link to="/writing">Writing</Link>
-          <span>/</span>
-          <span>{thought.meta}</span>
-        </nav>
-
         <header className="reading-header">
           <p className="subtitle">writing</p>
           <h1>{thought.title}</h1>
@@ -580,7 +669,7 @@ function ThoughtPage() {
 
         <nav className="post-nav" aria-label="Previous and next writing">
           {previousThought ? (
-            <Link to={`/thoughts/${previousThought.slug}`}>
+            <Link to={`/thoughts/${previousThought.slug}/`}>
               <span>Previous</span>
               {previousThought.title}
             </Link>
@@ -591,7 +680,7 @@ function ThoughtPage() {
             All writing
           </Link>
           {nextThought ? (
-            <Link to={`/thoughts/${nextThought.slug}`}>
+            <Link to={`/thoughts/${nextThought.slug}/`}>
               <span>Next</span>
               {nextThought.title}
             </Link>
@@ -648,7 +737,9 @@ function AppShell() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/writing" element={<WritingPage />} />
+        <Route path="/writing/" element={<WritingPage />} />
         <Route path="/thoughts/:slug" element={<ThoughtPage />} />
+        <Route path="/thoughts/:slug/" element={<ThoughtPage />} />
         <Route path="/thoughts/:slug.html" element={<ThoughtPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

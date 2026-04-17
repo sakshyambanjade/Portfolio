@@ -16,16 +16,8 @@ export const profile = {
 };
 
 export const navItems = [
-  ["home", "/#top"],
   ["work", "/#work"],
-  ["done", "/#done"],
-  ["research", "/#research"],
-  ["recognitions", "/#recognitions"],
-  ["fellowship", "/#fellowship"],
-  ["leadership", "/#leadership"],
-  ["skills", "/#skills"],
-  ["writing", "/writing"],
-  ["education", "/#education"],
+  ["writing", "/writing/"],
   ["contact", "/#contact"],
 ];
 
@@ -309,7 +301,8 @@ export const trainingItems = [
 
 export const thoughts = [
   {
-    slug: "thoughts-1",
+    slug: "microsoft-support-diagnostic-tool",
+    legacySlug: "thoughts-1",
     title: "Microsoft: Bids Farewell to Diagnostic Tool",
     summary: "On Microsoft's move away from MSDT and toward modern Windows support tools.",
     meta: "Thought 1",
@@ -324,7 +317,8 @@ export const thoughts = [
     ],
   },
   {
-    slug: "thoughts-2",
+    slug: "ai-aviation-safety-efficiency",
+    legacySlug: "thoughts-2",
     title: "AI: The Future of Aviation Safety and Efficiency",
     summary: "How AI could support safer, more efficient aviation systems.",
     meta: "Thought 2",
@@ -339,7 +333,8 @@ export const thoughts = [
     ],
   },
   {
-    slug: "thoughts-3",
+    slug: "art-of-waiting",
+    legacySlug: "thoughts-3",
     title: "Art of Waiting",
     summary: "On patience, timing, and preparing while life has not yet opened the next door.",
     meta: "Thought 3",
@@ -354,7 +349,8 @@ export const thoughts = [
     ],
   },
   {
-    slug: "thoughts-4",
+    slug: "art-of-hating",
+    legacySlug: "thoughts-4",
     title: "Art of Hating",
     summary: "On jealousy, discouragement, mentorship, and building better rooms for young people.",
     meta: "Thought 4",
@@ -368,7 +364,8 @@ export const thoughts = [
     ],
   },
   {
-    slug: "thoughts-5",
+    slug: "computer-learning-and-sports",
+    legacySlug: "thoughts-5",
     title: "I Used to Hate Sports",
     summary: "On school, practical learning, computers, and how skills are often misunderstood.",
     meta: "Thought 5",
@@ -384,7 +381,8 @@ export const thoughts = [
     ],
   },
   {
-    slug: "thoughts-6",
+    slug: "tech-not-it",
+    legacySlug: "thoughts-6",
     title: "I'm from Tech, Not IT - Please Stop Handing Me Wires",
     summary: "On the funny but real confusion between technology builders and IT support.",
     meta: "Thought 6",
@@ -398,7 +396,8 @@ export const thoughts = [
     ],
   },
   {
-    slug: "thoughts-7",
+    slug: "eye-makes-you-work",
+    legacySlug: "thoughts-7",
     title: "The Eye Makes You Work",
     summary: "On vision, exposure, perspective, and how what we see shapes what we chase.",
     meta: "Thought 7",

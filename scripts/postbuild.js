@@ -36,7 +36,6 @@ for (const thought of thoughts) {
   const routeDir = path.join(distDir, "thoughts", thought.slug);
   await mkdir(routeDir, { recursive: true });
   await writeFile(path.join(routeDir, "index.html"), html);
-  await writeFile(path.join(distDir, "thoughts", `${thought.slug}.html`), html);
 }
 
 const writingHtml = baseHtml
