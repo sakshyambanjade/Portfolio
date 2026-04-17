@@ -255,6 +255,23 @@ function WritingArchive() {
   );
 }
 
+function WritingCard({ thought }) {
+  return (
+    <article className="entry thought-link writing-card">
+      <time>{thought.slug}</time>
+      <div>
+        <h3>
+          <Link to={`/thoughts/${thought.slug}`}>{thought.title}</Link>
+        </h3>
+        <p>{thought.summary}</p>
+        <Link className="read-link" to={`/thoughts/${thought.slug}`} aria-label={`Read ${thought.title}`}>
+          Read essay
+        </Link>
+      </div>
+    </article>
+  );
+}
+
 function RecognitionSection() {
   return (
     <section id="recognitions">
@@ -488,29 +505,30 @@ function WritingPage() {
   return (
     <>
       <main className="page writing-page" id="main">
-        <p className="subtitle">writing archive</p>
-        <h1>Writing</h1>
-        <p>
-          Essays, notes, and reflections I want to keep in one place. This route is built with React Router, and each
-          piece opens into its own page for cleaner reading and sharing.
-        </p>
-        <p className="action-links">
-          <Link to="/#writing">Back to home section</Link>
+        <nav className="breadcrumb" aria-label="Writing navigation">
           <Link to="/">Home</Link>
-        </p>
+          <span>/</span>
+          <span>Writing</span>
+        </nav>
 
-        {thoughts.map((thought) => (
-          <article className="entry thought-link" key={thought.slug}>
-            <time>{thought.slug}</time>
-            <div>
-              <h3>
-                <Link to={`/thoughts/${thought.slug}`}>{thought.title}</Link>
-              </h3>
-              <p>{thought.summary}</p>
-              <span className="path">/thoughts/{thought.slug}</span>
-            </div>
-          </article>
-        ))}
+        <section className="archive-intro" aria-labelledby="writing-title">
+          <p className="subtitle">writing archive</p>
+          <h1 id="writing-title">Writing</h1>
+          <p>
+            Essays, notes, and reflections I want to keep in one place. Open any piece, read comfortably, then move
+            back to the archive or continue to the next one without getting lost.
+          </p>
+          <p className="action-links">
+            <Link to="/#writing">Back to home section</Link>
+            <Link to="/">Home</Link>
+          </p>
+        </section>
+
+        <section className="writing-list" aria-label="Essays">
+          {thoughts.map((thought) => (
+            <WritingCard thought={thought} key={thought.slug} />
+          ))}
+        </section>
       </main>
       <Footer />
     </>
@@ -520,6 +538,9 @@ function WritingPage() {
 function ThoughtPage() {
   const { slug } = useParams();
   const thought = useMemo(() => thoughts.find((item) => item.slug === slug), [slug]);
+  const thoughtIndex = useMemo(() => thoughts.findIndex((item) => item.slug === slug), [slug]);
+  const previousThought = thoughtIndex > 0 ? thoughts[thoughtIndex - 1] : null;
+  const nextThought = thoughtIndex >= 0 && thoughtIndex < thoughts.length - 1 ? thoughts[thoughtIndex + 1] : null;
 
   if (!thought) return <Navigate to="/#writing" replace />;
 
@@ -533,18 +554,51 @@ function ThoughtPage() {
   return (
     <>
       <main id="main" className="page thought-page">
-        <p className="subtitle">writing</p>
-        <h1>{thought.title}</h1>
-        <p className="meta">{thought.meta}</p>
+        <nav className="breadcrumb" aria-label="Writing navigation">
+          <Link to="/">Home</Link>
+          <span>/</span>
+          <Link to="/writing">Writing</Link>
+          <span>/</span>
+          <span>{thought.meta}</span>
+        </nav>
+
+        <header className="reading-header">
+          <p className="subtitle">writing</p>
+          <h1>{thought.title}</h1>
+          <p className="meta">{thought.summary}</p>
+          <p className="reading-actions">
+            <Link to="/writing">Back to archive</Link>
+            <Link to="/">Home</Link>
+          </p>
+        </header>
+
         <article>
           {thought.paragraphs.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
         </article>
-        <p className="action-links">
-          <Link to="/#writing">Back to writing</Link>
-          <Link to="/">Home</Link>
-        </p>
+
+        <nav className="post-nav" aria-label="Previous and next writing">
+          {previousThought ? (
+            <Link to={`/thoughts/${previousThought.slug}`}>
+              <span>Previous</span>
+              {previousThought.title}
+            </Link>
+          ) : (
+            <span />
+          )}
+          <Link className="archive-link" to="/writing">
+            All writing
+          </Link>
+          {nextThought ? (
+            <Link to={`/thoughts/${nextThought.slug}`}>
+              <span>Next</span>
+              {nextThought.title}
+            </Link>
+          ) : (
+            <span />
+          )}
+        </nav>
       </main>
       <Footer />
     </>
