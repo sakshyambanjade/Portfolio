@@ -252,6 +252,51 @@ function redirectPage(targetPath) {
 `;
 }
 
+function notFoundPage() {
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="The page was not found. Return to Sakshyam Banjade's portfolio, writing archive, projects, research, or contact page." />
+    <link rel="canonical" href="${siteUrl}/" />
+    <link rel="stylesheet" href="/style.css" />
+    <title>Page Not Found | Sakshyam Banjade</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="site-header">
+      <nav class="nav page" aria-label="Primary navigation">
+        <a class="site-name" href="/">Sakshyam Banjade</a>
+        <ul class="nav-menu">
+          <li><a href="/projects/">work</a></li>
+          <li><a href="/writing/">writing</a></li>
+          <li><a href="/contact/">contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="page writing-page" id="main">
+      <section class="archive-intro" aria-labelledby="not-found-title">
+        <p class="subtitle">404</p>
+        <h1 id="not-found-title">Page not found</h1>
+        <p>This page does not exist anymore, or the link was typed wrong. Nothing useful is loaded here, but the main paths are still available.</p>
+        <p class="action-links">
+          <a href="/">Home</a>
+          <a href="/writing/">Writing</a>
+          <a href="/projects/">Projects</a>
+          <a href="/contact/">Contact</a>
+        </p>
+      </section>
+    </main>
+    <footer class="page site-footer">
+      <p>Building systems, research, and opportunities with long-term intent.</p>
+    </footer>
+  </body>
+</html>
+`;
+}
+
 function writingBody() {
   return `    <main class="page writing-page" id="main">
       <section class="archive-intro" aria-labelledby="writing-title">
@@ -327,9 +372,11 @@ if (rootDir !== sourceRoot) {
 }
 
 await writeSeoFiles(rootDir);
+await writeFile(path.join(rootDir, "404.html"), notFoundPage());
 
 if (rootDir === sourceRoot) {
   await writeSeoFiles(path.join(sourceRoot, "public"));
+  await writeFile(path.join(sourceRoot, "public", "404.html"), notFoundPage());
 }
 
 for (const page of sitePages) {

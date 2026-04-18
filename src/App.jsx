@@ -57,13 +57,13 @@ function breadcrumbJsonLd(items) {
   };
 }
 
-function useSeo({ title, description, path = "/", type = "website", structuredData }) {
+function useSeo({ title, description, path = "/", type = "website", structuredData, robots = "index, follow" }) {
   useEffect(() => {
     const url = `${siteUrl}${path}`;
     document.title = title;
     setMeta("description", description);
     setMeta("author", "Sakshyam Banjade");
-    setMeta("robots", "index, follow");
+    setMeta("robots", robots);
     setMeta("theme-color", "#ffffff");
     setMeta("og:title", title, "property");
     setMeta("og:description", description, "property");
@@ -88,7 +88,7 @@ function useSeo({ title, description, path = "/", type = "website", structuredDa
     canonical.setAttribute("href", url);
 
     if (structuredData) setJsonLd(structuredData);
-  }, [description, path, structuredData, title, type]);
+  }, [description, path, robots, structuredData, title, type]);
 }
 
 function useRedirectFallback() {
@@ -710,7 +710,7 @@ function ThoughtPage() {
   const nextThought = thoughtIndex >= 0 && thoughtIndex < thoughts.length - 1 ? thoughts[thoughtIndex + 1] : null;
 
   if (!thought && legacyThought) return <Navigate to={`/thoughts/${legacyThought.slug}/`} replace />;
-  if (!thought) return <Navigate to="/#writing" replace />;
+  if (!thought) return <NotFoundPage />;
 
   useSeo({
     title: `${thought.title} | Sakshyam Banjade`,
@@ -790,6 +790,38 @@ function ThoughtPage() {
   );
 }
 
+function NotFoundPage() {
+  useSeo({
+    title: "Page Not Found | Sakshyam Banjade",
+    description:
+      "The page was not found. Use this page to return to Sakshyam Banjade's portfolio, writing archive, projects, research, or contact page.",
+    path: "/404.html",
+    robots: "noindex, follow",
+  });
+
+  return (
+    <>
+      <main className="page writing-page" id="main">
+        <section className="archive-intro" aria-labelledby="not-found-title">
+          <p className="subtitle">404</p>
+          <h1 id="not-found-title">Page not found</h1>
+          <p>
+            This page does not exist anymore, or the link was typed wrong. Nothing useful is loaded here, but the main
+            paths are still available.
+          </p>
+          <p className="action-links">
+            <Link to="/">Home</Link>
+            <Link to="/writing/">Writing</Link>
+            <Link to="/projects/">Projects</Link>
+            <Link to="/contact/">Contact</Link>
+          </p>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
+}
+
 function Footer() {
   return (
     <footer className="page site-footer">
@@ -845,7 +877,7 @@ function AppShell() {
         <Route path="/thoughts/:slug" element={<ThoughtPage />} />
         <Route path="/thoughts/:slug/" element={<ThoughtPage />} />
         <Route path="/thoughts/:slug.html" element={<ThoughtPage />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <BackToTop />
     </>

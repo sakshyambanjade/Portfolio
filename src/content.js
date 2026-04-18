@@ -332,6 +332,24 @@ export const trainingItems = [
 
 export const thoughts = [
   {
+    slug: "working-after-see-full-time-developer-19",
+    title: "How Working After SEE Made Me Who I Am: A Full-Time Developer at 19",
+    summary:
+      "On choosing practical learning after SEE, repeating fundamentals, and becoming a full-time developer at 19.",
+    meta: "Thought 8",
+    paragraphs: [
+      "Right after completing SEE, I found myself standing between two very different paths. One was the traditional route that many students take: joining a bridge course, continuing the same academic cycle, and going back to textbooks again. The other path was less certain, less comfortable, and far less common. Instead of following what everyone expected, I was guided toward something practical. My brother believed I should explore beyond the usual system, and my mentor Santosh Dai took me to Broadway Infosys. Looking back now, that one decision shaped the person I became.",
+      "At Broadway, I stepped into a world that felt real. Instead of only studying theory, I started learning skills that could actually build products, solve problems, and create opportunities. I enrolled in major courses like Python, Web Development, and MERN Stack. Later, I moved into AI as well, because technology keeps evolving and learning never truly stops. It was not easy in the beginning. I was younger than many people around me, and a lot of them already seemed ahead. But I was deeply curious, and curiosity became one of my strongest advantages.",
+      "I was never the type to quit just because something felt difficult. In fact, many concepts did not make sense to me the first time. So I repeated them. I took Python three times, Web Development twice, and MERN three times. Some people might see repetition as failure, but I saw it as progress. Every time I returned, I understood a little more. Every struggle added another layer of understanding. That habit of trying again and again became one of the most valuable lessons of my life.",
+      "By the time I reached Grade 11, I was finally able to build websites on my own. This was before AI coding assistants and no-code tools became common. Back then, creating even a basic project could take weeks or months of debugging, researching, and rebuilding. It demanded patience. It demanded consistency. It forced me to think logically and solve problems independently. Those long nights of trial and error taught me far more than just code. They taught me discipline.",
+      "Near the end of Grade 11, the world of technology changed quickly as advanced AI tools became mainstream. Development became faster, smarter, and more accessible. But one truth remained clear to me: tools can speed up work, but they cannot replace mindset. They cannot replace curiosity, resilience, consistency, or the willingness to keep learning when nobody is forcing you to. Those qualities are built through effort, not downloaded through software.",
+      "Sometimes I think about what life would have looked like if I had chosen the safer and more traditional path after SEE. Maybe things would still have gone well. But I know I would have missed years of real growth. While many people were only preparing for the next exam, I was learning how projects fail, how teams communicate, how clients think, how deadlines feel, and how real-world systems operate. That early exposure changed the way I see work, learning, and opportunity.",
+      "Today, I am a full-time developer at 19. Not because I was the smartest person in the room, and not because everything came naturally to me. I reached here because I kept showing up, kept repeating what I did not understand, and kept learning even when progress felt slow. That consistency mattered more than talent ever could.",
+      "To every student finishing SEE and wondering what comes next, my advice is simple. You do not need to follow anyone else's route, but do not waste your early years waiting for the perfect time to begin. Start learning something real. Stay curious. Be willing to fail. Repeat until it makes sense. Skills grow quietly, then suddenly open doors you never expected.",
+      "As Steve Jobs said: Stay hungry. Stay foolish.",
+    ],
+  },
+  {
     slug: "microsoft-support-diagnostic-tool",
     legacySlug: "thoughts-1",
     title: "Microsoft: Bids Farewell to Diagnostic Tool",
