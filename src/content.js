@@ -240,14 +240,24 @@ export const leadershipItems = [
       "Mentored a student from Kalikot through a remote learning initiative, supporting independent web development learning despite limited access to structured education and resources.",
   },
   {
+    label: "regional",
+    title: "Nepal Front South Asia Youth Council (S8+1)",
+    body: "Co-Representative for Nepal, contributing to regional youth representation and cross-border South Asia dialogue.",
+  },
+  {
     label: "recognitions",
     title: "Selected programs and recognitions",
     body:
-      "Youth Leadership Workshop Seoul, FutureFront by Youth Innovation Lab, UNDP AI pitch participation, Google Crowdsource Global Top 3 Translator, and startup / AI program selections.",
+      "Youth Leadership Workshop Seoul, Nepal Front South Asia Youth Council (S8+1), FutureFront by Youth Innovation Lab, UNDP AI pitch participation, Google Crowdsource Global Top 3 Translator, and startup / AI program selections.",
   },
 ];
 
 export const fellowshipItems = [
+  {
+    label: "2026",
+    title: "Nepal Front South Asia Youth Council (S8+1)",
+    body: "Co-Representative for Nepal in a regional youth council focused on South Asia dialogue and representation.",
+  },
   {
     label: "2026",
     title: "Youth Leadership Workshop Seoul",
@@ -331,6 +341,41 @@ export const trainingItems = [
 ];
 
 export const thoughts = [
+  {
+    slug: "one-flawless-local-coding-loop",
+    title: "Reduce the Product to One Flawless Local Coding Loop",
+    summary:
+      "On making a local coding app stable, obvious, and trustworthy before adding more features.",
+    meta: "Thought 9",
+    paragraphs: [
+      "For now, forget \"best in the world.\" The target is smaller and better: when you open the app on your own laptop, it should feel stable, obvious, and useful within minutes.",
+      "Right now, two problems are mixed together: it does not feel good, and it does not feel trustworthy. The fix is to stop treating UI and reliability as separate. They are the same product.",
+      "The UI direction is already better than the current screen: a 3-zone layout, floating composer, split output mode, and a slide-out agent log. The architecture direction is also right: first make the repository coding loop solid, then add bigger system-exploration pieces as optional modules.",
+      "The answer is not to add more features. The answer is to reduce the product to one flawless loop.",
+      "The first loop should be simple: open app, open project, app checks local setup, app installs missing local pieces, project indexes, ask task, review diff, apply. If this loop is not solid, nothing else matters.",
+      "Fresh start should work. From a clean machine, you should be able to install the app, sign in, open a project, auto-detect Ollama, install a missing model, and become usable without terminal work.",
+      "Project opening should work every time. There should be no confusing workspace state, no maybe-connected feeling, and no random backend guessing.",
+      "Indexing should be visible. The user must always know whether the app is scanning files, building the search index, or ready. Silent waiting makes the product feel broken.",
+      "A prompt should lead to action. When you ask something, the app should answer, show a plan, show files it searched, show a patch, or explain why it failed. It should never feel dead.",
+      "Diff review should be clean. A split view with the current file on one side and the suggested patch on the other, with Accept, Reject, and Modify, builds trust faster than a wall of generated text.",
+      "Logs should be optional. A slide-out agent log is useful, but it must stay secondary. Normal users should not need a debug wall to understand what is happening.",
+      "Failure recovery matters. If the model is missing, the index breaks, or the task crashes, the app should explain clearly, offer a one-click retry, and avoid dumping the user into infrastructure details.",
+      "Phase 1 should be about making it work, not making it pretty. For one or two weeks, stop adding capabilities and only fix local bootstrap, model detection, project opening, indexing, prompt execution, patch generation, patch review, and retry or recovery.",
+      "The success test is simple: I can use it alone for 30 minutes on one real repo without touching terminal settings. If that fails, the app is not ready for design polish.",
+      "Phase 2 should simplify the UI shell. The left rail should only contain Projects, Files, Tasks, and Settings. The center should only have Task, Code, and Diff modes. The bottom floating composer should become the main command center. The right panel should hold logs, health, and models, collapsed by default.",
+      "That alone would make the app feel much cleaner, because the current screen has too many priorities competing. The sidebar feels like project manager, chat history, and navigation at once. The center looks like text dump plus patch table. The bottom input feels disconnected from the main work. The hierarchy is weak, and there is no single visual focus.",
+      "Good coding tools make the next action obvious. The current app makes the user think too much, and that is bad UI.",
+      "Cut the advanced memory panels, frontier explorer, system explorer, extra model switching complexity, multi-agent visuals, deep desktop-control UI, and non-essential health metrics for now. Those are not phase-1 requirements.",
+      "Keep the core product: local bootstrap, repo file tree, task composer, searchable context, split diff view, accept and reject, optional logs, and clear status.",
+      "Move curiosity system UI, system fact extractor UI, skill library, full desktop controller surface, orchestration graph, and multi-agent framework polish to later.",
+      "The best local-first direction is to build the repo coding agent first, keep desktop and system exploration modular, use an 8 GB laptop as a constraint test rather than the premium target, and make the strong experience for decent developer hardware first while degrading gracefully for weaker machines.",
+      "The product tiers should stay simple: Lite with one smaller local model and basic search plus patching, Balanced with a better coding model and stronger retrieval, and Best Quality with a heavier local model and stronger planning and patching. No model zoo.",
+      "The KPI that matters most is not benchmark score. It is time from app launch to first useful accepted patch. Track launch time, project ready time, index ready time, first response time, first valid patch time, and accepted patch rate.",
+      "The honest recommendation is to spend Week 1 making the local loop stable, Week 2 replacing the current UI shell with the cleaner 3-zone layout, Week 3 making onboarding fully automatic, and Week 4 testing on three real repos while forcing daily use.",
+      "If you still avoid using your own app after that, the product still has a real problem. That is the truth test.",
+      "Do not try to look like Codex yet. First make sure you would choose your own app over opening terminal and editor manually. When that becomes true, polishing for users makes sense.",
+    ],
+  },
   {
     slug: "working-after-see-full-time-developer-19",
     title: "How Working After SEE Made Me Who I Am: A Full-Time Developer at 19",

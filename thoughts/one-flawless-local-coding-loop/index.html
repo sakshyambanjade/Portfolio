@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="On making a local coding app stable, obvious, and trustworthy before adding more features." />
+    <meta name="author" content="Sakshyam Banjade" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Reduce the Product to One Flawless Local Coding Loop | Sakshyam Banjade" />
+    <meta property="og:description" content="On making a local coding app stable, obvious, and trustworthy before adding more features." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://sakshyambanjade.com.np/thoughts/one-flawless-local-coding-loop/" />
+    <meta property="og:image" content="https://sakshyambanjade.com.np/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Sakshyam Banjade - AI builder, researcher, and founder" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Reduce the Product to One Flawless Local Coding Loop | Sakshyam Banjade" />
+    <meta name="twitter:description" content="On making a local coding app stable, obvious, and trustworthy before adding more features." />
+    <meta name="twitter:image" content="https://sakshyambanjade.com.np/og-image.png" />
+    <meta name="twitter:image:alt" content="Sakshyam Banjade - AI builder, researcher, and founder" />
+    <link rel="canonical" href="https://sakshyambanjade.com.np/thoughts/one-flawless-local-coding-loop/" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="stylesheet" href="/style.css" />
+    <title>Reduce the Product to One Flawless Local Coding Loop | Sakshyam Banjade</title>
+    <script type="application/ld+json">[{"@context":"https://schema.org","@type":"Organization","@id":"https://sakshyambanjade.com.np/#organization","name":"Sakshyam Banjade","url":"https://sakshyambanjade.com.np/","image":"https://sakshyambanjade.com.np/og-image.png","founder":{"@type":"Person","@id":"https://sakshyambanjade.com.np/#person","name":"Sakshyam Banjade","url":"https://sakshyambanjade.com.np/","image":"https://sakshyambanjade.com.np/og-image.png"},"sameAs":["https://github.com/sakshyambanjade","https://www.linkedin.com/in/sakshyam/","https://x.com/SakshyamBanjade/","https://scholar.google.com/citations?user=ltUdGkgAAAAJ&hl=en","https://www.researchgate.net/profile/Sakshyam-Banjade-2"]},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://sakshyambanjade.com.np/"},{"@type":"ListItem","position":2,"name":"Writing","item":"https://sakshyambanjade.com.np/writing/"},{"@type":"ListItem","position":3,"name":"Reduce the Product to One Flawless Local Coding Loop","item":"https://sakshyambanjade.com.np/thoughts/one-flawless-local-coding-loop/"}]},{"@context":"https://schema.org","@type":"Article","headline":"Reduce the Product to One Flawless Local Coding Loop","description":"On making a local coding app stable, obvious, and trustworthy before adding more features.","mainEntityOfPage":"https://sakshyambanjade.com.np/thoughts/one-flawless-local-coding-loop/","author":{"@type":"Person","name":"Sakshyam Banjade","url":"https://sakshyambanjade.com.np/"},"publisher":{"@type":"Organization","@id":"https://sakshyambanjade.com.np/#organization","name":"Sakshyam Banjade","url":"https://sakshyambanjade.com.np/"}}]</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="site-header">
+      <nav class="nav page" aria-label="Primary navigation">
+        <a class="site-name" href="/">Sakshyam Banjade</a>
+        <ul class="nav-menu">
+          <li><a href="/projects/">work</a></li>
+          <li><a href="/writing/">writing</a></li>
+          <li><a href="/contact/">contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="page thought-page" id="main">
+      <header class="reading-header">
+        <p class="subtitle">writing</p>
+        <h1>Reduce the Product to One Flawless Local Coding Loop</h1>
+        <p class="meta">On making a local coding app stable, obvious, and trustworthy before adding more features.</p>
+        <p class="reading-actions">
+          <a href="/writing/">Back to archive</a>
+          <a href="/">Home</a>
+        </p>
+      </header>
+      <article>
+        <p>For now, forget &quot;best in the world.&quot; The target is smaller and better: when you open the app on your own laptop, it should feel stable, obvious, and useful within minutes.</p>
+        <p>Right now, two problems are mixed together: it does not feel good, and it does not feel trustworthy. The fix is to stop treating UI and reliability as separate. They are the same product.</p>
+        <p>The UI direction is already better than the current screen: a 3-zone layout, floating composer, split output mode, and a slide-out agent log. The architecture direction is also right: first make the repository coding loop solid, then add bigger system-exploration pieces as optional modules.</p>
+        <p>The answer is not to add more features. The answer is to reduce the product to one flawless loop.</p>
+        <p>The first loop should be simple: open app, open project, app checks local setup, app installs missing local pieces, project indexes, ask task, review diff, apply. If this loop is not solid, nothing else matters.</p>
+        <p>Fresh start should work. From a clean machine, you should be able to install the app, sign in, open a project, auto-detect Ollama, install a missing model, and become usable without terminal work.</p>
+        <p>Project opening should work every time. There should be no confusing workspace state, no maybe-connected feeling, and no random backend guessing.</p>
+        <p>Indexing should be visible. The user must always know whether the app is scanning files, building the search index, or ready. Silent waiting makes the product feel broken.</p>
+        <p>A prompt should lead to action. When you ask something, the app should answer, show a plan, show files it searched, show a patch, or explain why it failed. It should never feel dead.</p>
+        <p>Diff review should be clean. A split view with the current file on one side and the suggested patch on the other, with Accept, Reject, and Modify, builds trust faster than a wall of generated text.</p>
+        <p>Logs should be optional. A slide-out agent log is useful, but it must stay secondary. Normal users should not need a debug wall to understand what is happening.</p>
+        <p>Failure recovery matters. If the model is missing, the index breaks, or the task crashes, the app should explain clearly, offer a one-click retry, and avoid dumping the user into infrastructure details.</p>
+        <p>Phase 1 should be about making it work, not making it pretty. For one or two weeks, stop adding capabilities and only fix local bootstrap, model detection, project opening, indexing, prompt execution, patch generation, patch review, and retry or recovery.</p>
+        <p>The success test is simple: I can use it alone for 30 minutes on one real repo without touching terminal settings. If that fails, the app is not ready for design polish.</p>
+        <p>Phase 2 should simplify the UI shell. The left rail should only contain Projects, Files, Tasks, and Settings. The center should only have Task, Code, and Diff modes. The bottom floating composer should become the main command center. The right panel should hold logs, health, and models, collapsed by default.</p>
+        <p>That alone would make the app feel much cleaner, because the current screen has too many priorities competing. The sidebar feels like project manager, chat history, and navigation at once. The center looks like text dump plus patch table. The bottom input feels disconnected from the main work. The hierarchy is weak, and there is no single visual focus.</p>
+        <p>Good coding tools make the next action obvious. The current app makes the user think too much, and that is bad UI.</p>
+        <p>Cut the advanced memory panels, frontier explorer, system explorer, extra model switching complexity, multi-agent visuals, deep desktop-control UI, and non-essential health metrics for now. Those are not phase-1 requirements.</p>
+        <p>Keep the core product: local bootstrap, repo file tree, task composer, searchable context, split diff view, accept and reject, optional logs, and clear status.</p>
+        <p>Move curiosity system UI, system fact extractor UI, skill library, full desktop controller surface, orchestration graph, and multi-agent framework polish to later.</p>
+        <p>The best local-first direction is to build the repo coding agent first, keep desktop and system exploration modular, use an 8 GB laptop as a constraint test rather than the premium target, and make the strong experience for decent developer hardware first while degrading gracefully for weaker machines.</p>
+        <p>The product tiers should stay simple: Lite with one smaller local model and basic search plus patching, Balanced with a better coding model and stronger retrieval, and Best Quality with a heavier local model and stronger planning and patching. No model zoo.</p>
+        <p>The KPI that matters most is not benchmark score. It is time from app launch to first useful accepted patch. Track launch time, project ready time, index ready time, first response time, first valid patch time, and accepted patch rate.</p>
+        <p>The honest recommendation is to spend Week 1 making the local loop stable, Week 2 replacing the current UI shell with the cleaner 3-zone layout, Week 3 making onboarding fully automatic, and Week 4 testing on three real repos while forcing daily use.</p>
+        <p>If you still avoid using your own app after that, the product still has a real problem. That is the truth test.</p>
+        <p>Do not try to look like Codex yet. First make sure you would choose your own app over opening terminal and editor manually. When that becomes true, polishing for users makes sense.</p>
+      </article>
+      <nav class="post-nav" aria-label="Previous and next writing">
+        <span></span>
+        <a class="archive-link" href="/writing/">All writing</a>
+        <a href="/thoughts/working-after-see-full-time-developer-19/"><span>Next</span>How Working After SEE Made Me Who I Am: A Full-Time Developer at 19</a>
+      </nav>
+    </main>
+
+    <footer class="page site-footer">
+      <p>Building systems, research, and opportunities with long-term intent.</p>
+    </footer>
+  </body>
+</html>

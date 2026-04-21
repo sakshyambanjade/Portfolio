@@ -103,6 +103,9 @@ function pageShell({ title, description, canonicalPath, body, type = "article", 
     <meta name="twitter:image" content="${defaultImageUrl}" />
     <meta name="twitter:image:alt" content="Sakshyam Banjade - AI builder, researcher, and founder" />
     <link rel="canonical" href="${fullUrl}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="stylesheet" href="/style.css" />
     <title>${escapeHtml(title)}</title>
     ${jsonLd.length ? `<script type="application/ld+json">${JSON.stringify(jsonLd.length === 1 ? jsonLd[0] : jsonLd)}</script>` : ""}
@@ -369,6 +372,9 @@ async function writeSeoFiles(targetDir) {
 if (rootDir !== sourceRoot) {
   await copyFile(path.join(sourceRoot, "style.css"), path.join(rootDir, "style.css"));
   await copyFile(path.join(sourceRoot, "public", "og-image.png"), path.join(rootDir, "og-image.png"));
+  await copyFile(path.join(sourceRoot, "public", "apple-touch-icon.png"), path.join(rootDir, "apple-touch-icon.png"));
+  await copyFile(path.join(sourceRoot, "public", "favicon-32x32.png"), path.join(rootDir, "favicon-32x32.png"));
+  await copyFile(path.join(sourceRoot, "public", "favicon-16x16.png"), path.join(rootDir, "favicon-16x16.png"));
 }
 
 await writeSeoFiles(rootDir);

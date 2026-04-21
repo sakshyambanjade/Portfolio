@@ -239,19 +239,27 @@ function Entry({ item }) {
 function Hero() {
   return (
     <section className="hero" id="about">
-      <h1>{profile.name}</h1>
-      <p className="subtitle">{profile.tagline}</p>
-      <p className="hero-copy">{profile.intro}</p>
-      <p className="hero-copy">{profile.location}</p>
+      <div className="hero-layout">
+        <div className="hero-content">
+          <h1>{profile.name}</h1>
+          <p className="subtitle">{profile.tagline}</p>
+          <p className="hero-copy">{profile.intro}</p>
+          <p className="hero-copy">{profile.location}</p>
 
-      <p className="action-links" aria-label="Primary actions">
-        <Link to="/projects/">View Work</Link>
-        <Link to="/research/">Research</Link>
-        <Link to="/fellowship/">Fellowship</Link>
-        <Link to="/contact/">Contact</Link>
-      </p>
+          <p className="action-links" aria-label="Primary actions">
+            <Link to="/projects/">View Work</Link>
+            <Link to="/research/">Research</Link>
+            <Link to="/fellowship/">Fellowship</Link>
+            <Link to="/contact/">Contact</Link>
+          </p>
 
-      <p className="current-focus">{profile.focus}</p>
+          <p className="current-focus">{profile.focus}</p>
+        </div>
+
+        <figure className="hero-visual" aria-hidden="true">
+          <img src="/hero-running.png" alt="" />
+        </figure>
+      </div>
     </section>
   );
 }

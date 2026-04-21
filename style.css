@@ -176,6 +176,28 @@ section {
   padding: 90px 0 8px;
 }
 
+.hero-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.92fr);
+  align-items: center;
+  gap: 28px;
+}
+
+.hero-content {
+  min-width: 0;
+}
+
+.hero-visual {
+  margin: 0;
+}
+
+.hero-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+}
+
 .eyebrow,
 .subtitle,
 .entry time,
@@ -585,6 +607,14 @@ h3 {
 
   .hero {
     padding-top: 56px;
+  }
+
+  .hero-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-visual {
+    display: none;
   }
 
   h1 {
