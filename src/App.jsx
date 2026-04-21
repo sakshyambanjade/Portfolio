@@ -236,6 +236,16 @@ function Entry({ item }) {
   );
 }
 
+function SectionHeader({ eyebrow, title, body }) {
+  return (
+    <header className="section-header">
+      {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
+      <h2>{title}</h2>
+      {body ? <p className="section-copy">{body}</p> : null}
+    </header>
+  );
+}
+
 function Hero() {
   return (
     <section className="hero" id="about">
@@ -274,14 +284,22 @@ function TrustBar() {
   );
 }
 
+function HomeBlock({ tone = "default", compact = false, children }) {
+  return (
+    <div className={`home-block home-block-${tone}${compact ? " home-block-compact" : ""}`}>
+      <div className="page home-block-inner">{children}</div>
+    </div>
+  );
+}
+
 function WritingArchive() {
   return (
     <section id="writing">
-      <h2>writing</h2>
-      <p>
-        A dedicated writing space for essays, notes, reflections, and longer ideas. This archive is powered by React
-        Router, so each piece can have its own clean page, metadata, and shareable URL.
-      </p>
+      <SectionHeader
+        eyebrow="Writing archive"
+        title="writing"
+        body="A dedicated writing space for essays, notes, reflections, and longer ideas. This archive is powered by React Router, so each piece can have its own clean page, metadata, and shareable URL."
+      />
 
       {thoughts.slice(0, 4).map((thought) => (
         <article className="entry thought-link" key={thought.slug}>
@@ -323,10 +341,11 @@ function WritingCard({ thought }) {
 function RecognitionSection() {
   return (
     <section id="recognitions">
-      <h2>recognitions</h2>
-      <p>
-        Signals from language work, technology media, international communities, and public contribution.
-      </p>
+      <SectionHeader
+        eyebrow="Signals"
+        title="recognitions"
+        body="Signals from language work, technology media, international communities, and public contribution."
+      />
       {recognitionItems.map((item) => (
         <Entry item={item} key={`${item.label}-${item.title}`} />
       ))}
@@ -337,11 +356,11 @@ function RecognitionSection() {
 function FellowshipSection() {
   return (
     <section id="fellowship">
-      <h2>fellowships / selections / programs</h2>
-      <p>
-        Programs, workshops, pitch spaces, and ecosystem moments connected to leadership, AI, innovation, and public
-        technology work.
-      </p>
+      <SectionHeader
+        eyebrow="Programs"
+        title="fellowships / selections / programs"
+        body="Programs, workshops, pitch spaces, and ecosystem moments connected to leadership, AI, innovation, and public technology work."
+      />
       {fellowshipItems.map((item) => (
         <Entry item={item} key={`${item.label}-${item.title}`} />
       ))}
@@ -352,7 +371,7 @@ function FellowshipSection() {
 function SkillsSection() {
   return (
     <section id="skills">
-      <h2>skills</h2>
+      <SectionHeader eyebrow="Stack" title="skills" />
       {skillGroups.map((group) => (
         <article className="entry" key={group.title}>
           <time>{group.title}</time>
@@ -369,7 +388,7 @@ function SkillsSection() {
 function EducationSection() {
   return (
     <section id="education">
-      <h2>education</h2>
+      <SectionHeader eyebrow="Background" title="education" />
       {educationItems.map((item) => (
         <Entry item={item} key={`${item.label}-${item.title}`} />
       ))}
@@ -380,7 +399,7 @@ function EducationSection() {
 function TrainingSection() {
   return (
     <section id="training">
-      <h2>training / certifications</h2>
+      <SectionHeader eyebrow="Courses" title="training / certifications" />
       {trainingItems.map((item) => (
         <Entry item={item} key={`${item.label}-${item.title}`} />
       ))}
@@ -391,11 +410,11 @@ function TrainingSection() {
 function TweetsSection() {
   return (
     <section id="tweets">
-      <h2>latest tweets</h2>
-      <p>
-        Recent posts from <a href="https://x.com/SakshyamBanjade/">@SakshyamBanjade</a>. If the timeline does not load,
-        open the profile directly.
-      </p>
+      <SectionHeader
+        eyebrow="Live feed"
+        title="latest tweets"
+        body="Recent posts from @SakshyamBanjade. If the timeline does not load, open the profile directly."
+      />
       <div className="tweet-box">
         <a
           className="twitter-timeline"
@@ -474,112 +493,113 @@ function HomePage() {
 
   return (
     <>
-      <main className="page" id="main">
-        <Hero />
-        <TrustBar />
-        <hr />
+      <main className="home-page" id="main">
+        <HomeBlock tone="hero">
+          <Hero />
+          <TrustBar />
+        </HomeBlock>
 
-        <section id="work">
-          <h2>selected work</h2>
-          <p>
-            A focused view of the products, systems, and public work I have built or contributed to. This section is
-            meant to make the work easy to understand before the details.
-          </p>
-          {workItems.map((item) => (
-            <Entry item={item} key={`${item.label}-${item.title}`} />
-          ))}
-          <p className="quiet">
-            The through-line is simple: build useful systems, turn ideas into visible output, and make Nepal part of
-            serious global AI and technology conversations.
-          </p>
-        </section>
-
-        <hr />
-
-        <section id="done">
-          <h2>things i have done</h2>
-          <p>
-            The range matters because the work has not stayed in one lane. I have built products, published research,
-            worked around media and finance, led communities, mentored students, and represented Nepal-focused work in
-            international spaces.
-          </p>
-          {doneItems.map((item) => (
-            <Entry item={item} key={`${item.label}-${item.title}`} />
-          ))}
-        </section>
-
-        <hr />
-
-        <section id="research">
-          <h2>research</h2>
-          <p>
-            My long-term direction combines practical product building with serious academic work. I am interested in
-            applied AI, human-centered AI, multi-agent systems, AI for agriculture, quantitative systems, scientific
-            tooling, robotics, and neuro-inspired AI memory systems.
-          </p>
-          {researchItems.map((item) => (
-            <Entry item={item} key={item.title} />
-          ))}
-        </section>
-
-        <hr />
-
-        <RecognitionSection />
-
-        <hr />
-
-        <FellowshipSection />
-
-        <hr />
-
-        <section id="leadership">
-          <h2>leadership</h2>
-          <p>
-            I care about building more than products. I am equally interested in helping people grow through mentorship,
-            leadership, and opportunity creation.
-          </p>
-          {leadershipItems.map((item) => (
-            <Entry item={item} key={`${item.label}-${item.title}`} />
-          ))}
-        </section>
-
-        <hr />
-
-        <SkillsSection />
-
-        <hr />
-
-        <WritingArchive />
-
-        <hr />
-
-        <TweetsSection />
-
-        <hr />
-
-        <EducationSection />
-
-        <hr />
-
-        <TrainingSection />
-
-        <hr />
-
-        <section id="contact">
-          <h2>contact</h2>
-          <p>
-            I am interested in research collaboration, product conversations, mentorship initiatives, fellowship
-            partnerships, and other work aligned with technology and impact.
-          </p>
-          <p className="contact-list">
-            <a href={`mailto:${profile.email}`}>{profile.email}</a>
-            {profile.links.map(([label, href]) => (
-              <a href={href} key={label}>
-                {label}
-              </a>
+        <HomeBlock tone="soft">
+          <section id="work">
+            <SectionHeader
+              eyebrow="Selected systems"
+              title="selected work"
+              body="A focused view of the products, systems, and public work I have built or contributed to. This section is meant to make the work easy to understand before the details."
+            />
+            {workItems.map((item) => (
+              <Entry item={item} key={`${item.label}-${item.title}`} />
             ))}
-          </p>
-        </section>
+            <p className="quiet">
+              The through-line is simple: build useful systems, turn ideas into visible output, and make Nepal part of
+              serious global AI and technology conversations.
+            </p>
+          </section>
+        </HomeBlock>
+
+        <HomeBlock>
+          <section id="done">
+            <SectionHeader
+              eyebrow="Range"
+              title="things i have done"
+              body="The range matters because the work has not stayed in one lane. I have built products, published research, worked around media and finance, led communities, mentored students, and represented Nepal-focused work in international spaces."
+            />
+            {doneItems.map((item) => (
+              <Entry item={item} key={`${item.label}-${item.title}`} />
+            ))}
+          </section>
+        </HomeBlock>
+
+        <HomeBlock tone="soft">
+          <section id="research">
+            <SectionHeader
+              eyebrow="Direction"
+              title="research"
+              body="My long-term direction combines practical product building with serious academic work. I am interested in applied AI, human-centered AI, multi-agent systems, AI for agriculture, quantitative systems, scientific tooling, robotics, and neuro-inspired AI memory systems."
+            />
+            {researchItems.map((item) => (
+              <Entry item={item} key={item.title} />
+            ))}
+          </section>
+        </HomeBlock>
+
+        <HomeBlock>
+          <RecognitionSection />
+        </HomeBlock>
+
+        <HomeBlock tone="soft">
+          <FellowshipSection />
+        </HomeBlock>
+
+        <HomeBlock>
+          <section id="leadership">
+            <SectionHeader
+              eyebrow="People"
+              title="leadership"
+              body="I care about building more than products. I am equally interested in helping people grow through mentorship, leadership, and opportunity creation."
+            />
+            {leadershipItems.map((item) => (
+              <Entry item={item} key={`${item.label}-${item.title}`} />
+            ))}
+          </section>
+        </HomeBlock>
+
+        <HomeBlock tone="soft">
+          <SkillsSection />
+        </HomeBlock>
+
+        <HomeBlock>
+          <WritingArchive />
+        </HomeBlock>
+
+        <HomeBlock tone="soft" compact>
+          <TweetsSection />
+        </HomeBlock>
+
+        <HomeBlock compact>
+          <EducationSection />
+        </HomeBlock>
+
+        <HomeBlock tone="soft" compact>
+          <TrainingSection />
+        </HomeBlock>
+
+        <HomeBlock compact>
+          <section id="contact">
+            <SectionHeader
+              eyebrow="Reach out"
+              title="contact"
+              body="I am interested in research collaboration, product conversations, mentorship initiatives, fellowship partnerships, and other work aligned with technology and impact."
+            />
+            <p className="contact-list">
+              <a href={`mailto:${profile.email}`}>{profile.email}</a>
+              {profile.links.map(([label, href]) => (
+                <a href={href} key={label}>
+                  {label}
+                </a>
+              ))}
+            </p>
+          </section>
+        </HomeBlock>
       </main>
       <Footer />
     </>
