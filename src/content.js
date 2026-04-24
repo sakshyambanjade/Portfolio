@@ -196,6 +196,13 @@ export const doneItems = [
 
 export const researchItems = [
   {
+    label: "preprint",
+    title: "Can LLMs Play Chess? Rethinking Evaluation via Constrained-Index Move Selection",
+    href: "https://www.researchgate.net/publication/404135344_Can_LLMs_Play_Chess_Rethinking_Evaluation_via_Constrained-Index_Move_Selection",
+    body:
+      "A new preprint exploring how large language models should be evaluated in chess through constrained-index move selection and more careful reasoning assessment.",
+  },
+  {
     label: "publication",
     title: "Towards a Unified Civic Identity Stack",
     href: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6392278",
