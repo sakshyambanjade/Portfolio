@@ -343,6 +343,42 @@ h3 {
   font-size: 1rem;
 }
 
+.research-intro {
+  max-width: 760px;
+  margin-bottom: 22px;
+}
+
+.research-stack {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(250px, 0.7fr);
+  gap: 26px 34px;
+  align-items: start;
+}
+
+.research-panel {
+  padding: 20px 0 0;
+  border-top: 1px solid var(--line);
+}
+
+.focus-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.focus-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--text);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
 .pillar-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -724,7 +760,8 @@ h3 {
 
   .pillar-grid,
   .entry,
-  .post-nav {
+  .post-nav,
+  .research-stack {
     grid-template-columns: 1fr;
   }
 

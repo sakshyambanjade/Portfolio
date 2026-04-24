@@ -1,6 +1,6 @@
 import { copyFile, mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { fellowshipItems, profile, researchItems, sitePages, thoughts, workItems } from "../src/content.js";
+import { fellowshipItems, profile, researchFocusAreas, researchItems, sitePages, thoughts, workItems } from "../src/content.js";
 
 const siteUrl = "https://sakshyambanjade.com.np";
 const lastmod = "2026-04-18";
@@ -117,6 +117,7 @@ function pageShell({ title, description, canonicalPath, body, type = "article", 
         <a class="site-name" href="/">Sakshyam Banjade</a>
         <ul class="nav-menu">
           <li><a href="/projects/">work</a></li>
+          <li><a href="/research/">research</a></li>
           <li><a href="/writing/">writing</a></li>
           <li><a href="/contact/">contact</a></li>
         </ul>
@@ -153,7 +154,7 @@ const standaloneContent = {
   },
   research: {
     intro:
-      "Research work and directions across applied AI, civic identity infrastructure, scientific tooling, market systems, and human-centered technology.",
+      "A publication-first research page covering preprints, papers, and the themes I want to push further across AI evaluation, scientific tooling, and applied systems.",
     items: researchItems,
   },
   fellowship: {
@@ -183,6 +184,23 @@ ${profile.links.map(([label, href]) => `              <a href="${escapeHtml(href
             </p>
           </div>
         </article>`
+    : page.slug === "research"
+      ? `        <div class="research-intro">
+          <p>My long-term aim is to build a research profile around applied AI systems, reasoning-heavy evaluation, scientific tools, and technically serious work that connects theory with useful deployment.</p>
+        </div>
+        <div class="research-stack">
+          <div>
+            <h2>publications &amp; preprints</h2>
+${entryList(content.items)}
+          </div>
+          <aside class="research-panel" aria-label="Research themes">
+            <h2>current research themes</h2>
+            <div class="focus-grid">
+${researchFocusAreas.map((item) => `              <span class="focus-chip">${escapeHtml(item)}</span>`).join("\n")}
+            </div>
+            <p class="quiet">Building a stronger publication record while developing AI systems with real-world use cases across evaluation, agriculture, information workflows, scientific tooling, and reasoning.</p>
+          </aside>
+        </div>`
     : `        <h2>${page.slug === "projects" ? "Selected work" : title}</h2>
 ${entryList(content.items)}`;
 
@@ -274,6 +292,7 @@ function notFoundPage() {
         <a class="site-name" href="/">Sakshyam Banjade</a>
         <ul class="nav-menu">
           <li><a href="/projects/">work</a></li>
+          <li><a href="/research/">research</a></li>
           <li><a href="/writing/">writing</a></li>
           <li><a href="/contact/">contact</a></li>
         </ul>

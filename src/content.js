@@ -3,7 +3,6 @@ export const profile = {
   tagline: "Building AI systems, research, and emerging talent networks.",
   intro:
     "I work across applied AI, product development, research, and leadership. My focus is on building useful systems, publishing meaningful work, and creating opportunities for ambitious people through technology.",
-  location: "Based in Nepal / studying internationally.",
   focus: "Currently focused on applied AI systems, publications, and building globally relevant work from Nepal.",
   email: "hi@sakshyambanjade.com.np",
   links: [
@@ -17,6 +16,7 @@ export const profile = {
 
 export const navItems = [
   ["work", "/projects/"],
+  ["research", "/research/"],
   ["writing", "/writing/"],
   ["contact", "/contact/"],
 ];
@@ -209,12 +209,17 @@ export const researchItems = [
     body:
       "A research paper proposing a federated digital identity architecture for Nepal through integration of the National Identity Card with cross-domain government services. DOI: 10.2139/ssrn.6392278.",
   },
-  {
-    label: "direction",
-    title: "Current research direction",
-    body:
-      "Building a stronger publication record while developing AI systems with real-world use cases across agriculture, scientific tooling, information workflows, robotics, and memory-inspired AI systems.",
-  },
+];
+
+export const researchFocusAreas = [
+  "LLM reasoning and evaluation",
+  "Applied AI systems",
+  "Scientific tooling",
+  "AI for agriculture",
+  "Information workflows",
+  "Human-centered AI",
+  "Quantitative systems",
+  "Robotics and memory-inspired AI",
 ];
 
 export const leadershipItems = [

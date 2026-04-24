@@ -8,6 +8,7 @@ import {
   navItems,
   profile,
   recognitionItems,
+  researchFocusAreas,
   researchItems,
   sitePages,
   skillGroups,
@@ -254,7 +255,6 @@ function Hero() {
           <h1>{profile.name}</h1>
           <p className="subtitle">{profile.tagline}</p>
           <p className="hero-copy">{profile.intro}</p>
-          <p className="hero-copy">{profile.location}</p>
 
           <p className="action-links" aria-label="Primary actions">
             <Link to="/projects/">View Work</Link>
@@ -289,6 +289,49 @@ function HomeBlock({ tone = "default", compact = false, children }) {
     <div className={`home-block home-block-${tone}${compact ? " home-block-compact" : ""}`}>
       <div className="page home-block-inner">{children}</div>
     </div>
+  );
+}
+
+function ResearchSection() {
+  return (
+    <section id="research">
+      <SectionHeader
+        eyebrow="Research"
+        title="research"
+        body="A publication-first view of the problems I want to work on long term: AI reasoning, model evaluation, scientific tooling, and research that can stand up in front of serious academic readers."
+      />
+
+      <div className="research-intro">
+        <p>
+          My long-term aim is to build a research profile around applied AI systems, reasoning-heavy evaluation,
+          scientific tools, and technically serious work that connects theory with useful deployment.
+        </p>
+      </div>
+
+      <div className="research-stack">
+        <div>
+          <h3>publications & preprints</h3>
+          {researchItems.map((item) => (
+            <Entry item={item} key={item.title} />
+          ))}
+        </div>
+
+        <aside className="research-panel" aria-label="Research themes">
+          <h3>current research themes</h3>
+          <div className="focus-grid">
+            {researchFocusAreas.map((item) => (
+              <span className="focus-chip" key={item}>
+                {item}
+              </span>
+            ))}
+          </div>
+          <p className="quiet">
+            Building a stronger publication record while developing AI systems with real-world use cases across
+            evaluation, agriculture, information workflows, scientific tooling, and reasoning.
+          </p>
+        </aside>
+      </div>
+    </section>
   );
 }
 
@@ -530,16 +573,7 @@ function HomePage() {
         </HomeBlock>
 
         <HomeBlock tone="soft">
-          <section id="research">
-            <SectionHeader
-              eyebrow="Direction"
-              title="research"
-              body="My long-term direction combines practical product building with serious academic work. I am interested in applied AI, human-centered AI, multi-agent systems, AI for agriculture, quantitative systems, scientific tooling, robotics, and neuro-inspired AI memory systems."
-            />
-            {researchItems.map((item) => (
-              <Entry item={item} key={item.title} />
-            ))}
-          </section>
+          <ResearchSection />
         </HomeBlock>
 
         <HomeBlock>
@@ -614,7 +648,7 @@ const pageContent = {
   },
   research: {
     intro:
-      "Research work and directions across applied AI, civic identity infrastructure, scientific tooling, market systems, and human-centered technology.",
+      "A publication-first research page covering preprints, papers, and the themes I want to push further across AI evaluation, scientific tooling, and applied systems.",
     items: researchItems,
   },
   fellowship: {
@@ -677,6 +711,8 @@ function StandalonePage({ slug }) {
               </div>
             </article>
           </section>
+        ) : slug === "research" ? (
+          <ResearchSection />
         ) : (
           <section aria-label={page.label}>
             {content.items.map((item) => (
