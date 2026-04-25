@@ -24,6 +24,55 @@ export const profile = {
   ],
 };
 
+export const seoIdentityTerms = [
+  "Sakshyam Banjade",
+  "Sakshyam",
+  "Sakshyam Banjade AI",
+  "Sakshyam Banjade AI developer",
+  "Sakshyam Banjade AI researcher",
+  "Sakshyam Banjade machine learning",
+  "Sakshyam Banjade research paper",
+  "Sakshyam Banjade publications",
+  "Sakshyam Banjade CS AI",
+  "Sakshyam Banjade computer science",
+  "Sakshyam Banjade applied AI",
+  "Sakshyam Banjade Nepal",
+  "AI developer in Nepal",
+  "AI researcher in Nepal",
+  "Machine learning developer Nepal",
+  "Machine learning researcher Nepal",
+  "CS AI researcher Nepal",
+  "Applied AI developer Nepal",
+  "Quant developer Nepal",
+  "AI systems builder Nepal",
+];
+
+export const identityFocusAreas = [
+  "AI developer in Nepal working across applied AI systems and machine learning workflows.",
+  "AI researcher in Nepal focused on CS.AI research, LLM evaluation, and research papers with clear technical framing.",
+  "Applied AI builder connecting AI systems, machine learning systems, and Nepal-focused technology problems.",
+  "Quantitative systems and market experimentation alongside broader AI systems builder work in Nepal.",
+];
+
+export const researchProfileLinks = [
+  {
+    label: "Google Scholar profile for Sakshyam Banjade",
+    href: "https://scholar.google.com/citations?user=ltUdGkgAAAAJ&hl=en",
+  },
+  {
+    label: "ResearchGate publications by Sakshyam Banjade",
+    href: "https://www.researchgate.net/profile/Sakshyam-Banjade-2",
+  },
+  {
+    label: "SSRN publication: Towards a Unified Civic Identity Stack",
+    href: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6392278",
+  },
+  {
+    label: "GitHub repositories by Sakshyam Banjade",
+    href: "https://github.com/sakshyambanjade",
+  },
+];
+
 export const navItems = [
   ["work", "/projects/"],
   ["research", "/research/"],
@@ -35,16 +84,16 @@ export const sitePages = [
   {
     slug: "projects",
     label: "Projects",
-    title: "Projects | Sakshyam Banjade",
+    title: "AI Systems Projects | Sakshyam Banjade",
     description:
-      "Selected AI, software, research, and product projects by Sakshyam Banjade, including SeedSure AI, FastNewsOrg, MolVis Pro, and market systems.",
+      "AI systems, machine learning systems, and applied AI products by Sakshyam Banjade, including Nepal-focused technology systems and quantitative workflows.",
   },
   {
     slug: "research",
     label: "Research",
-    title: "Research | Sakshyam Banjade",
+    title: "Research Papers & Publications | Sakshyam Banjade",
     description:
-      "Research direction and publications by Sakshyam Banjade across applied AI, civic identity infrastructure, scientific tooling, and technology systems.",
+      "Research papers, publications, and CS.AI research by Sakshyam Banjade across applied AI, LLM evaluation, scientific tooling, and Nepal-focused technology.",
   },
   {
     slug: "notes",
@@ -316,6 +365,10 @@ export const researchItems = [
     href: "https://www.researchgate.net/publication/404135344_Can_LLMs_Play_Chess_Rethinking_Evaluation_via_Constrained-Index_Move_Selection",
     body:
       "A new preprint exploring how large language models should be evaluated in chess through constrained-index move selection and more careful reasoning assessment.",
+    schemaType: "ScholarlyArticle",
+    abstract:
+      "A preprint on LLM evaluation that studies chess through constrained-index move selection and more rigorous reasoning assessment.",
+    publisher: "ResearchGate",
   },
   {
     label: "publication",
@@ -323,6 +376,10 @@ export const researchItems = [
     href: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6392278",
     body:
       "A research paper proposing a federated digital identity architecture for Nepal through integration of the National Identity Card with cross-domain government services. DOI: 10.2139/ssrn.6392278.",
+    schemaType: "ScholarlyArticle",
+    abstract:
+      "A research paper proposing a federated digital identity architecture for Nepal through integration of national identity infrastructure with cross-domain government services.",
+    publisher: "SSRN",
   },
 ];
 

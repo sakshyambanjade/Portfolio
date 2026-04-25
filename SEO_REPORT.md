@@ -123,3 +123,102 @@ This pass reviewed the site as a strict technical SEO audit across static HTML f
 - `public/404.html`
 - `writing/index.html`
 - `thoughts/**`
+
+## Third-Pass Personal SEO Upgrade
+
+This pass focused on strengthening the site's association with **Sakshyam Banjade** as an **AI developer**, **CS.AI researcher**, and **applied AI builder from Nepal** without damaging the existing technical SEO foundation.
+
+### What Changed
+
+1. **Homepage title and description were repositioned around personal search intent**
+   - Updated the homepage title toward: `Sakshyam Banjade | AI Developer, CS.AI Researcher & Applied AI Builder from Nepal`
+   - Updated the default meta description to naturally include:
+     - Sakshyam Banjade
+     - AI developer
+     - CS.AI researcher
+     - applied AI systems
+     - machine learning
+     - Nepal
+   - Why it helps: improves relevance for name + profession searches without turning the homepage into keyword spam.
+
+2. **Person schema was expanded for clearer entity understanding**
+   - Added `alternateName` for `Sakshyam`.
+   - Expanded `jobTitle` to include AI Developer, CS.AI Researcher, and Applied AI Builder.
+   - Expanded `knowsAbout` with:
+     - Artificial Intelligence
+     - Machine Learning
+     - CS.AI
+     - Applied AI
+     - AI Research
+     - LLM Evaluation
+     - AI Systems
+     - Quantitative Systems
+     - Algorithmic Trading
+     - Research Papers
+     - Nepal Technology
+   - Why it helps: gives Google a cleaner map of the topics, roles, and identity terms connected to Sakshyam Banjade.
+
+3. **Added a visible homepage identity section**
+   - Added a professional section titled `Research and technical identity`.
+   - Added natural, readable identity copy around:
+     - AI developer in Nepal
+     - AI researcher in Nepal
+     - CS.AI research
+     - machine learning systems
+     - applied AI builder
+     - research papers
+     - quantitative systems
+     - Nepal-focused technology
+   - Added a dedicated `seoIdentityTerms` data object and rendered tasteful chips from it.
+   - Why it helps: supports semantic reinforcement in crawlable visible content instead of relying only on hidden metadata.
+
+4. **Improved research-page relevance for publications and papers**
+   - Reframed `/research/` around:
+     - Sakshyam Banjade research papers
+     - Sakshyam Banjade publications
+     - CS.AI research from Nepal
+     - AI researcher work from Nepal
+   - Added stronger descriptive internal links to:
+     - Google Scholar
+     - ResearchGate
+     - SSRN paper
+     - GitHub repositories
+   - Added `ScholarlyArticle` schema for the current preprint and publication.
+   - Why it helps: improves both human credibility and machine understanding for research-oriented queries.
+
+5. **Improved projects-page language**
+   - Reframed `/projects/` around AI systems, machine learning systems, applied AI products, and Nepal-focused technology systems.
+   - Why it helps: reinforces engineering identity around practical AI systems rather than generic project language.
+
+6. **Preserved and extended sitemap / robots integrity**
+   - Kept `robots.txt` pointing to:
+     - `https://sakshyambanjade.com.np/sitemap.xml`
+   - Ensured the generated sitemap continues to include:
+     - `/`
+     - `/projects/`
+     - `/research/`
+     - `/writing/`
+     - `/contact/`
+     - `/fellowship/`
+     - canonical thought pages
+   - Updated generated `lastmod` values to the current pass date.
+
+### Still Needs Manual Google Search Console Work
+
+1. Submit the refreshed sitemap again if Google has not picked up the latest build.
+2. Inspect:
+   - homepage
+   - `/projects/`
+   - `/research/`
+   - `/writing/`
+3. Request indexing for homepage, research page, and one or two canonical writing pages.
+4. Monitor:
+   - Google-selected canonical
+   - brand-query impressions for `Sakshyam Banjade`
+   - whether research/publication pages begin showing for name + paper/publication searches
+5. Over time, strengthen off-site entity signals by keeping:
+   - Google Scholar
+   - ResearchGate
+   - GitHub
+   - LinkedIn
+   aligned around the same role language and name format.

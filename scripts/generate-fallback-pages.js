@@ -5,9 +5,9 @@ import {
   labNotes,
   profile,
   projectCaseStudies,
+  researchProfileLinks,
   researchFocusAreas,
   researchItems,
-  signalMetrics,
   sitePages,
   thoughts,
   workflowPrinciples,
@@ -15,7 +15,7 @@ import {
 } from "../src/content.js";
 
 const siteUrl = "https://sakshyambanjade.com.np";
-const lastmod = "2026-04-18";
+const lastmod = "2026-04-25";
 const defaultImagePath = "/og-image.png";
 const defaultImageUrl = `${siteUrl}${defaultImagePath}`;
 const rootDir = path.resolve(process.env.OUTPUT_DIR || ".");
@@ -30,7 +30,40 @@ function escapeHtml(value) {
     .replaceAll("'", "&#39;");
 }
 
-function pageShell({ title, description, canonicalPath, body, type = "article", breadcrumbs }) {
+function researchScholarlyArticlesJsonLd() {
+  return researchItems.map((item) => ({
+    "@context": "https://schema.org",
+    "@type": item.schemaType || "ScholarlyArticle",
+    headline: item.title,
+    name: item.title,
+    description: item.body,
+    abstract: item.abstract || item.body,
+    url: item.href,
+    author: {
+      "@type": "Person",
+      name: "Sakshyam Banjade",
+      url: `${siteUrl}/`,
+    },
+    publisher: item.publisher
+      ? {
+          "@type": "Organization",
+          name: item.publisher,
+        }
+      : undefined,
+    about: [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "CS.AI",
+      "Applied AI",
+      "AI Research",
+      "LLM Evaluation",
+      "AI Systems",
+      "Nepal Technology",
+    ],
+  }));
+}
+
+function pageShell({ title, description, canonicalPath, body, type = "article", breadcrumbs, structuredData = [] }) {
   const fullUrl = `${siteUrl}${canonicalPath}`;
   const breadcrumbItems = breadcrumbs || (canonicalPath === "/"
     ? []
@@ -91,7 +124,7 @@ function pageShell({ title, description, canonicalPath, body, type = "article", 
     },
     sameAs: profile.links.map(([, href]) => href),
   };
-  const jsonLd = [organizationJson, breadcrumbJson, articleJson].filter(Boolean);
+  const jsonLd = [organizationJson, breadcrumbJson, articleJson, ...structuredData].filter(Boolean);
 
   return `<!doctype html>
 <html lang="en">
@@ -237,12 +270,12 @@ function workflowList(items) {
 const standaloneContent = {
   projects: {
     intro:
-      "Selected AI, software, research, and product systems I have built or contributed to, with more explicit attention to problem framing, evidence, and what each system is actually trying to prove.",
+      "Selected AI systems, machine learning systems, applied AI products, and Nepal-focused technology systems I have built or contributed to, with more explicit attention to problem framing, evidence, and what each system is trying to prove.",
     items: workItems,
   },
   research: {
     intro:
-      "A publication-first research page covering preprints, papers, and the themes I want to push further across AI evaluation, scientific tooling, and applied systems.",
+      "A publication-first research page for Sakshyam Banjade research papers, publications, CS.AI research, and AI researcher work from Nepal across evaluation, scientific tooling, and applied AI systems.",
     items: researchItems,
   },
   notes: {
@@ -296,7 +329,7 @@ ${entryList(supportingWork)}
         </div>`
     : page.slug === "research"
       ? `        <div class="research-intro">
-          <p>My long-term aim is to build a research profile around applied AI systems, reasoning-heavy evaluation, scientific tools, and technically serious work that connects theory with useful deployment.</p>
+          <p>My long-term aim is to build a visible research profile around applied AI systems, machine learning, and CS.AI research that connects academic seriousness with useful deployment in Nepal and beyond.</p>
         </div>
         <div class="research-stack">
           <div>
@@ -312,8 +345,8 @@ ${researchFocusAreas.map((item) => `              <span class="focus-chip">${esc
           </aside>
         </div>
         <p class="action-links section-actions">
-          <a href="/notes/">Open lab notes</a>
-          <a href="https://scholar.google.com/citations?user=ltUdGkgAAAAJ&hl=en">Google Scholar</a>
+          <a href="/notes/">Open lab notes on AI evaluation and research workflow</a>
+${researchProfileLinks.map((item) => `          <a href="${escapeHtml(item.href)}">${escapeHtml(item.label)}</a>`).join("\n")}
         </p>
         <section aria-label="Research workflow">
           <header class="section-header">
@@ -549,6 +582,7 @@ for (const page of sitePages) {
       canonicalPath: `/${page.slug}/`,
       body: standaloneBody(page),
       type: "website",
+      structuredData: page.slug === "research" ? researchScholarlyArticlesJsonLd() : [],
       breadcrumbs: [
         { name: "Home", path: "/" },
         { name: page.label, path: `/${page.slug}/` },

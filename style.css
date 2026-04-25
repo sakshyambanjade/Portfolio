@@ -367,6 +367,21 @@ h4 {
   margin-bottom: 22px;
 }
 
+.identity-copy {
+  max-width: 760px;
+  display: grid;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.identity-grid {
+  gap: 10px;
+}
+
+.identity-chip {
+  background: var(--soft);
+}
+
 .research-stack {
   display: grid;
   grid-template-columns: minmax(0, 1.3fr) minmax(250px, 0.7fr);

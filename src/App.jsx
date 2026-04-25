@@ -4,14 +4,17 @@ import {
   doneItems,
   educationItems,
   fellowshipItems,
+  identityFocusAreas,
   labNotes,
   leadershipItems,
   navItems,
   profile,
   projectCaseStudies,
   recognitionItems,
+  researchProfileLinks,
   researchFocusAreas,
   researchItems,
+  seoIdentityTerms,
   signalMetrics,
   sitePages,
   skillGroups,
@@ -26,7 +29,7 @@ const siteUrl = "https://sakshyambanjade.com.np";
 const defaultImagePath = "/og-image.png";
 const defaultImageUrl = `${siteUrl}${defaultImagePath}`;
 const defaultDescription =
-  "Sakshyam Banjade is an R&D engineer building measurable AI systems for real-world workflows across evaluation, scientific tooling, research, and technology writing.";
+  "Sakshyam Banjade is an AI developer, CS.AI researcher, and applied AI builder from Nepal working on machine learning and AI systems.";
 
 function setMeta(name, content, attribute = "name") {
   let tag = document.head.querySelector(`meta[${attribute}="${name}"]`);
@@ -94,6 +97,39 @@ function useSeo({ title, description, path = "/", type = "website", structuredDa
 
     if (structuredData) setJsonLd(structuredData);
   }, [description, path, robots, structuredData, title, type]);
+}
+
+function researchScholarlyArticlesJsonLd() {
+  return researchItems.map((item) => ({
+    "@context": "https://schema.org",
+    "@type": item.schemaType || "ScholarlyArticle",
+    headline: item.title,
+    name: item.title,
+    description: item.body,
+    abstract: item.abstract || item.body,
+    url: item.href,
+    author: {
+      "@type": "Person",
+      name: "Sakshyam Banjade",
+      url: `${siteUrl}/`,
+    },
+    publisher: item.publisher
+      ? {
+          "@type": "Organization",
+          name: item.publisher,
+        }
+      : undefined,
+    about: [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "CS.AI",
+      "Applied AI",
+      "AI Research",
+      "LLM Evaluation",
+      "AI Systems",
+      "Nepal Technology",
+    ],
+  }));
 }
 
 function useRedirectFallback() {
@@ -302,6 +338,38 @@ function SignalGrid() {
   );
 }
 
+function TechnicalIdentitySection() {
+  return (
+    <section id="identity">
+      <SectionHeader
+        eyebrow="Technical identity"
+        title="research and technical identity"
+        body="I want this portfolio to make one thing clear: Sakshyam Banjade is an AI developer in Nepal, a CS.AI researcher, and an applied AI builder working on machine learning systems, research papers, quantitative systems, and Nepal-focused technology."
+      />
+
+      <div className="identity-copy">
+        {identityFocusAreas.map((item) => (
+          <p key={item}>{item}</p>
+        ))}
+      </div>
+
+      <div className="focus-grid identity-grid" aria-label="Research and technical identity terms">
+        {seoIdentityTerms.map((term) => (
+          <span className="focus-chip identity-chip" key={term}>
+            {term}
+          </span>
+        ))}
+      </div>
+
+      <p className="action-links section-actions">
+        <Link to="/research/">Read Sakshyam Banjade research papers and publications</Link>
+        <Link to="/projects/">Explore Sakshyam Banjade AI systems and machine learning projects</Link>
+        <Link to="/writing/">Browse technical writing by Sakshyam Banjade</Link>
+      </p>
+    </section>
+  );
+}
+
 function TrustBar() {
   return (
     <div className="trust-bar" aria-label="Trust signals">
@@ -326,13 +394,13 @@ function ResearchSection() {
       <SectionHeader
         eyebrow="Research"
         title="research"
-        body="A publication-first view of the problems I want to work on long term: AI reasoning, model evaluation, scientific tooling, and research that can stand up in front of serious academic readers."
+        body="A publication-first view of Sakshyam Banjade research papers, publications, and CS.AI research from Nepal, centered on AI evaluation, scientific tooling, and applied AI systems."
       />
 
       <div className="research-intro">
         <p>
-          My long-term aim is to build a research profile around applied AI systems, reasoning-heavy evaluation,
-          scientific tools, and technically serious work that connects theory with useful deployment.
+          My long-term aim is to build a visible research profile around applied AI systems, machine learning, and
+          CS.AI research that connects academic seriousness with useful deployment in Nepal and beyond.
         </p>
       </div>
 
@@ -361,8 +429,12 @@ function ResearchSection() {
       </div>
 
       <p className="action-links section-actions">
-        <Link to="/notes/">Open lab notes</Link>
-        <a href="https://scholar.google.com/citations?user=ltUdGkgAAAAJ&hl=en">Google Scholar</a>
+        <Link to="/notes/">Open lab notes on AI evaluation and research workflow</Link>
+        {researchProfileLinks.map((item) => (
+          <a href={item.href} key={item.href}>
+            {item.label}
+          </a>
+        ))}
       </p>
     </section>
   );
@@ -423,7 +495,7 @@ function ProjectsSection() {
       <SectionHeader
         eyebrow="Selected systems"
         title="selected work"
-        body="A focused view of the products, systems, and public work I have built or contributed to. The strongest projects below are structured more like mini research notes so the reasoning is easier to evaluate."
+        body="A focused view of the AI systems, machine learning systems, applied AI products, and Nepal-focused technology systems I have built or contributed to. The strongest projects below are structured more like mini research notes so the reasoning is easier to evaluate."
       />
 
       <div className="case-study-stack">
@@ -683,7 +755,7 @@ function TweetsSection() {
 
 function HomePage() {
   useSeo({
-    title: "Sakshyam Banjade | R&D Engineer in AI Systems",
+    title: "Sakshyam Banjade | AI Developer, CS.AI Researcher & Applied AI Builder from Nepal",
     description: defaultDescription,
     structuredData: {
       "@context": "https://schema.org",
@@ -714,20 +786,26 @@ function HomePage() {
           "@type": "Person",
           "@id": `${siteUrl}/#person`,
           name: "Sakshyam Banjade",
+          alternateName: ["Sakshyam", "Sakshyam Banjade"],
           url: `${siteUrl}/`,
           image: defaultImageUrl,
           email: `mailto:${profile.email}`,
-          jobTitle: "R&D Engineer",
+          jobTitle: ["AI Developer", "CS.AI Researcher", "Applied AI Builder"],
           description: profile.researchStatement,
           nationality: "Nepalese",
           sameAs: profile.links.map(([, href]) => href),
           knowsAbout: [
             "Artificial Intelligence",
             "Machine Learning",
+            "CS.AI",
             "Applied AI",
-            "Research",
-            "Technology writing",
-            "Startup building",
+            "AI Research",
+            "LLM Evaluation",
+            "AI Systems",
+            "Quantitative Systems",
+            "Algorithmic Trading",
+            "Research Papers",
+            "Nepal Technology",
           ],
         },
       ],
@@ -741,6 +819,10 @@ function HomePage() {
           <Hero />
           <TrustBar />
           <SignalGrid />
+        </HomeBlock>
+
+        <HomeBlock>
+          <TechnicalIdentitySection />
         </HomeBlock>
 
         <HomeBlock tone="soft">
@@ -839,12 +921,12 @@ function HomePage() {
 const pageContent = {
   projects: {
     intro:
-      "Selected AI, software, research, and product systems I have built or contributed to, with more explicit attention to problem framing, evidence, and what each system is actually trying to prove.",
+      "Selected AI systems, machine learning systems, applied AI products, and Nepal-focused technology systems I have built or contributed to, with more explicit attention to problem framing, evidence, and what each system is trying to prove.",
     items: workItems,
   },
   research: {
     intro:
-      "A publication-first research page covering preprints, papers, and the themes I want to push further across AI evaluation, scientific tooling, and applied systems.",
+      "A publication-first research page for Sakshyam Banjade research papers, publications, CS.AI research, and AI researcher work from Nepal across evaluation, scientific tooling, and applied AI systems.",
     items: researchItems,
   },
   notes: {
@@ -872,10 +954,19 @@ function StandalonePage({ slug }) {
     title: page.title,
     description: page.description,
     path: `/${slug}/`,
-    structuredData: breadcrumbJsonLd([
-      { name: "Home", path: "/" },
-      { name: page.label, path: `/${slug}/` },
-    ]),
+    structuredData:
+      slug === "research"
+        ? [
+            breadcrumbJsonLd([
+              { name: "Home", path: "/" },
+              { name: page.label, path: `/${slug}/` },
+            ]),
+            ...researchScholarlyArticlesJsonLd(),
+          ]
+        : breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: page.label, path: `/${slug}/` },
+          ]),
   });
 
   return (
