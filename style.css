@@ -204,7 +204,7 @@ section {
 
 .hero-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.92fr);
+  grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1.08fr);
   align-items: center;
   gap: 28px;
 }
@@ -221,6 +221,8 @@ section {
   display: block;
   width: 100%;
   height: auto;
+  border-radius: 12px;
+  object-fit: cover;
 }
 
 .eyebrow,
@@ -365,21 +367,6 @@ h4 {
 .research-intro {
   max-width: 760px;
   margin-bottom: 22px;
-}
-
-.identity-copy {
-  max-width: 760px;
-  display: grid;
-  gap: 10px;
-  margin-bottom: 22px;
-}
-
-.identity-grid {
-  gap: 10px;
-}
-
-.identity-chip {
-  background: var(--soft);
 }
 
 .research-stack {
@@ -908,10 +895,6 @@ h4 {
 
   .hero-layout {
     grid-template-columns: 1fr;
-  }
-
-  .hero-visual {
-    display: none;
   }
 
   .home-block {

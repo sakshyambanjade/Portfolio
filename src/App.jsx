@@ -1,20 +1,19 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, Navigate, Route, Routes, useLocation, useNavigate, useParams } from "react-router-dom";
 import {
-  doneItems,
   educationItems,
+  featuredTechnicalThoughtSlugs,
   fellowshipItems,
-  identityFocusAreas,
   labNotes,
   leadershipItems,
   navItems,
+  newsItems,
   profile,
   projectCaseStudies,
   recognitionItems,
   researchProfileLinks,
   researchFocusAreas,
   researchItems,
-  seoIdentityTerms,
   signalMetrics,
   sitePages,
   skillGroups,
@@ -291,34 +290,23 @@ function Hero() {
   return (
     <section className="hero" id="about">
       <div className="hero-layout">
+        <figure className="hero-visual">
+          <img src="/favicon-source.png" alt="Portrait of Sakshyam Banjade" />
+        </figure>
+
         <div className="hero-content">
           <h1>{profile.name}</h1>
           <p className="subtitle">{profile.tagline}</p>
           <p className="hero-copy">{profile.intro}</p>
           <p className="hero-research-statement">{profile.researchStatement}</p>
 
-          <div className="focus-grid hero-focus" aria-label="Primary research themes">
-            {["LLM evaluation", "scientific tooling", "applied AI under real constraints"].map((item) => (
-              <span className="focus-chip" key={item}>
-                {item}
-              </span>
-            ))}
-          </div>
-
           <p className="action-links" aria-label="Primary actions">
-            <Link to="/projects/">View Work</Link>
-            <Link to="/research/">Research</Link>
-            <Link to="/notes/">Lab Notes</Link>
-            <Link to="/fellowship/">Fellowship</Link>
-            <Link to="/contact/">Contact</Link>
+            <Link to="/research/">View Research</Link>
+            <Link to="/projects/">See Projects</Link>
           </p>
 
           <p className="current-focus">{profile.focus}</p>
         </div>
-
-        <figure className="hero-visual" aria-hidden="true">
-          <img src="/hero-running.png" alt="" />
-        </figure>
       </div>
     </section>
   );
@@ -338,38 +326,6 @@ function SignalGrid() {
   );
 }
 
-function TechnicalIdentitySection() {
-  return (
-    <section id="identity">
-      <SectionHeader
-        eyebrow="Technical identity"
-        title="research and technical identity"
-        body="I want this portfolio to make one thing clear: Sakshyam Banjade is an AI developer in Nepal, a CS.AI researcher, and an applied AI builder working on machine learning systems, research papers, quantitative systems, and Nepal-focused technology."
-      />
-
-      <div className="identity-copy">
-        {identityFocusAreas.map((item) => (
-          <p key={item}>{item}</p>
-        ))}
-      </div>
-
-      <div className="focus-grid identity-grid" aria-label="Research and technical identity terms">
-        {seoIdentityTerms.map((term) => (
-          <span className="focus-chip identity-chip" key={term}>
-            {term}
-          </span>
-        ))}
-      </div>
-
-      <p className="action-links section-actions">
-        <Link to="/research/">Read Sakshyam Banjade research papers and publications</Link>
-        <Link to="/projects/">Explore Sakshyam Banjade AI systems and machine learning projects</Link>
-        <Link to="/writing/">Browse technical writing by Sakshyam Banjade</Link>
-      </p>
-    </section>
-  );
-}
-
 function TrustBar() {
   return (
     <div className="trust-bar" aria-label="Trust signals">
@@ -377,6 +333,21 @@ function TrustBar() {
         <span key={signal}>{signal}</span>
       ))}
     </div>
+  );
+}
+
+function NewsSection() {
+  return (
+    <section id="news">
+      <SectionHeader
+        eyebrow="News"
+        title="latest updates"
+        body="A short log of recent work, research, and public milestones worth knowing before diving deeper."
+      />
+      {newsItems.map((item) => (
+        <Entry item={item} key={`${item.label}-${item.title}`} />
+      ))}
+    </section>
   );
 }
 
@@ -394,13 +365,17 @@ function ResearchSection() {
       <SectionHeader
         eyebrow="Research"
         title="research"
-        body="A publication-first view of Sakshyam Banjade research papers, publications, and CS.AI research from Nepal, centered on AI evaluation, scientific tooling, and applied AI systems."
+        body="Featured research, papers, and research interests centered on LLM evaluation, applied AI systems, and scientific tooling."
       />
 
       <div className="research-intro">
         <p>
-          My long-term aim is to build a visible research profile around applied AI systems, machine learning, and
-          CS.AI research that connects academic seriousness with useful deployment in Nepal and beyond.
+          I am interested in how AI systems behave under real constraints: limited data, messy deployment environments,
+          and evaluation setups that can mislead us if we are not careful.
+        </p>
+        <p>
+          My current research questions sit around LLM reasoning, evaluation design, applied AI systems for real users,
+          and how to build research that stays useful outside the lab.
         </p>
       </div>
 
@@ -607,15 +582,17 @@ function WorkflowSection({ id = "workflow" }) {
 }
 
 function WritingArchive() {
+  const featuredThoughts = thoughts.filter((thought) => featuredTechnicalThoughtSlugs.includes(thought.slug));
+
   return (
     <section id="writing">
       <SectionHeader
-        eyebrow="Writing archive"
+        eyebrow="Technical writing"
         title="writing"
-        body="A dedicated writing space for essays, notes, reflections, and longer ideas. This archive is powered by React Router, so each piece can have its own clean page, metadata, and shareable URL."
+        body="Technical notes and longer writing that reinforce the research and systems work rather than distracting from it."
       />
 
-      {thoughts.slice(0, 4).map((thought) => (
+      {featuredThoughts.map((thought) => (
         <article className="entry thought-link" key={thought.slug}>
           <time>{thought.slug}</time>
           <div>
@@ -629,7 +606,7 @@ function WritingArchive() {
       ))}
 
       <p className="action-links">
-        <Link to="/writing/">Open writing archive</Link>
+        <Link to="/writing/">Read all writing</Link>
       </p>
     </section>
   );
@@ -721,38 +698,6 @@ function TrainingSection() {
   );
 }
 
-function TweetsSection() {
-  return (
-    <section id="tweets">
-      <SectionHeader
-        eyebrow="Live feed"
-        title="latest tweets"
-        body="Recent posts from @SakshyamBanjade. If the timeline does not load, open the profile directly."
-      />
-      <div className="tweet-box">
-        <a
-          className="twitter-timeline"
-          data-height="620"
-          data-dnt="true"
-          data-chrome="noheader nofooter noborders transparent"
-          href="https://twitter.com/SakshyamBanjade"
-        >
-          Tweets by SakshyamBanjade
-        </a>
-      </div>
-      <p className="tweet-action">
-        <a
-          href="https://twitter.com/intent/tweet?button_hashtag=sakshyambanjade&ref_src=twsrc%5Etfw"
-          className="twitter-hashtag-button"
-          data-show-count="false"
-        >
-          Tweet #sakshyambanjade
-        </a>
-      </p>
-    </section>
-  );
-}
-
 function HomePage() {
   useSeo({
     title: "Sakshyam Banjade | AI Developer, CS.AI Researcher & Applied AI Builder from Nepal",
@@ -821,33 +766,16 @@ function HomePage() {
           <SignalGrid />
         </HomeBlock>
 
-        <HomeBlock>
-          <TechnicalIdentitySection />
-        </HomeBlock>
-
-        <HomeBlock tone="soft">
-          <ProjectsSection />
-        </HomeBlock>
-
-        <HomeBlock>
-          <section id="done">
-            <SectionHeader
-              eyebrow="Range"
-              title="things i have done"
-              body="The range matters because the work has not stayed in one lane. I have built products, published research, worked around media and finance, led communities, mentored students, and represented Nepal-focused work in international spaces."
-            />
-            {doneItems.map((item) => (
-              <Entry item={item} key={`${item.label}-${item.title}`} />
-            ))}
-          </section>
-        </HomeBlock>
-
         <HomeBlock tone="soft">
           <ResearchSection />
         </HomeBlock>
 
         <HomeBlock>
-          <LabNotesSection preview />
+          <ProjectsSection />
+        </HomeBlock>
+
+        <HomeBlock tone="soft">
+          <NewsSection />
         </HomeBlock>
 
         <HomeBlock>
@@ -855,7 +783,19 @@ function HomePage() {
         </HomeBlock>
 
         <HomeBlock tone="soft">
+          <WritingArchive />
+        </HomeBlock>
+
+        <HomeBlock>
+          <LabNotesSection preview />
+        </HomeBlock>
+
+        <HomeBlock tone="soft">
           <FellowshipSection />
+        </HomeBlock>
+
+        <HomeBlock tone="soft">
+          <SkillsSection />
         </HomeBlock>
 
         <HomeBlock>
@@ -872,19 +812,7 @@ function HomePage() {
         </HomeBlock>
 
         <HomeBlock tone="soft">
-          <SkillsSection />
-        </HomeBlock>
-
-        <HomeBlock>
           <WorkflowSection />
-        </HomeBlock>
-
-        <HomeBlock>
-          <WritingArchive />
-        </HomeBlock>
-
-        <HomeBlock tone="soft" compact>
-          <TweetsSection />
         </HomeBlock>
 
         <HomeBlock compact>

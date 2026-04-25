@@ -161,9 +161,10 @@ function pageShell({ title, description, canonicalPath, body, type = "article", 
       <nav class="nav page" aria-label="Primary navigation">
         <a class="site-name" href="/">Sakshyam Banjade</a>
         <ul class="nav-menu">
-          <li><a href="/projects/">work</a></li>
           <li><a href="/research/">research</a></li>
+          <li><a href="/projects/">projects</a></li>
           <li><a href="/writing/">writing</a></li>
+          <li><a href="/contact/">about</a></li>
           <li><a href="/contact/">contact</a></li>
         </ul>
       </nav>
@@ -329,7 +330,7 @@ ${entryList(supportingWork)}
         </div>`
     : page.slug === "research"
       ? `        <div class="research-intro">
-          <p>My long-term aim is to build a visible research profile around applied AI systems, machine learning, and CS.AI research that connects academic seriousness with useful deployment in Nepal and beyond.</p>
+          <p>I care most about LLM evaluation, applied AI systems, scientific tooling, and what it takes to build globally relevant AI research from South Asia.</p>
         </div>
         <div class="research-stack">
           <div>
@@ -457,9 +458,10 @@ function notFoundPage() {
       <nav class="nav page" aria-label="Primary navigation">
         <a class="site-name" href="/">Sakshyam Banjade</a>
         <ul class="nav-menu">
-          <li><a href="/projects/">work</a></li>
           <li><a href="/research/">research</a></li>
+          <li><a href="/projects/">projects</a></li>
           <li><a href="/writing/">writing</a></li>
+          <li><a href="/contact/">about</a></li>
           <li><a href="/contact/">contact</a></li>
         </ul>
       </nav>

@@ -1,12 +1,12 @@
 export const profile = {
   name: "Sakshyam Banjade",
-  tagline: "R&D engineer building measurable AI systems for real-world workflows under practical constraints.",
+  tagline: "AI researcher and builder from Nepal.",
   intro:
-    "I work across applied AI, evaluation, scientific tooling, and product engineering. My goal is to build systems that are useful in practice, legible in research terms, and honest about trade-offs when deployed in the real world.",
+    "I build AI systems that work in the real world: research-grounded, Nepal-rooted, and aimed at useful deployment instead of empty demos.",
   focus:
-    "Current focus: LLM evaluation, scientific tooling, climate-smart AI, and research artifacts that can stand up in front of serious collaborators.",
+    "Right now I am focused on LLM evaluation, applied AI systems, and research that can stand up in front of serious collaborators.",
   researchStatement:
-    "I am especially interested in AI systems that must survive messy constraints: limited data, real deployment environments, underrepresented contexts, and the gap between promising demos and reproducible results.",
+    "I care most about LLM evaluation, applied AI systems, scientific tooling, and what it takes to build globally relevant AI research from South Asia.",
   reproducibility:
     "I care about making work inspectable. When code is public, I want the repository, environment assumptions, and evaluation logic to be easy to follow. When work is private, I still aim to make the methodology and trade-offs clear.",
   collaboration:
@@ -23,36 +23,6 @@ export const profile = {
     ["ResearchGate", "https://www.researchgate.net/profile/Sakshyam-Banjade-2"],
   ],
 };
-
-export const seoIdentityTerms = [
-  "Sakshyam Banjade",
-  "Sakshyam",
-  "Sakshyam Banjade AI",
-  "Sakshyam Banjade AI developer",
-  "Sakshyam Banjade AI researcher",
-  "Sakshyam Banjade machine learning",
-  "Sakshyam Banjade research paper",
-  "Sakshyam Banjade publications",
-  "Sakshyam Banjade CS AI",
-  "Sakshyam Banjade computer science",
-  "Sakshyam Banjade applied AI",
-  "Sakshyam Banjade Nepal",
-  "AI developer in Nepal",
-  "AI researcher in Nepal",
-  "Machine learning developer Nepal",
-  "Machine learning researcher Nepal",
-  "CS AI researcher Nepal",
-  "Applied AI developer Nepal",
-  "Quant developer Nepal",
-  "AI systems builder Nepal",
-];
-
-export const identityFocusAreas = [
-  "AI developer in Nepal working across applied AI systems and machine learning workflows.",
-  "AI researcher in Nepal focused on CS.AI research, LLM evaluation, and research papers with clear technical framing.",
-  "Applied AI builder connecting AI systems, machine learning systems, and Nepal-focused technology problems.",
-  "Quantitative systems and market experimentation alongside broader AI systems builder work in Nepal.",
-];
 
 export const researchProfileLinks = [
   {
@@ -74,9 +44,10 @@ export const researchProfileLinks = [
 ];
 
 export const navItems = [
-  ["work", "/projects/"],
   ["research", "/research/"],
+  ["projects", "/projects/"],
   ["writing", "/writing/"],
+  ["about", "/contact/"],
   ["contact", "/contact/"],
 ];
 
@@ -119,11 +90,10 @@ export const sitePages = [
 ];
 
 export const trustSignals = [
-  "Published Research",
-  "International Program Selectee",
-  "Multi-Domain Experience",
-  "Leadership & Community Work",
-  "Building Since Early Career",
+  "2 published papers",
+  "UNDP Top 6 / 50+",
+  "Google Crowdsource Global Top 3",
+  "Stanford tech + journalism workshop",
 ];
 
 export const signalMetrics = [
@@ -138,14 +108,45 @@ export const signalMetrics = [
     detail: "SeedSure AI selected at a UNDP Nepal pitch environment",
   },
   {
-    value: "20+",
-    label: "public tech articles",
-    detail: "through FastNewsOrg, media work, and personal writing",
+    value: "Top 3",
+    label: "global language signal",
+    detail: "Google Crowdsource translation leaderboard recognition",
   },
   {
-    value: "5+",
-    label: "model ecosystems explored",
-    detail: "routing and evaluation work across major AI providers",
+    value: "Stanford",
+    label: "workshop signal",
+    detail: "technology and journalism workshop participation",
+  },
+];
+
+export const newsItems = [
+  {
+    label: "2026",
+    title: "New preprint on LLM chess evaluation",
+    body:
+      "Published the preprint 'Can LLMs Play Chess? Rethinking Evaluation via Constrained-Index Move Selection' and pushed the research section to center the paper more clearly.",
+    href: "https://www.researchgate.net/publication/404135344_Can_LLMs_Play_Chess_Rethinking_Evaluation_via_Constrained-Index_Move_Selection",
+  },
+  {
+    label: "2026",
+    title: "SeedSure AI selected at UNDP Nepal",
+    body:
+      "SeedSure AI was selected among the top 6 out of 50+ pitches, validating the need for climate-smart AI systems grounded in Nepal's agricultural reality.",
+    href: "https://diplomatnepal.com/news/undp-launches-regional-ai-report-highlights-nepals-ai-choices/",
+  },
+  {
+    label: "2026",
+    title: "Research profile now includes public lab notes",
+    body:
+      "Added visible lab notes for LLM evaluation, AI orchestration, and applied AI system design so the site shows ongoing thinking rather than just finished outputs.",
+    href: "/notes/",
+  },
+  {
+    label: "2025",
+    title: "Stanford technology and journalism workshop",
+    body:
+      "Joined a technology and journalism workshop that sharpened how I think about communicating technical work clearly in public.",
+    href: "https://stanforddaily.com/2025/09/05/summer-workshop-exhibition-the-combined-future-of-technology-and-journalism/",
   },
 ];
 
@@ -587,6 +588,12 @@ export const trainingItems = [
     title: "MERN Stack Development",
     body: "Broadway Infosys",
   },
+];
+
+export const featuredTechnicalThoughtSlugs = [
+  "one-flawless-local-coding-loop",
+  "working-after-see-full-time-developer-19",
+  "ai-aviation-safety-efficiency",
 ];
 
 export const thoughts = [
