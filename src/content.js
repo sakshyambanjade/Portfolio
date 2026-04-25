@@ -1,9 +1,19 @@
 export const profile = {
   name: "Sakshyam Banjade",
-  tagline: "Building AI systems, research, and emerging talent networks.",
+  tagline: "R&D engineer building measurable AI systems for real-world workflows under practical constraints.",
   intro:
-    "I work across applied AI, product development, research, and leadership. My focus is on building useful systems, publishing meaningful work, and creating opportunities for ambitious people through technology.",
-  focus: "Currently focused on applied AI systems, publications, and building globally relevant work from Nepal.",
+    "I work across applied AI, evaluation, scientific tooling, and product engineering. My goal is to build systems that are useful in practice, legible in research terms, and honest about trade-offs when deployed in the real world.",
+  focus:
+    "Current focus: LLM evaluation, scientific tooling, climate-smart AI, and research artifacts that can stand up in front of serious collaborators.",
+  researchStatement:
+    "I am especially interested in AI systems that must survive messy constraints: limited data, real deployment environments, underrepresented contexts, and the gap between promising demos and reproducible results.",
+  reproducibility:
+    "I care about making work inspectable. When code is public, I want the repository, environment assumptions, and evaluation logic to be easy to follow. When work is private, I still aim to make the methodology and trade-offs clear.",
+  collaboration:
+    "I prefer async-first collaboration, pull requests for review, concise Markdown notes, and experiment logs that make decisions easy to trace later.",
+  skepticalQuestion:
+    "If you reach out, tell me one claim in AI, systems, or product work that you are skeptical about. Good collaboration starts with honest questions.",
+  lastUpdated: "2026-04-25",
   email: "hi@sakshyambanjade.com.np",
   links: [
     ["GitHub", "https://github.com/sakshyambanjade"],
@@ -37,6 +47,13 @@ export const sitePages = [
       "Research direction and publications by Sakshyam Banjade across applied AI, civic identity infrastructure, scientific tooling, and technology systems.",
   },
   {
+    slug: "notes",
+    label: "Lab Notes",
+    title: "Lab Notes | Sakshyam Banjade",
+    description:
+      "Research log entries from Sakshyam Banjade covering experiment goals, unexpected findings, evaluation questions, and next steps across AI systems and scientific tooling.",
+  },
+  {
     slug: "fellowship",
     label: "Fellowship",
     title: "Fellowship | Sakshyam Banjade",
@@ -58,6 +75,104 @@ export const trustSignals = [
   "Multi-Domain Experience",
   "Leadership & Community Work",
   "Building Since Early Career",
+];
+
+export const signalMetrics = [
+  {
+    value: "2",
+    label: "research artifacts",
+    detail: "one published paper and one active preprint",
+  },
+  {
+    value: "Top 6 / 50+",
+    label: "innovation signal",
+    detail: "SeedSure AI selected at a UNDP Nepal pitch environment",
+  },
+  {
+    value: "20+",
+    label: "public tech articles",
+    detail: "through FastNewsOrg, media work, and personal writing",
+  },
+  {
+    value: "5+",
+    label: "model ecosystems explored",
+    detail: "routing and evaluation work across major AI providers",
+  },
+];
+
+export const projectCaseStudies = [
+  {
+    icon: "🔬",
+    title: "SeedSure AI",
+    problem:
+      "Smallholder farmers need advice that respects location, season, soil, and practical constraints rather than generic recommendations.",
+    hypothesis:
+      "A climate-smart advisory workflow that combines local context with AI assistance can make crop and seed decisions more useful in practice.",
+    method: [
+      "Designed an advisory system around location, weather, season, soil type, and crop context.",
+      "Focused the product on smallholder use cases in Nepal instead of generic agricultural output.",
+      "Tested the concept in public innovation settings to validate whether the problem and framing resonated.",
+    ],
+    result: "Selected among the top 6 out of 50+ pitches at UNDP Nepal.",
+    tradeoff:
+      "The hard part is not generating advice. It is making the advice specific enough to local conditions to be trusted.",
+    reproduce:
+      "Public architecture discussion and project context available through my portfolio and direct conversation while the product continues to mature.",
+  },
+  {
+    icon: "📊",
+    title: "FastNewsOrg",
+    problem:
+      "News workflows are noisy, repetitive, and time-heavy when aggregation, summarization, and publishing are handled manually.",
+    hypothesis:
+      "A structured AI pipeline can reduce friction in multi-topic news monitoring while keeping output useful for real readers.",
+    method: [
+      "Built an AI-assisted workflow for aggregation, curation, summarization, and automated publishing.",
+      "Focused on politics, finance, technology, and election-monitoring contexts where timeliness matters.",
+      "Used public writing output as a live feedback loop instead of treating the project as a closed demo.",
+    ],
+    result: "Supported the publication of 20+ public-facing technology and systems articles.",
+    tradeoff:
+      "Automation creates speed, but signal quality still depends on editorial judgment and tighter control over repetition.",
+    reproduce:
+      "Public writing and product direction are visible now; a more complete reproducibility package is something I want to strengthen over time.",
+  },
+  {
+    icon: "💻",
+    title: "MolVis Pro",
+    problem:
+      "Scientific tools often stay inaccessible to early learners when chemistry workflows require heavy or fragmented software.",
+    hypothesis:
+      "A browser-based molecular visualization workflow can make chemistry and materials exploration easier for students and researchers.",
+    method: [
+      "Built around SMILES input, molecular properties, descriptors, and visualization in the browser.",
+      "Treated accessibility and usability as part of the technical problem, not just a design add-on.",
+      "Framed the product for students, researchers, and material-science-adjacent workflows.",
+    ],
+    result: "Turned molecular exploration into a browser-native workflow instead of a desktop-only experience.",
+    tradeoff:
+      "Scientific software becomes more valuable when analysis depth and accessibility improve together; either one alone is not enough.",
+    reproduce:
+      "Project walkthrough and direction are public through the portfolio while the tool continues to evolve.",
+  },
+  {
+    icon: "🧪",
+    title: "Multi-AI Orchestrator",
+    problem:
+      "Using many model providers without structure makes routing, benchmarking, and output quality hard to reason about.",
+    hypothesis:
+      "A unified orchestration layer can make provider comparison, consensus experiments, and structured output workflows easier to evaluate.",
+    method: [
+      "Explored routing, consensus, benchmarking, structured outputs, and parallel reasoning patterns.",
+      "Worked across Gemini, Groq, Mistral, Cohere, Hugging Face, and related model ecosystems.",
+      "Treated the system as both an engineering problem and an evaluation problem.",
+    ],
+    result: "Built a single experimental surface across 5+ model ecosystems instead of isolated one-off integrations.",
+    tradeoff:
+      "More providers create more flexibility, but they also increase the cost of keeping evaluation fair and outputs comparable.",
+    reproduce:
+      "The public signal today is the portfolio and related experimentation notes; stronger public repos are a natural next step.",
+  },
 ];
 
 export const workItems = [
@@ -222,6 +337,66 @@ export const researchFocusAreas = [
   "Robotics and memory-inspired AI",
 ];
 
+export const labNotes = [
+  {
+    label: "2026 / note 01",
+    title: "Reframing LLM chess evaluation around constrained action spaces",
+    icons: ["🔬", "🧪"],
+    goal:
+      "Test whether chess evaluation becomes more meaningful when move selection is constrained instead of judged through loose natural-language output alone.",
+    tried:
+      "Framed the task around constrained-index move selection and focused attention on evaluation design rather than only model theatrics.",
+    unexpected:
+      "Format and action-selection assumptions can distort the conclusion more than the model's underlying reasoning quality.",
+    next:
+      "Keep tightening evaluation protocols so the benchmark measures reasoning quality rather than interface mismatch.",
+  },
+  {
+    label: "2026 / note 02",
+    title: "Making AI advisory systems specific enough to be trusted",
+    icons: ["📊", "🔬"],
+    goal:
+      "Understand what makes AI advice actually useful in agricultural and field-constrained settings instead of merely impressive in a demo.",
+    tried:
+      "Pushed the workflow toward location, season, soil type, and real user context rather than broad, generic recommendation patterns.",
+    unexpected:
+      "The main failure mode is not lack of output. It is advice that sounds intelligent but does not feel locally grounded enough to act on.",
+    next:
+      "Move further toward systems that make context visible and keep uncertainty honest for the user.",
+  },
+  {
+    label: "2026 / note 03",
+    title: "Treating orchestration as an evaluation problem, not just an API problem",
+    icons: ["💻", "🧪"],
+    goal:
+      "Figure out whether multi-model systems can be compared and routed in a way that stays useful beyond novelty demos.",
+    tried:
+      "Explored routing, consensus, benchmarking, structured outputs, and side-by-side experimentation across several providers.",
+    unexpected:
+      "Once multiple providers enter the system, comparability gets messy fast unless prompts, constraints, and outputs are made deliberately consistent.",
+    next:
+      "Keep building orchestration workflows where the evaluation logic is visible enough to critique, not hidden inside tooling.",
+  },
+];
+
+export const workflowPrinciples = [
+  {
+    title: "Reproducibility",
+    body:
+      "I want the main logic behind a system to be inspectable: what the task is, how the experiment is framed, what evidence matters, and where the trade-offs show up.",
+  },
+  {
+    title: "Collaboration style",
+    body:
+      "I work best with async-first communication, pull requests for review, short written updates, and experiment notes that make decisions easy to revisit.",
+  },
+  {
+    title: "What I optimize for",
+    body:
+      "Clear problem framing, measurable signals, honest failure analysis, and systems that can move from research curiosity into useful deployment.",
+  },
+];
+
 export const leadershipItems = [
   {
     label: "leadership",
@@ -308,7 +483,12 @@ export const skillGroups = [
   {
     title: "AI / research",
     body:
-      "Model experimentation, prompt engineering, system design, data pipelines, evaluation systems, regression, classification, time series modeling, feature engineering, backtesting, and applied ML workflows.",
+      "Problem framing, model experimentation, prompt engineering, evaluation design, data pipelines, regression, classification, time series modeling, feature engineering, benchmarking, and applied ML workflows.",
+  },
+  {
+    title: "engineering practices",
+    body:
+      "Git-based iteration, reproducibility-minded documentation, API integration, structured outputs, experimentation across multiple model providers, and turning exploratory work into systems that other people can inspect and use.",
   },
   {
     title: "professional",

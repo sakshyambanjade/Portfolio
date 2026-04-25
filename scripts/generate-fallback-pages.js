@@ -1,6 +1,18 @@
 import { copyFile, mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { fellowshipItems, profile, researchFocusAreas, researchItems, sitePages, thoughts, workItems } from "../src/content.js";
+import {
+  fellowshipItems,
+  labNotes,
+  profile,
+  projectCaseStudies,
+  researchFocusAreas,
+  researchItems,
+  signalMetrics,
+  sitePages,
+  thoughts,
+  workflowPrinciples,
+  workItems,
+} from "../src/content.js";
 
 const siteUrl = "https://sakshyambanjade.com.np";
 const lastmod = "2026-04-18";
@@ -126,6 +138,7 @@ function pageShell({ title, description, canonicalPath, body, type = "article", 
 ${body}
     <footer class="page site-footer">
       <p>Building systems, research, and opportunities with long-term intent.</p>
+      <p>Last updated: ${escapeHtml(profile.lastUpdated)}</p>
     </footer>
   </body>
 </html>
@@ -146,16 +159,96 @@ function entryList(items) {
     .join("\n");
 }
 
+function caseStudyList(items) {
+  return items
+    .map(
+      (item) => `        <article class="case-study">
+          <header class="case-study-header">
+            <p class="case-study-icon" aria-hidden="true">${escapeHtml(item.icon)}</p>
+            <div>
+              <h3>${escapeHtml(item.title)}</h3>
+              <p class="quiet">problem -> hypothesis -> signal -> trade-off</p>
+            </div>
+          </header>
+          <div class="case-study-grid">
+            <div>
+              <h4>Problem</h4>
+              <p>${escapeHtml(item.problem)}</p>
+            </div>
+            <div>
+              <h4>Hypothesis</h4>
+              <p>${escapeHtml(item.hypothesis)}</p>
+            </div>
+            <div>
+              <h4>Method</h4>
+              <ul class="mini-list">
+${item.method.map((point) => `                <li>${escapeHtml(point)}</li>`).join("\n")}
+              </ul>
+            </div>
+            <div>
+              <h4>Result</h4>
+              <p>${escapeHtml(item.result)}</p>
+            </div>
+            <div>
+              <h4>Trade-off</h4>
+              <p>${escapeHtml(item.tradeoff)}</p>
+            </div>
+            <div>
+              <h4>Reproducibility note</h4>
+              <p>${escapeHtml(item.reproduce)}</p>
+            </div>
+          </div>
+        </article>`
+    )
+    .join("\n");
+}
+
+function noteList(items) {
+  return items
+    .map(
+      (note) => `        <article class="note-card">
+          <div class="note-card-header">
+            <time>${escapeHtml(note.label)}</time>
+            <p class="note-icons" aria-label="Evidence icons">${escapeHtml(note.icons.join(" "))}</p>
+          </div>
+          <h3>${escapeHtml(note.title)}</h3>
+          <div class="note-rows">
+            <p><strong>Goal:</strong> ${escapeHtml(note.goal)}</p>
+            <p><strong>Tried:</strong> ${escapeHtml(note.tried)}</p>
+            <p><strong>Unexpected:</strong> ${escapeHtml(note.unexpected)}</p>
+            <p><strong>Next:</strong> ${escapeHtml(note.next)}</p>
+          </div>
+        </article>`
+    )
+    .join("\n");
+}
+
+function workflowList(items) {
+  return items
+    .map(
+      (item) => `        <article class="workflow-card">
+          <h3>${escapeHtml(item.title)}</h3>
+          <p>${escapeHtml(item.body)}</p>
+        </article>`
+    )
+    .join("\n");
+}
+
 const standaloneContent = {
   projects: {
     intro:
-      "Selected AI, software, research, and product systems I have built or contributed to, with a focus on useful execution and public-facing work.",
+      "Selected AI, software, research, and product systems I have built or contributed to, with more explicit attention to problem framing, evidence, and what each system is actually trying to prove.",
     items: workItems,
   },
   research: {
     intro:
       "A publication-first research page covering preprints, papers, and the themes I want to push further across AI evaluation, scientific tooling, and applied systems.",
     items: researchItems,
+  },
+  notes: {
+    intro:
+      "A small lab notebook for capturing research intent, experiment shape, unexpected outcomes, and the next move without pretending every idea is already a finished paper.",
+    items: [],
   },
   fellowship: {
     intro:
@@ -172,6 +265,7 @@ const standaloneContent = {
 function standaloneBody(page) {
   const content = standaloneContent[page.slug];
   const title = escapeHtml(page.label);
+  const supportingWork = workItems.filter((item) => !projectCaseStudies.some((study) => study.title === item.title));
   const body = page.slug === "contact"
     ? `        <article class="entry">
           <time>email</time>
@@ -183,7 +277,23 @@ function standaloneBody(page) {
 ${profile.links.map(([label, href]) => `              <a href="${escapeHtml(href)}">${escapeHtml(label)}</a>`).join("\n")}
             </p>
           </div>
+        </article>
+        <article class="entry">
+          <time>style</time>
+          <div>
+            <h2>How I work with people</h2>
+            <p>${escapeHtml(profile.collaboration)}</p>
+            <p>${escapeHtml(profile.skepticalQuestion)}</p>
+          </div>
         </article>`
+    : page.slug === "projects"
+      ? `        <div class="case-study-stack">
+${caseStudyList(projectCaseStudies)}
+        </div>
+        <div class="supporting-work">
+          <h2>supporting systems &amp; public work</h2>
+${entryList(supportingWork)}
+        </div>`
     : page.slug === "research"
       ? `        <div class="research-intro">
           <p>My long-term aim is to build a research profile around applied AI systems, reasoning-heavy evaluation, scientific tools, and technically serious work that connects theory with useful deployment.</p>
@@ -200,6 +310,29 @@ ${researchFocusAreas.map((item) => `              <span class="focus-chip">${esc
             </div>
             <p class="quiet">Building a stronger publication record while developing AI systems with real-world use cases across evaluation, agriculture, information workflows, scientific tooling, and reasoning.</p>
           </aside>
+        </div>
+        <p class="action-links section-actions">
+          <a href="/notes/">Open lab notes</a>
+          <a href="https://scholar.google.com/citations?user=ltUdGkgAAAAJ&hl=en">Google Scholar</a>
+        </p>
+        <section aria-label="Research workflow">
+          <header class="section-header">
+            <p class="eyebrow">Research workflow</p>
+            <h2>how i work</h2>
+            <p class="section-copy">I want the website to make collaboration easier: what I optimize for, how I document work, and how I prefer to work with researchers, engineers, and founders.</p>
+          </header>
+          <div class="workflow-grid">
+${workflowList(workflowPrinciples)}
+          </div>
+          <div class="workflow-callout">
+            <p><strong>Reproducibility statement:</strong> ${escapeHtml(profile.reproducibility)}</p>
+            <p><strong>Collaboration style:</strong> ${escapeHtml(profile.collaboration)}</p>
+            <p><strong>Skeptical question:</strong> ${escapeHtml(profile.skepticalQuestion)}</p>
+          </div>
+        </section>`
+    : page.slug === "notes"
+      ? `        <div class="notes-grid">
+${noteList(labNotes)}
         </div>`
     : `        <h2>${page.slug === "projects" ? "Selected work" : title}</h2>
 ${entryList(content.items)}`;
@@ -313,6 +446,7 @@ function notFoundPage() {
     </main>
     <footer class="page site-footer">
       <p>Building systems, research, and opportunities with long-term intent.</p>
+      <p>Last updated: ${escapeHtml(profile.lastUpdated)}</p>
     </footer>
   </body>
 </html>

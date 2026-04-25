@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Research log entries from Sakshyam Banjade covering experiment goals, unexpected findings, evaluation questions, and next steps across AI systems and scientific tooling." />
+    <meta name="author" content="Sakshyam Banjade" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Lab Notes | Sakshyam Banjade" />
+    <meta property="og:description" content="Research log entries from Sakshyam Banjade covering experiment goals, unexpected findings, evaluation questions, and next steps across AI systems and scientific tooling." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://sakshyambanjade.com.np/notes/" />
+    <meta property="og:image" content="https://sakshyambanjade.com.np/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Sakshyam Banjade - AI builder, researcher, and founder" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Lab Notes | Sakshyam Banjade" />
+    <meta name="twitter:description" content="Research log entries from Sakshyam Banjade covering experiment goals, unexpected findings, evaluation questions, and next steps across AI systems and scientific tooling." />
+    <meta name="twitter:image" content="https://sakshyambanjade.com.np/og-image.png" />
+    <meta name="twitter:image:alt" content="Sakshyam Banjade - AI builder, researcher, and founder" />
+    <link rel="canonical" href="https://sakshyambanjade.com.np/notes/" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="stylesheet" href="/style.css" />
+    <title>Lab Notes | Sakshyam Banjade</title>
+    <script type="application/ld+json">[{"@context":"https://schema.org","@type":"Organization","@id":"https://sakshyambanjade.com.np/#organization","name":"Sakshyam Banjade","url":"https://sakshyambanjade.com.np/","image":"https://sakshyambanjade.com.np/og-image.png","founder":{"@type":"Person","@id":"https://sakshyambanjade.com.np/#person","name":"Sakshyam Banjade","url":"https://sakshyambanjade.com.np/","image":"https://sakshyambanjade.com.np/og-image.png"},"sameAs":["https://github.com/sakshyambanjade","https://www.linkedin.com/in/sakshyam/","https://x.com/SakshyamBanjade/","https://scholar.google.com/citations?user=ltUdGkgAAAAJ&hl=en","https://www.researchgate.net/profile/Sakshyam-Banjade-2"]},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://sakshyambanjade.com.np/"},{"@type":"ListItem","position":2,"name":"Lab Notes","item":"https://sakshyambanjade.com.np/notes/"}]}]</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="site-header">
+      <nav class="nav page" aria-label="Primary navigation">
+        <a class="site-name" href="/">Sakshyam Banjade</a>
+        <ul class="nav-menu">
+          <li><a href="/projects/">work</a></li>
+          <li><a href="/research/">research</a></li>
+          <li><a href="/writing/">writing</a></li>
+          <li><a href="/contact/">contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="page writing-page" id="main">
+      <section class="archive-intro" aria-labelledby="notes-title">
+        <p class="subtitle">lab notes</p>
+        <h1 id="notes-title">Lab Notes</h1>
+        <p>A small lab notebook for capturing research intent, experiment shape, unexpected outcomes, and the next move without pretending every idea is already a finished paper.</p>
+        <p class="action-links">
+          <a href="/">Home</a>
+          <a href="/writing/">Writing</a>
+        </p>
+      </section>
+      <section aria-label="Lab Notes">
+        <div class="notes-grid">
+        <article class="note-card">
+          <div class="note-card-header">
+            <time>2026 / note 01</time>
+            <p class="note-icons" aria-label="Evidence icons">🔬 🧪</p>
+          </div>
+          <h3>Reframing LLM chess evaluation around constrained action spaces</h3>
+          <div class="note-rows">
+            <p><strong>Goal:</strong> Test whether chess evaluation becomes more meaningful when move selection is constrained instead of judged through loose natural-language output alone.</p>
+            <p><strong>Tried:</strong> Framed the task around constrained-index move selection and focused attention on evaluation design rather than only model theatrics.</p>
+            <p><strong>Unexpected:</strong> Format and action-selection assumptions can distort the conclusion more than the model&#39;s underlying reasoning quality.</p>
+            <p><strong>Next:</strong> Keep tightening evaluation protocols so the benchmark measures reasoning quality rather than interface mismatch.</p>
+          </div>
+        </article>
+        <article class="note-card">
+          <div class="note-card-header">
+            <time>2026 / note 02</time>
+            <p class="note-icons" aria-label="Evidence icons">📊 🔬</p>
+          </div>
+          <h3>Making AI advisory systems specific enough to be trusted</h3>
+          <div class="note-rows">
+            <p><strong>Goal:</strong> Understand what makes AI advice actually useful in agricultural and field-constrained settings instead of merely impressive in a demo.</p>
+            <p><strong>Tried:</strong> Pushed the workflow toward location, season, soil type, and real user context rather than broad, generic recommendation patterns.</p>
+            <p><strong>Unexpected:</strong> The main failure mode is not lack of output. It is advice that sounds intelligent but does not feel locally grounded enough to act on.</p>
+            <p><strong>Next:</strong> Move further toward systems that make context visible and keep uncertainty honest for the user.</p>
+          </div>
+        </article>
+        <article class="note-card">
+          <div class="note-card-header">
+            <time>2026 / note 03</time>
+            <p class="note-icons" aria-label="Evidence icons">💻 🧪</p>
+          </div>
+          <h3>Treating orchestration as an evaluation problem, not just an API problem</h3>
+          <div class="note-rows">
+            <p><strong>Goal:</strong> Figure out whether multi-model systems can be compared and routed in a way that stays useful beyond novelty demos.</p>
+            <p><strong>Tried:</strong> Explored routing, consensus, benchmarking, structured outputs, and side-by-side experimentation across several providers.</p>
+            <p><strong>Unexpected:</strong> Once multiple providers enter the system, comparability gets messy fast unless prompts, constraints, and outputs are made deliberately consistent.</p>
+            <p><strong>Next:</strong> Keep building orchestration workflows where the evaluation logic is visible enough to critique, not hidden inside tooling.</p>
+          </div>
+        </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="page site-footer">
+      <p>Building systems, research, and opportunities with long-term intent.</p>
+      <p>Last updated: 2026-04-25</p>
+    </footer>
+  </body>
+</html>

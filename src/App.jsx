@@ -4,17 +4,21 @@ import {
   doneItems,
   educationItems,
   fellowshipItems,
+  labNotes,
   leadershipItems,
   navItems,
   profile,
+  projectCaseStudies,
   recognitionItems,
   researchFocusAreas,
   researchItems,
+  signalMetrics,
   sitePages,
   skillGroups,
   thoughts,
   trainingItems,
   trustSignals,
+  workflowPrinciples,
   workItems,
 } from "./content.js";
 
@@ -22,7 +26,7 @@ const siteUrl = "https://sakshyambanjade.com.np";
 const defaultImagePath = "/og-image.png";
 const defaultImageUrl = `${siteUrl}${defaultImagePath}`;
 const defaultDescription =
-  "Sakshyam Banjade is an AI builder, researcher, and founder from Nepal working on applied AI systems, research, fellowship programs, and technology writing.";
+  "Sakshyam Banjade is an R&D engineer building measurable AI systems for real-world workflows across evaluation, scientific tooling, research, and technology writing.";
 
 function setMeta(name, content, attribute = "name") {
   let tag = document.head.querySelector(`meta[${attribute}="${name}"]`);
@@ -124,7 +128,7 @@ function useRouteEffects() {
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const targets = document.querySelectorAll(
-      "section > h2, section > p, .entry, .quote, .quick-links, .tweet-box, .contact-list"
+      "section > h2, section > p, .entry, .quote, .quick-links, .tweet-box, .contact-list, .signal-card, .case-study, .note-card, .workflow-card"
     );
 
     targets.forEach((target, index) => {
@@ -255,10 +259,20 @@ function Hero() {
           <h1>{profile.name}</h1>
           <p className="subtitle">{profile.tagline}</p>
           <p className="hero-copy">{profile.intro}</p>
+          <p className="hero-research-statement">{profile.researchStatement}</p>
+
+          <div className="focus-grid hero-focus" aria-label="Primary research themes">
+            {["LLM evaluation", "scientific tooling", "applied AI under real constraints"].map((item) => (
+              <span className="focus-chip" key={item}>
+                {item}
+              </span>
+            ))}
+          </div>
 
           <p className="action-links" aria-label="Primary actions">
             <Link to="/projects/">View Work</Link>
             <Link to="/research/">Research</Link>
+            <Link to="/notes/">Lab Notes</Link>
             <Link to="/fellowship/">Fellowship</Link>
             <Link to="/contact/">Contact</Link>
           </p>
@@ -270,6 +284,20 @@ function Hero() {
           <img src="/hero-running.png" alt="" />
         </figure>
       </div>
+    </section>
+  );
+}
+
+function SignalGrid() {
+  return (
+    <section className="signal-grid" aria-label="Key portfolio signals">
+      {signalMetrics.map((item) => (
+        <article className="signal-card" key={item.label}>
+          <p className="signal-value">{item.value}</p>
+          <h2>{item.label}</h2>
+          <p>{item.detail}</p>
+        </article>
+      ))}
     </section>
   );
 }
@@ -330,6 +358,177 @@ function ResearchSection() {
             evaluation, agriculture, information workflows, scientific tooling, and reasoning.
           </p>
         </aside>
+      </div>
+
+      <p className="action-links section-actions">
+        <Link to="/notes/">Open lab notes</Link>
+        <a href="https://scholar.google.com/citations?user=ltUdGkgAAAAJ&hl=en">Google Scholar</a>
+      </p>
+    </section>
+  );
+}
+
+function CaseStudyCard({ item }) {
+  return (
+    <article className="case-study">
+      <header className="case-study-header">
+        <p className="case-study-icon" aria-hidden="true">
+          {item.icon}
+        </p>
+        <div>
+          <h3>{item.title}</h3>
+          <p className="quiet">problem to hypothesis to signal to trade-off</p>
+        </div>
+      </header>
+
+      <div className="case-study-grid">
+        <div>
+          <h4>Problem</h4>
+          <p>{item.problem}</p>
+        </div>
+        <div>
+          <h4>Hypothesis</h4>
+          <p>{item.hypothesis}</p>
+        </div>
+        <div>
+          <h4>Method</h4>
+          <ul className="mini-list">
+            {item.method.map((point) => (
+              <li key={point}>{point}</li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h4>Result</h4>
+          <p>{item.result}</p>
+        </div>
+        <div>
+          <h4>Trade-off</h4>
+          <p>{item.tradeoff}</p>
+        </div>
+        <div>
+          <h4>Reproducibility note</h4>
+          <p>{item.reproduce}</p>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function ProjectsSection() {
+  const supportingWork = workItems.filter((item) => !projectCaseStudies.some((study) => study.title === item.title));
+
+  return (
+    <section id="work">
+      <SectionHeader
+        eyebrow="Selected systems"
+        title="selected work"
+        body="A focused view of the products, systems, and public work I have built or contributed to. The strongest projects below are structured more like mini research notes so the reasoning is easier to evaluate."
+      />
+
+      <div className="case-study-stack">
+        {projectCaseStudies.map((item) => (
+          <CaseStudyCard item={item} key={item.title} />
+        ))}
+      </div>
+
+      <div className="supporting-work">
+        <h3>supporting systems & public work</h3>
+        {supportingWork.map((item) => (
+          <Entry item={item} key={`${item.label}-${item.title}`} />
+        ))}
+      </div>
+
+      <p className="quiet">
+        The through-line is simple: build useful systems, turn ideas into visible output, and make Nepal part of
+        serious global AI and technology conversations.
+      </p>
+    </section>
+  );
+}
+
+function NoteCard({ note }) {
+  return (
+    <article className="note-card">
+      <div className="note-card-header">
+        <time>{note.label}</time>
+        <p className="note-icons" aria-label="Evidence icons">
+          {note.icons.join(" ")}
+        </p>
+      </div>
+      <h3>{note.title}</h3>
+      <div className="note-rows">
+        <p>
+          <strong>Goal:</strong> {note.goal}
+        </p>
+        <p>
+          <strong>Tried:</strong> {note.tried}
+        </p>
+        <p>
+          <strong>Unexpected:</strong> {note.unexpected}
+        </p>
+        <p>
+          <strong>Next:</strong> {note.next}
+        </p>
+      </div>
+    </article>
+  );
+}
+
+function LabNotesSection({ preview = false, id = "notes" }) {
+  const visibleNotes = preview ? labNotes.slice(0, 3) : labNotes;
+
+  return (
+    <section id={id}>
+      <SectionHeader
+        eyebrow="Lab notebook"
+        title="lab notes"
+        body="Short research-log entries that capture the loop I care about most: goal, what I tried, what surprised me, and what should happen next."
+      />
+
+      <div className="notes-grid">
+        {visibleNotes.map((note) => (
+          <NoteCard note={note} key={note.title} />
+        ))}
+      </div>
+
+      {preview ? (
+        <p className="action-links section-actions">
+          <Link to="/notes/">Open full lab notes</Link>
+        </p>
+      ) : null}
+    </section>
+  );
+}
+
+function WorkflowSection({ id = "workflow" }) {
+  return (
+    <section id={id}>
+      <SectionHeader
+        eyebrow="Research workflow"
+        title="how i work"
+        body="I want the website to make collaboration easier: what I optimize for, how I document work, and how I prefer to work with researchers, engineers, and founders."
+      />
+
+      <div className="workflow-grid">
+        {workflowPrinciples.map((item) => (
+          <article className="workflow-card" key={item.title}>
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+
+      <div className="workflow-callout">
+        <p>
+          <strong>Reproducibility statement:</strong> {profile.reproducibility}
+        </p>
+        <p>
+          <strong>Collaboration style:</strong> {profile.collaboration}
+        </p>
+        <p>
+          <strong>Skeptical question:</strong> {profile.skepticalQuestion}
+        </p>
       </div>
     </section>
   );
@@ -484,7 +683,7 @@ function TweetsSection() {
 
 function HomePage() {
   useSeo({
-    title: "Sakshyam Banjade | AI Builder, Researcher & Founder",
+    title: "Sakshyam Banjade | R&D Engineer in AI Systems",
     description: defaultDescription,
     structuredData: {
       "@context": "https://schema.org",
@@ -518,7 +717,8 @@ function HomePage() {
           url: `${siteUrl}/`,
           image: defaultImageUrl,
           email: `mailto:${profile.email}`,
-          jobTitle: "AI Builder, Researcher and Founder",
+          jobTitle: "R&D Engineer",
+          description: profile.researchStatement,
           nationality: "Nepalese",
           sameAs: profile.links.map(([, href]) => href),
           knowsAbout: [
@@ -540,23 +740,11 @@ function HomePage() {
         <HomeBlock tone="hero">
           <Hero />
           <TrustBar />
+          <SignalGrid />
         </HomeBlock>
 
         <HomeBlock tone="soft">
-          <section id="work">
-            <SectionHeader
-              eyebrow="Selected systems"
-              title="selected work"
-              body="A focused view of the products, systems, and public work I have built or contributed to. This section is meant to make the work easy to understand before the details."
-            />
-            {workItems.map((item) => (
-              <Entry item={item} key={`${item.label}-${item.title}`} />
-            ))}
-            <p className="quiet">
-              The through-line is simple: build useful systems, turn ideas into visible output, and make Nepal part of
-              serious global AI and technology conversations.
-            </p>
-          </section>
+          <ProjectsSection />
         </HomeBlock>
 
         <HomeBlock>
@@ -574,6 +762,10 @@ function HomePage() {
 
         <HomeBlock tone="soft">
           <ResearchSection />
+        </HomeBlock>
+
+        <HomeBlock>
+          <LabNotesSection preview />
         </HomeBlock>
 
         <HomeBlock>
@@ -599,6 +791,10 @@ function HomePage() {
 
         <HomeBlock tone="soft">
           <SkillsSection />
+        </HomeBlock>
+
+        <HomeBlock>
+          <WorkflowSection />
         </HomeBlock>
 
         <HomeBlock>
@@ -643,13 +839,18 @@ function HomePage() {
 const pageContent = {
   projects: {
     intro:
-      "Selected AI, software, research, and product systems I have built or contributed to, with a focus on useful execution and public-facing work.",
+      "Selected AI, software, research, and product systems I have built or contributed to, with more explicit attention to problem framing, evidence, and what each system is actually trying to prove.",
     items: workItems,
   },
   research: {
     intro:
       "A publication-first research page covering preprints, papers, and the themes I want to push further across AI evaluation, scientific tooling, and applied systems.",
     items: researchItems,
+  },
+  notes: {
+    intro:
+      "A small lab notebook for capturing research intent, experiment shape, unexpected outcomes, and the next move without pretending every idea is already a finished paper.",
+    items: [],
   },
   fellowship: {
     intro:
@@ -710,9 +911,25 @@ function StandalonePage({ slug }) {
                 </p>
               </div>
             </article>
+            <article className="entry">
+              <time>style</time>
+              <div>
+                <h2>How I work with people</h2>
+                <p>{profile.collaboration}</p>
+                <p>{profile.skepticalQuestion}</p>
+              </div>
+            </article>
           </section>
         ) : slug === "research" ? (
-          <ResearchSection />
+          <>
+            <ResearchSection />
+            <LabNotesSection id="notes-preview" preview />
+            <WorkflowSection id="workflow-preview" />
+          </>
+        ) : slug === "projects" ? (
+          <ProjectsSection />
+        ) : slug === "notes" ? (
+          <LabNotesSection preview={false} id="notes-page" />
         ) : (
           <section aria-label={page.label}>
             {content.items.map((item) => (
@@ -890,6 +1107,7 @@ function Footer() {
   return (
     <footer className="page site-footer">
       <p>Building systems, research, and opportunities with long-term intent.</p>
+      <p>Last updated: {profile.lastUpdated}</p>
     </footer>
   );
 }
@@ -932,6 +1150,8 @@ function AppShell() {
         <Route path="/projects/" element={<StandalonePage slug="projects" />} />
         <Route path="/research" element={<StandalonePage slug="research" />} />
         <Route path="/research/" element={<StandalonePage slug="research" />} />
+        <Route path="/notes" element={<StandalonePage slug="notes" />} />
+        <Route path="/notes/" element={<StandalonePage slug="notes" />} />
         <Route path="/fellowship" element={<StandalonePage slug="fellowship" />} />
         <Route path="/fellowship/" element={<StandalonePage slug="fellowship" />} />
         <Route path="/contact" element={<StandalonePage slug="contact" />} />
