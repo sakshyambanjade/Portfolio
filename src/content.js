@@ -30,7 +30,7 @@ export const researchProfileLinks = [
     href: "https://scholar.google.com/citations?user=ltUdGkgAAAAJ&hl=en",
   },
   {
-    label: "ResearchGate publications by Sakshyam Banjade",
+    label: "Sakshyam Banjade on ResearchGate",
     href: "https://www.researchgate.net/profile/Sakshyam-Banjade-2",
   },
   {
