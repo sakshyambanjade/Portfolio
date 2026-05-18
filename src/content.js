@@ -500,6 +500,12 @@ export const leadershipItems = [
 export const fellowshipItems = [
   {
     label: "2026",
+    title: "Selected Virtual Delegate - World Bank Group Youth Summit 2026",
+    body:
+      'Selected for virtual participation in the 2026 World Bank Group Youth Summit, held under the theme "FutureWorks: Designing Jobs for the Digital Age." The summit brings together young leaders, experts, and practitioners to discuss digital transformation, future jobs, innovation, and solutions to global development challenges.',
+  },
+  {
+    label: "2026",
     title: "Nepal Front South Asia Youth Council (S8+1)",
     body: "Co-Representative for Nepal in a regional youth council focused on South Asia dialogue and representation.",
   },
@@ -510,8 +516,9 @@ export const fellowshipItems = [
   },
   {
     label: "2025",
-    title: "Youth Innovation Lab",
-    body: "FutureFront: Powering Digital Innovation through Content & AI initiative.",
+    title: "FutureFront: Powering Digital Innovation through Content & AI",
+    body:
+      "Selected Participant in Youth Innovation Lab's U.S. Embassy in Nepal-supported 4-day intensive bootcamp focused on digital innovation, content strategy, artificial intelligence, and youth-led problem solving. The program brought together young innovators working on technology-driven solutions for social impact in Nepal.",
   },
   {
     label: "2025",
