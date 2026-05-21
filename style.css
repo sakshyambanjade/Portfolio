@@ -947,3 +947,68 @@ h4 {
     bottom: 14px;
   }
 }
+
+/* Code block and article element formatting */
+.code-block-container {
+  margin: 1.5rem 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--soft);
+  overflow: hidden;
+}
+
+.code-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 16px;
+  background: #f1f1f2;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.code-block-container pre {
+  margin: 0;
+  padding: 16px;
+  overflow-x: auto;
+}
+
+.code-block-container code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--text);
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+}
+
+.thought-page article h2 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.thought-page article h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.thought-page article ul {
+  padding-left: 20px;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.thought-page article li {
+  list-style: disc;
+  margin-bottom: 0.5rem;
+}
+

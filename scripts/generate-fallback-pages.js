@@ -15,7 +15,7 @@ import {
 } from "../src/content.js";
 
 const siteUrl = "https://sakshyambanjade.com.np";
-const lastmod = "2026-04-25";
+const lastmod = "2026-05-22";
 const defaultImagePath = "/og-image.png";
 const defaultImageUrl = `${siteUrl}${defaultImagePath}`;
 const rootDir = path.resolve(process.env.OUTPUT_DIR || ".");
@@ -392,6 +392,35 @@ function thoughtBody(thought, index) {
   const previousThought = index > 0 ? thoughts[index - 1] : null;
   const nextThought = index < thoughts.length - 1 ? thoughts[index + 1] : null;
 
+  const articleContent = thought.paragraphs
+    .map((paragraph) => {
+      if (typeof paragraph === "string") {
+        return `        <p>${escapeHtml(paragraph)}</p>`;
+      } else if (paragraph && typeof paragraph === "object") {
+        if (paragraph.type === "code") {
+          return `        <div class="code-block-container">
+          <div class="code-block-header">
+            <span class="code-block-lang">${escapeHtml(paragraph.lang || "")}</span>
+          </div>
+          <pre><code class="language-${escapeHtml(paragraph.lang || "")}">${escapeHtml(paragraph.code)}</code></pre>
+        </div>`;
+        } else if (paragraph.type === "heading") {
+          const tag = paragraph.level === 3 ? "h3" : "h2";
+          return `        <${tag}>${escapeHtml(paragraph.text)}</${tag}>`;
+        } else if (paragraph.type === "list") {
+          const listItems = paragraph.items
+            .map((item) => `          <li>${escapeHtml(item)}</li>`)
+            .join("\n");
+          return `        <ul>\n${listItems}\n        </ul>`;
+        } else if (paragraph.type === "html") {
+          return `        <div>${paragraph.content}</div>`;
+        }
+      }
+      return "";
+    })
+    .filter(Boolean)
+    .join("\n");
+
   return `    <main class="page thought-page" id="main">
       <header class="reading-header">
         <p class="subtitle">writing</p>
@@ -403,7 +432,7 @@ function thoughtBody(thought, index) {
         </p>
       </header>
       <article>
-${thought.paragraphs.map((paragraph) => `        <p>${escapeHtml(paragraph)}</p>`).join("\n")}
+${articleContent}
       </article>
       <nav class="post-nav" aria-label="Previous and next writing">
         ${

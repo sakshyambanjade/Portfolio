@@ -13,7 +13,7 @@ export const profile = {
     "I prefer async-first collaboration, pull requests for review, concise Markdown notes, and experiment logs that make decisions easy to trace later.",
   skepticalQuestion:
     "If you reach out, tell me one claim in AI, systems, or product work that you are skeptical about. Good collaboration starts with honest questions.",
-  lastUpdated: "2026-04-25",
+  lastUpdated: "2026-05-22",
   email: "hi@sakshyambanjade.com.np",
   links: [
     ["GitHub", "https://github.com/sakshyambanjade"],
@@ -598,12 +598,100 @@ export const trainingItems = [
 ];
 
 export const featuredTechnicalThoughtSlugs = [
+  "modern-vedic-astrology-jyotishcore",
   "one-flawless-local-coding-loop",
   "working-after-see-full-time-developer-19",
   "ai-aviation-safety-efficiency",
 ];
 
 export const thoughts = [
+  {
+    slug: "modern-vedic-astrology-jyotishcore",
+    title: "How to Build a Modern Vedic Astrology Web App with JyotishCore (Python & Rust)",
+    summary:
+      "Vedic astrology requires high-precision astronomical calculations. Historically, developers had to choose between slow, pure-Python libraries or writing complex wrappers around raw C ephemeris libraries. Here is how to build a high-performance astrological system using Rust, PyO3, FastAPI, and React.",
+    meta: "Thought 10",
+    paragraphs: [
+      "Vedic astrology (Jyotisha) requires high-precision astronomical calculations. Historically, developers had to choose between slow, pure-Python libraries or writing complex wrappers around raw C ephemeris libraries.",
+      "Enter JyotishCore—a high-performance calculation engine powered by Rust (using the Swiss Ephemeris under the hood) and exposed as a clean, object-oriented Python SDK.",
+      "In this post, we'll walk through how to install jyotishcore, write your first astrological calculations, spin up the built-in API server, and integrate it into a modern web application frontend.",
+      { type: "heading", level: 2, text: "Why JyotishCore?" },
+      {
+        type: "list",
+        items: [
+          "Blazing Fast: Chart calculation takes just ~0.2 ms. Batch computations are vectorized and parallelized using Rust's Rayon library (processing 1,000 charts in 15 ms).",
+          "Extreme Precision: Uses the NASA-backed Swiss Ephemeris.",
+          "Developer-Friendly: Modern Python interfaces, strict type hints, and immutable dataclass models.",
+          "Built-in API Server: Ships with a ready-to-use FastAPI server and Streamlit developer playground."
+        ]
+      },
+      { type: "heading", level: 2, text: "Step 1: Install JyotishCore" },
+      "You can install JyotishCore directly from PyPI:",
+      { type: "code", lang: "bash", code: "pip install jyotishcore" },
+      "If you also want the interactive developer playground and the API server dependencies, install the extras:",
+      { type: "code", lang: "bash", code: 'pip install "jyotishcore[ui,api]"' },
+      { type: "heading", level: 2, text: "Step 2: Calculate a Natal Chart (Backend Python)" },
+      "Let's compute a birth chart. We'll set the birth time and location, select the Ayanamsa (precession correction), and retrieve planetary positions.",
+      {
+        type: "code",
+        lang: "python",
+        code: "from jyotishcore import Chart, GeoLocation, JyotishTime, Ayanamsa\n\n# 1. Define Time (in local time) and Location\ntime = JyotishTime(year=1995, month=10, day=24, hour=17, minute=45)\nlocation = GeoLocation(latitude=27.7172, longitude=85.3240, timezone=\"Asia/Kathmandu\")\n\n# 2. Compute the Chart (uses Lahiri Ayanamsa and Equal house system by default)\nchart = Chart.compute(time=time, location=location, ayanamsa_obj=Ayanamsa.LAHIRI)\n\n# 3. Retrieve the Ascendant (Lagna)\nprint(f\"Ascendant (Lagna) Degree: {chart.ascendant():.2f}°\")\n\n# 4. Read planetary longitudes, signs, and houses\nplanets = chart.planets()\nfor name, planet in planets.items():\n    print(f\"{name.capitalize()}: {planet.longitude:.2f}° in {planet.sign} (House {planet.house})\")"
+      },
+      { type: "heading", level: 2, text: "Step 3: Localized Panchanga (Almanac)" },
+      "Panchanga consists of the five daily astronomical elements. JyotishCore lets you easily translate Panchanga outputs into regional languages like Hindi (hi) or Nepali (ne).",
+      {
+        type: "code",
+        lang: "python",
+        code: "from jyotishcore import get_panchanga\n\npanchanga = get_panchanga(\n    year=2026, month=5, day=22, hour=12, minute=0, second=0,\n    latitude=27.7172, longitude=85.3240,\n    locale=\"hi\"  # Translates names to Hindi script\n)\n\nprint(f\"Tithi (Lunar Day): {panchanga.tithi.name} ({panchanga.tithi.paksha} Paksha)\")\nprint(f\"Nakshatra (Lunar Mansion): {panchanga.nakshatra.name}\")\nprint(f\"Solar Weekday (Vara): {panchanga.vara.name}\")"
+      },
+      { type: "heading", level: 2, text: "Step 4: Expose JyotishCore as a Web API" },
+      "If you are building a decoupled frontend (e.g., Next.js, React, Vue, or mobile app), you can expose JyotishCore as a REST API.",
+      "JyotishCore has a built-in FastAPI server that handles chart calculation, compatibility scoring (Ashtakoota Milan), and Panchanga requests out-of-the-box.",
+      { type: "heading", level: 3, text: "Running the Built-in Server" },
+      "Save this script as app.py and run it:",
+      {
+        type: "code",
+        lang: "python",
+        code: "import uvicorn\nfrom jyotishcore.server import app\n\nif __name__ == \"__main__\":\n    uvicorn.run(app, host=\"0.0.0.0\", port=8000)"
+      },
+      "Start the API:",
+      { type: "code", lang: "bash", code: "python app.py" },
+      "Open http://localhost:8000/docs in your browser to view the interactive Swagger/OpenAPI documentation!",
+      { type: "heading", level: 3, text: "Core Endpoints Exposed" },
+      {
+        type: "list",
+        items: [
+          "POST /v1/chart: Calculate birth chart (planets, houses, Navamsa/D9 chart, Yogas, Jaimini Karakas, Vimshottari Dasha).",
+          "POST /v1/panchanga: Get the 5 daily elements (Tithi, Nakshatra, Yoga, Karana, Vara).",
+          "POST /v1/compatibility: Compute Ashtakoota Milan matching score (36-point system)."
+        ]
+      },
+      { type: "heading", level: 2, text: "Step 5: Consume the API in your Frontend (Javascript/React)" },
+      "Here is how you can query the JyotishCore API from your frontend React component or vanilla JavaScript:",
+      {
+        type: "code",
+        lang: "javascript",
+        code: "// Fetch birth chart data from the frontend\nasync function fetchBirthChart() {\n  const birthDetails = {\n    year: 1995,\n    month: 10,\n    day: 24,\n    hour: 17,\n    minute: 45,\n    second: 0,\n    latitude: 27.7172,\n    longitude: 85.3240,\n    timezone: \"Asia/Kathmandu\",\n    ayanamsa: \"lahiri\"\n  };\n\n  try {\n    const response = await fetch(\"http://localhost:8000/v1/chart\", {\n      method: \"POST\",\n      headers: {\n        \"Content-Type\": \"application/json\"\n      },\n      body: JSON.stringify(birthDetails)\n    });\n\n    const chartData = await response.json();\n    console.log(\"Ascendant:\", chartData.ascendant);\n    console.log(\"Planets:\", chartData.planets);\n    console.log(\"Vimshottari Dasha periods:\", chartData.dashas.vimshottari);\n  } catch (error) {\n    console.error(\"Failed to calculate chart:\", error);\n  }\n}"
+      },
+      { type: "heading", level: 2, text: "Interactive Playground" },
+      "For quick testing without writing code, launch the developer dashboard:",
+      { type: "code", lang: "bash", code: "jyotishcore-ui" },
+      "This launches a Streamlit dashboard locally, where you can select coordinates on a map, input birth details, view interactive North/South Indian charts, and immediately inspect API responses.",
+      { type: "heading", level: 2, text: "Under the Hood: Rust and PyO3 Bindings" },
+      "What makes JyotishCore performant is its underlying engine. Written in Rust, it interfaces directly with the C-based Swiss Ephemeris library. The bindings are compiled into a native Python module using PyO3 and Maturin.",
+      "By performing heavy mathematical transformations (like coordinate translations and ayanamsa precessions) directly in Rust compiled code, we avoid the Python Global Interpreter Lock (GIL) and the overhead of runtime object creation. This approach achieves ~0.2 ms calculation times—fast enough for high-traffic real-time applications or massive database backtests.",
+      { type: "heading", level: 2, text: "Learn More & Connect" },
+      "JyotishCore is designed to help developers build reliable, high-performance Vedic astrology software without dealing with low-level wrappers. For full APIs, examples, and setup instructions, explore the resources below:",
+      {
+        type: "list",
+        items: [
+          "PyPI Page: https://pypi.org/project/jyotishcore/",
+          "Documentation: https://jyotishcore.readthedocs.io",
+          "Author GitHub: https://github.com/sakshyambanjade"
+        ]
+      }
+    ]
+  },
   {
     slug: "one-flawless-local-coding-loop",
     title: "Reduce the Product to One Flawless Local Coding Loop",

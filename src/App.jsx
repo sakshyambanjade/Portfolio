@@ -1058,9 +1058,38 @@ function ThoughtPage() {
         </header>
 
         <article>
-          {thought.paragraphs.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
+          {thought.paragraphs.map((paragraph, pIdx) => {
+            if (typeof paragraph === "string") {
+              return <p key={pIdx}>{paragraph}</p>;
+            } else if (paragraph && typeof paragraph === "object") {
+              if (paragraph.type === "code") {
+                return (
+                  <div className="code-block-container" key={pIdx}>
+                    <div className="code-block-header">
+                      <span className="code-block-lang">{paragraph.lang || ""}</span>
+                    </div>
+                    <pre>
+                      <code className={`language-${paragraph.lang || ""}`}>{paragraph.code}</code>
+                    </pre>
+                  </div>
+                );
+              } else if (paragraph.type === "heading") {
+                const Tag = paragraph.level === 3 ? "h3" : "h2";
+                return <Tag key={pIdx}>{paragraph.text}</Tag>;
+              } else if (paragraph.type === "list") {
+                return (
+                  <ul key={pIdx}>
+                    {paragraph.items.map((item, iIdx) => (
+                      <li key={iIdx}>{item}</li>
+                    ))}
+                  </ul>
+                );
+              } else if (paragraph.type === "html") {
+                return <div key={pIdx} dangerouslySetInnerHTML={{ __html: paragraph.content }} />;
+              }
+            }
+            return null;
+          })}
         </article>
 
         <nav className="post-nav" aria-label="Previous and next writing">
