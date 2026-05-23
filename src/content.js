@@ -607,7 +607,7 @@ export const featuredTechnicalThoughtSlugs = [
 export const thoughts = [
   {
     slug: "modern-vedic-astrology-jyotishcore",
-    title: "How to Build a Modern Vedic Astrology Web App with JyotishCore (Python & Rust)",
+    title: "How to Use JyotishCore to Build a Modern Vedic Astrology Web App (Python & Rust)",
     summary:
       "Vedic astrology requires high-precision astronomical calculations. Historically, developers had to choose between slow, pure-Python libraries or writing complex wrappers around raw C ephemeris libraries. Here is how to build a high-performance astrological system using Rust, PyO3, FastAPI, and React.",
     meta: "Thought 10",
