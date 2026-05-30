@@ -196,43 +196,84 @@ function entryList(items) {
 function caseStudyList(items) {
   return items
     .map(
-      (item) => `        <article class="case-study">
-          <header class="case-study-header">
-            <p class="case-study-icon" aria-hidden="true">${escapeHtml(item.icon)}</p>
-            <div>
-              <h3>${escapeHtml(item.title)}</h3>
-              <p class="quiet">problem -> hypothesis -> signal -> trade-off</p>
+      (item) => {
+        const slug = item.title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+        const tagsHtml = item.tags
+          ? `                  <div class="case-study-tags">
+${item.tags.map((tag) => `                    <span class="tech-chip">${escapeHtml(tag)}</span>`).join("\n")}
+                  </div>`
+          : "";
+
+        return `        <article class="case-study case-study-${slug}">
+          <details>
+            <summary>
+              <div class="case-study-summary-header">
+                <span class="case-study-icon" aria-hidden="true">${escapeHtml(item.icon)}</span>
+                <div class="case-study-summary-title">
+                  <h3>${item.href ? `<a href="${escapeHtml(item.href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.title)}</a>` : escapeHtml(item.title)}</h3>
+                  <p class="quiet">${escapeHtml(item.result)}</p>
+${tagsHtml}
+                </div>
+              </div>
+              <span class="case-study-toggle-btn">details</span>
+            </summary>
+            <div class="case-study-grid">
+              <div>
+                <h4>Problem</h4>
+                <p>${escapeHtml(item.problem)}</p>
+              </div>
+              <div>
+                <h4>Hypothesis</h4>
+                <p>${escapeHtml(item.hypothesis)}</p>
+              </div>
+              <div>
+                <h4>Method</h4>
+                <ul class="mini-list">
+${item.method.map((point) => `                  <li>${escapeHtml(point)}</li>`).join("\n")}
+                </ul>
+              </div>
+              <div>
+                <h4>Result</h4>
+                <p>${escapeHtml(item.result)}</p>
+              </div>
+              <div>
+                <h4>Trade-off</h4>
+                <p>${escapeHtml(item.tradeoff)}</p>
+              </div>
+              <div>
+                <h4>Reproducibility note</h4>
+                <p>${escapeHtml(item.reproduce)}</p>
+              </div>
             </div>
-          </header>
-          <div class="case-study-grid">
-            <div>
-              <h4>Problem</h4>
-              <p>${escapeHtml(item.problem)}</p>
-            </div>
-            <div>
-              <h4>Hypothesis</h4>
-              <p>${escapeHtml(item.hypothesis)}</p>
-            </div>
-            <div>
-              <h4>Method</h4>
-              <ul class="mini-list">
-${item.method.map((point) => `                <li>${escapeHtml(point)}</li>`).join("\n")}
-              </ul>
-            </div>
-            <div>
-              <h4>Result</h4>
-              <p>${escapeHtml(item.result)}</p>
-            </div>
-            <div>
-              <h4>Trade-off</h4>
-              <p>${escapeHtml(item.tradeoff)}</p>
-            </div>
-            <div>
-              <h4>Reproducibility note</h4>
-              <p>${escapeHtml(item.reproduce)}</p>
-            </div>
+          </details>
+        </article>`;
+      }
+    )
+    .join("\n");
+}
+
+function supportingList(items) {
+  return items
+    .map(
+      (item) => {
+        const titleHtml = item.href
+          ? `<a href="${escapeHtml(item.href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.title)} <span class="external-link-arrow">↗</span></a>`
+          : escapeHtml(item.title);
+        const tagsHtml = item.tags
+          ? `            <div class="supporting-card-tags">
+${item.tags.map((tag) => `              <span class="tech-chip supporting-tech-chip">${escapeHtml(tag)}</span>`).join("\n")}
+            </div>`
+          : "";
+
+        return `        <article class="supporting-card">
+          <div class="supporting-card-header">
+            <span class="supporting-card-year">${escapeHtml(item.label)}</span>
+${tagsHtml}
           </div>
-        </article>`
+          <h3>${titleHtml}</h3>
+          <p>${escapeHtml(item.body)}</p>
+        </article>`;
+      }
     )
     .join("\n");
 }
@@ -326,7 +367,9 @@ ${caseStudyList(projectCaseStudies)}
         </div>
         <div class="supporting-work">
           <h2>supporting systems &amp; public work</h2>
-${entryList(supportingWork)}
+          <div class="supporting-projects-grid">
+${supportingList(supportingWork)}
+          </div>
         </div>`
     : page.slug === "research"
       ? `        <div class="research-intro">

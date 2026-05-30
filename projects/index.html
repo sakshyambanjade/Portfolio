@@ -53,193 +53,305 @@
       </section>
       <section aria-label="Projects">
         <div class="case-study-stack">
-        <article class="case-study">
-          <header class="case-study-header">
-            <p class="case-study-icon" aria-hidden="true">🔬</p>
-            <div>
-              <h3>SeedSure AI</h3>
-              <p class="quiet">problem -> hypothesis -> signal -> trade-off</p>
+        <article class="case-study case-study-seedsure-ai">
+          <details>
+            <summary>
+              <div class="case-study-summary-header">
+                <span class="case-study-icon" aria-hidden="true">🌾</span>
+                <div class="case-study-summary-title">
+                  <h3>SeedSure AI</h3>
+                  <p class="quiet">Selected in the Top 6 out of 50+ innovative pitches at the UNDP Nepal climate innovation challenge.</p>
+                  <div class="case-study-tags">
+                    <span class="tech-chip">LLMs</span>
+                    <span class="tech-chip">RAG</span>
+                    <span class="tech-chip">AgriTech</span>
+                    <span class="tech-chip">UNDP Selection</span>
+                  </div>
+                </div>
+              </div>
+              <span class="case-study-toggle-btn">details</span>
+            </summary>
+            <div class="case-study-grid">
+              <div>
+                <h4>Problem</h4>
+                <p>Smallholder farmers need agricultural advice that respects location, soil type, weather and local farming constraints, which traditional tools or generic LLMs fail to contextualize.</p>
+              </div>
+              <div>
+                <h4>Hypothesis</h4>
+                <p>Grounding LLMs in localized micro-weather streams, regional soil databases, and seed matrices through RAG pipelines can deliver highly tailored and actionable crop recommendations.</p>
+              </div>
+              <div>
+                <h4>Method</h4>
+                <ul class="mini-list">
+                  <li>Engineered a location-aware RAG pipeline linking weather APIs and historical soil databases.</li>
+                  <li>Optimized recommendation workflows specifically for remote microclimates and smallholder limitations in Nepal.</li>
+                  <li>Conducted extensive community and advisor feedback iterations to validate system usability and trust.</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Result</h4>
+                <p>Selected in the Top 6 out of 50+ innovative pitches at the UNDP Nepal climate innovation challenge.</p>
+              </div>
+              <div>
+                <h4>Trade-off</h4>
+                <p>Gathering structured regional agricultural data in remote and poorly mapped zones remains a high-friction operational bottleneck.</p>
+              </div>
+              <div>
+                <h4>Reproducibility note</h4>
+                <p>Verifiable architecture drafts, regional seed matrix setups, and UNDP selection records are available for deep review.</p>
+              </div>
             </div>
-          </header>
-          <div class="case-study-grid">
-            <div>
-              <h4>Problem</h4>
-              <p>Smallholder farmers need advice that respects location, season, soil, and practical constraints rather than generic recommendations.</p>
-            </div>
-            <div>
-              <h4>Hypothesis</h4>
-              <p>A climate-smart advisory workflow that combines local context with AI assistance can make crop and seed decisions more useful in practice.</p>
-            </div>
-            <div>
-              <h4>Method</h4>
-              <ul class="mini-list">
-                <li>Designed an advisory system around location, weather, season, soil type, and crop context.</li>
-                <li>Focused the product on smallholder use cases in Nepal instead of generic agricultural output.</li>
-                <li>Tested the concept in public innovation settings to validate whether the problem and framing resonated.</li>
-              </ul>
-            </div>
-            <div>
-              <h4>Result</h4>
-              <p>Selected among the top 6 out of 50+ pitches at UNDP Nepal.</p>
-            </div>
-            <div>
-              <h4>Trade-off</h4>
-              <p>The hard part is not generating advice. It is making the advice specific enough to local conditions to be trusted.</p>
-            </div>
-            <div>
-              <h4>Reproducibility note</h4>
-              <p>Public architecture discussion and project context available through my portfolio and direct conversation while the product continues to mature.</p>
-            </div>
-          </div>
+          </details>
         </article>
-        <article class="case-study">
-          <header class="case-study-header">
-            <p class="case-study-icon" aria-hidden="true">📊</p>
-            <div>
-              <h3>FastNewsOrg</h3>
-              <p class="quiet">problem -> hypothesis -> signal -> trade-off</p>
+        <article class="case-study case-study-jyotishcore">
+          <details>
+            <summary>
+              <div class="case-study-summary-header">
+                <span class="case-study-icon" aria-hidden="true">🌌</span>
+                <div class="case-study-summary-title">
+                  <h3><a href="https://pypi.org/project/jyotishcore/" target="_blank" rel="noopener noreferrer">JyotishCore</a></h3>
+                  <p class="quiet">Achieved raw chart calculations in ~0.2 ms and batch computations (1,000+ charts) in 15 ms. Published on PyPI with over 100% test coverage.</p>
+                  <div class="case-study-tags">
+                    <span class="tech-chip">Rust Core</span>
+                    <span class="tech-chip">Python SDK</span>
+                    <span class="tech-chip">Swiss Ephemeris</span>
+                    <span class="tech-chip">FastAPI</span>
+                    <span class="tech-chip">Rayon</span>
+                  </div>
+                </div>
+              </div>
+              <span class="case-study-toggle-btn">details</span>
+            </summary>
+            <div class="case-study-grid">
+              <div>
+                <h4>Problem</h4>
+                <p>Astrological and astronomical ephemeris calculations require extremely high mathematical precision, historically forcing slow pure-Python operations or complex, untyped C library wrappers.</p>
+              </div>
+              <div>
+                <h4>Hypothesis</h4>
+                <p>Offloading core ephemeris logic to a native Rust engine wrapping the C Swiss Ephemeris and binding with PyO3 can achieve sub-millisecond calculation speeds alongside complete type safety.</p>
+              </div>
+              <div>
+                <h4>Method</h4>
+                <ul class="mini-list">
+                  <li>Built a high-performance compiled Rust core implementing Swiss Ephemeris mathematical coordinate and ayanamsa systems.</li>
+                  <li>Exposed a fully typed, object-oriented Python SDK using PyO3 bindings and immutable dataclasses with Hindi/Nepali localization.</li>
+                  <li>Parallelized high-throughput batch chart calculations and auspicious time (Muhurta) search using Rust&#39;s Rayon library.</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Result</h4>
+                <p>Achieved raw chart calculations in ~0.2 ms and batch computations (1,000+ charts) in 15 ms. Published on PyPI with over 100% test coverage.</p>
+              </div>
+              <div>
+                <h4>Trade-off</h4>
+                <p>Distributing pre-compiled native binary wheels for cross-platform target environments adds significant CI/CD distribution complexity.</p>
+              </div>
+              <div>
+                <h4>Reproducibility note</h4>
+                <p>Open-sourced on GitHub and directly installable via PyPI (pip install jyotishcore), complete with live API endpoints and test suites.</p>
+              </div>
             </div>
-          </header>
-          <div class="case-study-grid">
-            <div>
-              <h4>Problem</h4>
-              <p>News workflows are noisy, repetitive, and time-heavy when aggregation, summarization, and publishing are handled manually.</p>
-            </div>
-            <div>
-              <h4>Hypothesis</h4>
-              <p>A structured AI pipeline can reduce friction in multi-topic news monitoring while keeping output useful for real readers.</p>
-            </div>
-            <div>
-              <h4>Method</h4>
-              <ul class="mini-list">
-                <li>Built an AI-assisted workflow for aggregation, curation, summarization, and automated publishing.</li>
-                <li>Focused on politics, finance, technology, and election-monitoring contexts where timeliness matters.</li>
-                <li>Used public writing output as a live feedback loop instead of treating the project as a closed demo.</li>
-              </ul>
-            </div>
-            <div>
-              <h4>Result</h4>
-              <p>Supported the publication of 20+ public-facing technology and systems articles.</p>
-            </div>
-            <div>
-              <h4>Trade-off</h4>
-              <p>Automation creates speed, but signal quality still depends on editorial judgment and tighter control over repetition.</p>
-            </div>
-            <div>
-              <h4>Reproducibility note</h4>
-              <p>Public writing and product direction are visible now; a more complete reproducibility package is something I want to strengthen over time.</p>
-            </div>
-          </div>
+          </details>
         </article>
-        <article class="case-study">
-          <header class="case-study-header">
-            <p class="case-study-icon" aria-hidden="true">💻</p>
-            <div>
-              <h3>MolVis Pro</h3>
-              <p class="quiet">problem -> hypothesis -> signal -> trade-off</p>
+        <article class="case-study case-study-voice-matters">
+          <details>
+            <summary>
+              <div class="case-study-summary-header">
+                <span class="case-study-icon" aria-hidden="true">🗣️</span>
+                <div class="case-study-summary-title">
+                  <h3><a href="https://github.com/sakshyambanjade/voice-matters" target="_blank" rel="noopener noreferrer">Voice Matters</a></h3>
+                  <p class="quiet">Delivered a fully operational browser-based AI speech therapy portal with immediate speech evaluation and scorecards.</p>
+                  <div class="case-study-tags">
+                    <span class="tech-chip">Azure OpenAI</span>
+                    <span class="tech-chip">Azure Speech SDK</span>
+                    <span class="tech-chip">React</span>
+                    <span class="tech-chip">Node.js</span>
+                    <span class="tech-chip">AI Health</span>
+                  </div>
+                </div>
+              </div>
+              <span class="case-study-toggle-btn">details</span>
+            </summary>
+            <div class="case-study-grid">
+              <div>
+                <h4>Problem</h4>
+                <p>Access to speech therapy is severely restricted by high consulting fees and geographical barriers, leaving patients without affordable, high-frequency, real-time feedback channels.</p>
+              </div>
+              <div>
+                <h4>Hypothesis</h4>
+                <p>Integrating an LLM exercise generator with real-time phoneme-level pronunciation assessment models can establish a highly responsive, browser-native speech therapy loop.</p>
+              </div>
+              <div>
+                <h4>Method</h4>
+                <ul class="mini-list">
+                  <li>Integrated Azure OpenAI to dynamically compile highly personalized, context-aware tongue-twisters and voice exercises.</li>
+                  <li>Utilized the Azure Speech SDK&#39;s pronunciation assessment engine to evaluate speech at the granular phoneme level.</li>
+                  <li>Built a highly fluid React web interface displaying granular scores (accuracy, fluency, completeness) in under 800 ms.</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Result</h4>
+                <p>Delivered a fully operational browser-based AI speech therapy portal with immediate speech evaluation and scorecards.</p>
+              </div>
+              <div>
+                <h4>Trade-off</h4>
+                <p>Relies heavily on low-latency internet connectivity and API service budgets, which can grow in operational cost.</p>
+              </div>
+              <div>
+                <h4>Reproducibility note</h4>
+                <p>Source code, environment configs, and sample exercises are open-sourced on GitHub for immediate auditing and execution.</p>
+              </div>
             </div>
-          </header>
-          <div class="case-study-grid">
-            <div>
-              <h4>Problem</h4>
-              <p>Scientific tools often stay inaccessible to early learners when chemistry workflows require heavy or fragmented software.</p>
-            </div>
-            <div>
-              <h4>Hypothesis</h4>
-              <p>A browser-based molecular visualization workflow can make chemistry and materials exploration easier for students and researchers.</p>
-            </div>
-            <div>
-              <h4>Method</h4>
-              <ul class="mini-list">
-                <li>Built around SMILES input, molecular properties, descriptors, and visualization in the browser.</li>
-                <li>Treated accessibility and usability as part of the technical problem, not just a design add-on.</li>
-                <li>Framed the product for students, researchers, and material-science-adjacent workflows.</li>
-              </ul>
-            </div>
-            <div>
-              <h4>Result</h4>
-              <p>Turned molecular exploration into a browser-native workflow instead of a desktop-only experience.</p>
-            </div>
-            <div>
-              <h4>Trade-off</h4>
-              <p>Scientific software becomes more valuable when analysis depth and accessibility improve together; either one alone is not enough.</p>
-            </div>
-            <div>
-              <h4>Reproducibility note</h4>
-              <p>Project walkthrough and direction are public through the portfolio while the tool continues to evolve.</p>
-            </div>
-          </div>
+          </details>
         </article>
-        <article class="case-study">
-          <header class="case-study-header">
-            <p class="case-study-icon" aria-hidden="true">🧪</p>
-            <div>
-              <h3>Multi-AI Orchestrator</h3>
-              <p class="quiet">problem -> hypothesis -> signal -> trade-off</p>
+        <article class="case-study case-study-molvis-pro">
+          <details>
+            <summary>
+              <div class="case-study-summary-header">
+                <span class="case-study-icon" aria-hidden="true">🧬</span>
+                <div class="case-study-summary-title">
+                  <h3><a href="https://molvis.netlify.app/" target="_blank" rel="noopener noreferrer">MolVis Pro</a></h3>
+                  <p class="quiet">Built a fully interactive drug discovery portal served thousands of chemical analysis sessions, successfully automating the pipeline from de novo generation to visual attribution and 3D conformer alignment.</p>
+                  <div class="case-study-tags">
+                    <span class="tech-chip">WebGL</span>
+                    <span class="tech-chip">FastAPI</span>
+                    <span class="tech-chip">RDKit</span>
+                    <span class="tech-chip">AI Copilot</span>
+                    <span class="tech-chip">CommandDSL</span>
+                  </div>
+                </div>
+              </div>
+              <span class="case-study-toggle-btn">details</span>
+            </summary>
+            <div class="case-study-grid">
+              <div>
+                <h4>Problem</h4>
+                <p>Chemists and researchers face highly fragmented, heavy, desktop-bound workflows for molecular generation, conformer overlays, QSPR prediction, and docking analysis, which limits collaboration and remote iteration.</p>
+              </div>
+              <div>
+                <h4>Hypothesis</h4>
+                <p>A unified, browser-native molecular design platform integrating an AI Copilot (LLM-based planner using a custom CommandDSL) with WebGL 3D visualization and lightweight cheminformatics algorithms can achieve seamless, desktop-grade molecular iteration.</p>
+              </div>
+              <div>
+                <h4>Method</h4>
+                <ul class="mini-list">
+                  <li>Engineered an LLM-based agent (CommandDSL compiler) that parses natural language instructions (e.g., &#39;generate analog&#39;, &#39;overlay conformers&#39;) into reproducible multi-step execution pipelines.</li>
+                  <li>Implemented fragment-based de novo generators (BRICS algorithm with clash detection) and generative models (VAE/GAN/RL adapters) for target-focused lead optimization.</li>
+                  <li>Developed in-browser descriptors (Lipinski rules, TPSA) and atom-level saliency visualization maps showing property contributions (LogP/TPSA attribution).</li>
+                  <li>Integrated 3D molecular rendering using WebGL (3DMol.js) alongside PCA/UMAP dimensional projection of chemical space for high-dimensional library visualization.</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Result</h4>
+                <p>Built a fully interactive drug discovery portal served thousands of chemical analysis sessions, successfully automating the pipeline from de novo generation to visual attribution and 3D conformer alignment.</p>
+              </div>
+              <div>
+                <h4>Trade-off</h4>
+                <p>Heavy deep learning models and docking simulations (like AutoDock Vina) require background server scheduling (via FastAPI) rather than running purely client-side in the browser thread.</p>
+              </div>
+              <div>
+                <h4>Reproducibility note</h4>
+                <p>Code structure, unit tests, CommandDSL specs, and automated reporting formats are fully open-sourced on GitHub (linked to live Netlify app).</p>
+              </div>
             </div>
-          </header>
-          <div class="case-study-grid">
-            <div>
-              <h4>Problem</h4>
-              <p>Using many model providers without structure makes routing, benchmarking, and output quality hard to reason about.</p>
-            </div>
-            <div>
-              <h4>Hypothesis</h4>
-              <p>A unified orchestration layer can make provider comparison, consensus experiments, and structured output workflows easier to evaluate.</p>
-            </div>
-            <div>
-              <h4>Method</h4>
-              <ul class="mini-list">
-                <li>Explored routing, consensus, benchmarking, structured outputs, and parallel reasoning patterns.</li>
-                <li>Worked across Gemini, Groq, Mistral, Cohere, Hugging Face, and related model ecosystems.</li>
-                <li>Treated the system as both an engineering problem and an evaluation problem.</li>
-              </ul>
-            </div>
-            <div>
-              <h4>Result</h4>
-              <p>Built a single experimental surface across 5+ model ecosystems instead of isolated one-off integrations.</p>
-            </div>
-            <div>
-              <h4>Trade-off</h4>
-              <p>More providers create more flexibility, but they also increase the cost of keeping evaluation fair and outputs comparable.</p>
-            </div>
-            <div>
-              <h4>Reproducibility note</h4>
-              <p>The public signal today is the portfolio and related experimentation notes; stronger public repos are a natural next step.</p>
-            </div>
-          </div>
+          </details>
         </article>
         </div>
         <div class="supporting-work">
           <h2>supporting systems &amp; public work</h2>
-        <article class="entry">
-          <time>ongoing</time>
-          <div>
-            <h3>NEPSE / Quant Systems</h3>
-            <p>NEPSE / Quant Systems is an ongoing area of experimentation around Nepal stock market systems, including market tools, strategy backtesting, news-sensitive signals, and automation pipelines.</p>
+          <div class="supporting-projects-grid">
+        <article class="supporting-card">
+          <div class="supporting-card-header">
+            <span class="supporting-card-year">2025</span>
+            <div class="supporting-card-tags">
+              <span class="tech-chip supporting-tech-chip">Cognitive Modeling</span>
+              <span class="tech-chip supporting-tech-chip">Game AI</span>
+              <span class="tech-chip supporting-tech-chip">Research Base</span>
+              <span class="tech-chip supporting-tech-chip">Python</span>
+            </div>
           </div>
+          <h3><a href="https://github.com/sakshyambanjade/neurlaplay" target="_blank" rel="noopener noreferrer">NeuraPlay <span class="external-link-arrow">↗</span></a></h3>
+          <p>NeuraPlay is an AI-powered system designed for human-like game playing and memory, which served as the foundation of a peer-reviewed research paper exploring cognitive modeling and memory-inspired architectures.</p>
         </article>
-        <article class="entry">
-          <time>2024</time>
-          <div>
-            <h3>JobKhojdeu</h3>
-            <p>JobKhojdeu is a job aggregation platform built to address fragmented job information in Nepal. It brings listings into a searchable interface and explores automated collection and filtering.</p>
+        <article class="supporting-card">
+          <div class="supporting-card-header">
+            <span class="supporting-card-year">2025</span>
+            <div class="supporting-card-tags">
+              <span class="tech-chip supporting-tech-chip">Quant Finance</span>
+              <span class="tech-chip supporting-tech-chip">Time-Series</span>
+              <span class="tech-chip supporting-tech-chip">PyTorch</span>
+              <span class="tech-chip supporting-tech-chip">Active Dev</span>
+            </div>
           </div>
+          <h3><a href="https://github.com/sakshyambanjade/neuratrade" target="_blank" rel="noopener noreferrer">NeuraTrade <span class="external-link-arrow">↗</span></a></h3>
+          <p>NeuraTrade is a research-grounded algorithmic trading and quantitative finance system focused on time-series predictions, order-book dynamics, and risk-sensitive execution models.</p>
         </article>
-        <article class="entry">
-          <time>public writing</time>
-          <div>
-            <h3>Technology writing and publishing</h3>
-            <p>Published technology and systems-focused writing through FastNewsOrg and personal essays, connecting technical ideas with public communication.</p>
+        <article class="supporting-card">
+          <div class="supporting-card-header">
+            <span class="supporting-card-year">2025</span>
+            <div class="supporting-card-tags">
+              <span class="tech-chip supporting-tech-chip">LLMs</span>
+              <span class="tech-chip supporting-tech-chip">Fine-tuning</span>
+              <span class="tech-chip supporting-tech-chip">NEPSE</span>
+              <span class="tech-chip supporting-tech-chip">Financial AI</span>
+            </div>
           </div>
+          <h3><a href="https://github.com/sakshyambanjade/nepseguff" target="_blank" rel="noopener noreferrer">NEPSE Guff <span class="external-link-arrow">↗</span></a></h3>
+          <p>NEPSE Guff is a specialized, fine-tuned large language model and conversational AI system trained specifically on Nepal Stock Exchange (NEPSE) reports, financial disclosures, and market metrics.</p>
         </article>
-        <article class="entry">
-          <time>language</time>
-          <div>
-            <h3>Google Crowdsource recognition</h3>
-            <p>Recognized through Google Crowdsource contribution work, including translation and community participation that connects Nepali language knowledge with global technology systems.</p>
+        <article class="supporting-card">
+          <div class="supporting-card-header">
+            <span class="supporting-card-year">2025</span>
+            <div class="supporting-card-tags">
+              <span class="tech-chip supporting-tech-chip">Networking</span>
+              <span class="tech-chip supporting-tech-chip">CLI Utility</span>
+              <span class="tech-chip supporting-tech-chip">Tunneling</span>
+              <span class="tech-chip supporting-tech-chip">Go / Node</span>
+            </div>
           </div>
+          <h3><a href="https://github.com/sakshyambanjade/hostify" target="_blank" rel="noopener noreferrer">Hostify <span class="external-link-arrow">↗</span></a></h3>
+          <p>Hostify is a lightweight, zero-configuration local server tunneling and hosting utility designed to expose local developer environments to the web securely and instantly.</p>
         </article>
+        <article class="supporting-card">
+          <div class="supporting-card-header">
+            <span class="supporting-card-year">2024</span>
+            <div class="supporting-card-tags">
+              <span class="tech-chip supporting-tech-chip">Web Systems</span>
+              <span class="tech-chip supporting-tech-chip">Database Design</span>
+              <span class="tech-chip supporting-tech-chip">Matchmaking</span>
+            </div>
+          </div>
+          <h3><a href="https://github.com/sakshyambanjade/referneeded" target="_blank" rel="noopener noreferrer">ReferNeeded <span class="external-link-arrow">↗</span></a></h3>
+          <p>ReferNeeded is a streamlined professional networking and automated referral management system built to match developers seeking job referrals with engineering sponsors.</p>
+        </article>
+        <article class="supporting-card">
+          <div class="supporting-card-header">
+            <span class="supporting-card-year">2024</span>
+            <div class="supporting-card-tags">
+              <span class="tech-chip supporting-tech-chip">LLMs</span>
+              <span class="tech-chip supporting-tech-chip">News Aggregator</span>
+              <span class="tech-chip supporting-tech-chip">Automation</span>
+              <span class="tech-chip supporting-tech-chip">Publishing</span>
+            </div>
+          </div>
+          <h3>FastNewsOrg</h3>
+          <p>FastNewsOrg is an AI-powered news aggregation, curation, summarization, and automated publishing system. It is designed for politics, finance, technology news, and election monitoring workflows.</p>
+        </article>
+        <article class="supporting-card">
+          <div class="supporting-card-header">
+            <span class="supporting-card-year">2024</span>
+            <div class="supporting-card-tags">
+              <span class="tech-chip supporting-tech-chip">Web Scraping</span>
+              <span class="tech-chip supporting-tech-chip">Job Aggregator</span>
+              <span class="tech-chip supporting-tech-chip">Search Engine</span>
+              <span class="tech-chip supporting-tech-chip">Nepal</span>
+            </div>
+          </div>
+          <h3>JobKhojdeu</h3>
+          <p>JobKhojdeu is a job aggregation platform built to address fragmented job information in Nepal. It brings listings into a searchable interface and explores automated collection and filtering.</p>
+        </article>
+          </div>
         </div>
       </section>
     </main>

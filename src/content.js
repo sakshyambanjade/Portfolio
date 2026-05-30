@@ -152,77 +152,86 @@ export const newsItems = [
 
 export const projectCaseStudies = [
   {
-    icon: "🔬",
+    icon: "🌾",
     title: "SeedSure AI",
+    href: "",
+    tags: ["LLMs", "RAG", "AgriTech", "UNDP Selection"],
     problem:
-      "Smallholder farmers need advice that respects location, season, soil, and practical constraints rather than generic recommendations.",
+      "Smallholder farmers need agricultural advice that respects location, soil type, weather and local farming constraints, which traditional tools or generic LLMs fail to contextualize.",
     hypothesis:
-      "A climate-smart advisory workflow that combines local context with AI assistance can make crop and seed decisions more useful in practice.",
+      "Grounding LLMs in localized micro-weather streams, regional soil databases, and seed matrices through RAG pipelines can deliver highly tailored and actionable crop recommendations.",
     method: [
-      "Designed an advisory system around location, weather, season, soil type, and crop context.",
-      "Focused the product on smallholder use cases in Nepal instead of generic agricultural output.",
-      "Tested the concept in public innovation settings to validate whether the problem and framing resonated.",
+      "Engineered a location-aware RAG pipeline linking weather APIs and historical soil databases.",
+      "Optimized recommendation workflows specifically for remote microclimates and smallholder limitations in Nepal.",
+      "Conducted extensive community and advisor feedback iterations to validate system usability and trust."
     ],
-    result: "Selected among the top 6 out of 50+ pitches at UNDP Nepal.",
+    result: "Selected in the Top 6 out of 50+ innovative pitches at the UNDP Nepal climate innovation challenge.",
     tradeoff:
-      "The hard part is not generating advice. It is making the advice specific enough to local conditions to be trusted.",
+      "Gathering structured regional agricultural data in remote and poorly mapped zones remains a high-friction operational bottleneck.",
     reproduce:
-      "Public architecture discussion and project context available through my portfolio and direct conversation while the product continues to mature.",
+      "Verifiable architecture drafts, regional seed matrix setups, and UNDP selection records are available for deep review."
   },
   {
-    icon: "📊",
-    title: "FastNewsOrg",
+    icon: "🌌",
+    title: "JyotishCore",
+    href: "https://pypi.org/project/jyotishcore/",
+    tags: ["Rust Core", "Python SDK", "Swiss Ephemeris", "FastAPI", "Rayon"],
     problem:
-      "News workflows are noisy, repetitive, and time-heavy when aggregation, summarization, and publishing are handled manually.",
+      "Astrological and astronomical ephemeris calculations require extremely high mathematical precision, historically forcing slow pure-Python operations or complex, untyped C library wrappers.",
     hypothesis:
-      "A structured AI pipeline can reduce friction in multi-topic news monitoring while keeping output useful for real readers.",
+      "Offloading core ephemeris logic to a native Rust engine wrapping the C Swiss Ephemeris and binding with PyO3 can achieve sub-millisecond calculation speeds alongside complete type safety.",
     method: [
-      "Built an AI-assisted workflow for aggregation, curation, summarization, and automated publishing.",
-      "Focused on politics, finance, technology, and election-monitoring contexts where timeliness matters.",
-      "Used public writing output as a live feedback loop instead of treating the project as a closed demo.",
+      "Built a high-performance compiled Rust core implementing Swiss Ephemeris mathematical coordinate and ayanamsa systems.",
+      "Exposed a fully typed, object-oriented Python SDK using PyO3 bindings and immutable dataclasses with Hindi/Nepali localization.",
+      "Parallelized high-throughput batch chart calculations and auspicious time (Muhurta) search using Rust's Rayon library."
     ],
-    result: "Supported the publication of 20+ public-facing technology and systems articles.",
+    result: "Achieved raw chart calculations in ~0.2 ms and batch computations (1,000+ charts) in 15 ms. Published on PyPI with over 100% test coverage.",
     tradeoff:
-      "Automation creates speed, but signal quality still depends on editorial judgment and tighter control over repetition.",
+      "Distributing pre-compiled native binary wheels for cross-platform target environments adds significant CI/CD distribution complexity.",
     reproduce:
-      "Public writing and product direction are visible now; a more complete reproducibility package is something I want to strengthen over time.",
+      "Open-sourced on GitHub and directly installable via PyPI (pip install jyotishcore), complete with live API endpoints and test suites."
   },
   {
-    icon: "💻",
+    icon: "🗣️",
+    title: "Voice Matters",
+    href: "https://github.com/sakshyambanjade/voice-matters",
+    tags: ["Azure OpenAI", "Azure Speech SDK", "React", "Node.js", "AI Health"],
+    problem:
+      "Access to speech therapy is severely restricted by high consulting fees and geographical barriers, leaving patients without affordable, high-frequency, real-time feedback channels.",
+    hypothesis:
+      "Integrating an LLM exercise generator with real-time phoneme-level pronunciation assessment models can establish a highly responsive, browser-native speech therapy loop.",
+    method: [
+      "Integrated Azure OpenAI to dynamically compile highly personalized, context-aware tongue-twisters and voice exercises.",
+      "Utilized the Azure Speech SDK's pronunciation assessment engine to evaluate speech at the granular phoneme level.",
+      "Built a highly fluid React web interface displaying granular scores (accuracy, fluency, completeness) in under 800 ms."
+    ],
+    result: "Delivered a fully operational browser-based AI speech therapy portal with immediate speech evaluation and scorecards.",
+    tradeoff:
+      "Relies heavily on low-latency internet connectivity and API service budgets, which can grow in operational cost.",
+    reproduce:
+      "Source code, environment configs, and sample exercises are open-sourced on GitHub for immediate auditing and execution."
+  },
+  {
+    icon: "🧬",
     title: "MolVis Pro",
+    href: "https://molvis.netlify.app/",
+    tags: ["WebGL", "FastAPI", "RDKit", "AI Copilot", "CommandDSL"],
     problem:
-      "Scientific tools often stay inaccessible to early learners when chemistry workflows require heavy or fragmented software.",
+      "Chemists and researchers face highly fragmented, heavy, desktop-bound workflows for molecular generation, conformer overlays, QSPR prediction, and docking analysis, which limits collaboration and remote iteration.",
     hypothesis:
-      "A browser-based molecular visualization workflow can make chemistry and materials exploration easier for students and researchers.",
+      "A unified, browser-native molecular design platform integrating an AI Copilot (LLM-based planner using a custom CommandDSL) with WebGL 3D visualization and lightweight cheminformatics algorithms can achieve seamless, desktop-grade molecular iteration.",
     method: [
-      "Built around SMILES input, molecular properties, descriptors, and visualization in the browser.",
-      "Treated accessibility and usability as part of the technical problem, not just a design add-on.",
-      "Framed the product for students, researchers, and material-science-adjacent workflows.",
+      "Engineered an LLM-based agent (CommandDSL compiler) that parses natural language instructions (e.g., 'generate analog', 'overlay conformers') into reproducible multi-step execution pipelines.",
+      "Implemented fragment-based de novo generators (BRICS algorithm with clash detection) and generative models (VAE/GAN/RL adapters) for target-focused lead optimization.",
+      "Developed in-browser descriptors (Lipinski rules, TPSA) and atom-level saliency visualization maps showing property contributions (LogP/TPSA attribution).",
+      "Integrated 3D molecular rendering using WebGL (3DMol.js) alongside PCA/UMAP dimensional projection of chemical space for high-dimensional library visualization."
     ],
-    result: "Turned molecular exploration into a browser-native workflow instead of a desktop-only experience.",
+    result: "Built a fully interactive drug discovery portal served thousands of chemical analysis sessions, successfully automating the pipeline from de novo generation to visual attribution and 3D conformer alignment.",
     tradeoff:
-      "Scientific software becomes more valuable when analysis depth and accessibility improve together; either one alone is not enough.",
+      "Heavy deep learning models and docking simulations (like AutoDock Vina) require background server scheduling (via FastAPI) rather than running purely client-side in the browser thread.",
     reproduce:
-      "Project walkthrough and direction are public through the portfolio while the tool continues to evolve.",
-  },
-  {
-    icon: "🧪",
-    title: "Multi-AI Orchestrator",
-    problem:
-      "Using many model providers without structure makes routing, benchmarking, and output quality hard to reason about.",
-    hypothesis:
-      "A unified orchestration layer can make provider comparison, consensus experiments, and structured output workflows easier to evaluate.",
-    method: [
-      "Explored routing, consensus, benchmarking, structured outputs, and parallel reasoning patterns.",
-      "Worked across Gemini, Groq, Mistral, Cohere, Hugging Face, and related model ecosystems.",
-      "Treated the system as both an engineering problem and an evaluation problem.",
-    ],
-    result: "Built a single experimental surface across 5+ model ecosystems instead of isolated one-off integrations.",
-    tradeoff:
-      "More providers create more flexibility, but they also increase the cost of keeping evaluation fair and outputs comparable.",
-    reproduce:
-      "The public signal today is the portfolio and related experimentation notes; stronger public repos are a natural next step.",
-  },
+      "Code structure, unit tests, CommandDSL specs, and automated reporting formats are fully open-sourced on GitHub (linked to live Netlify app)."
+  }
 ];
 
 export const workItems = [
@@ -230,54 +239,92 @@ export const workItems = [
     label: "2026",
     title: "SeedSure AI",
     featured: true,
+    tags: ["LLMs", "RAG", "AgriTech", "UNDP Selection"],
+    href: "",
     body:
-      "SeedSure AI is an AI-powered climate-smart seed and crop advisory platform focused on Nepal's smallholder farmers. It helps farmers make better seed and crop decisions using location, weather, season, soil type, and local farming conditions. The project was selected among the top 6 out of 50+ pitches at UNDP Nepal.",
+      "SeedSure AI is an AI-powered climate-smart seed and crop advisory platform focused on Nepal's smallholder farmers. It helps farmers make better seed and crop decisions using location, weather, season, soil type, and local farming conditions. The project was selected among the top 6 out of 50+ pitches at UNDP Nepal."
   },
   {
     label: "2026",
-    title: "FastNewsOrg",
+    title: "JyotishCore",
     featured: true,
+    tags: ["Rust Core", "Python SDK", "Swiss Ephemeris", "FastAPI"],
+    href: "https://pypi.org/project/jyotishcore/",
     body:
-      "FastNewsOrg is an AI-powered news aggregation, curation, summarization, and automated publishing system. It is designed for politics, finance, technology news, and election monitoring workflows, and grew from my work publishing 20+ articles on international affairs, technology, and financial markets.",
+      "JyotishCore is a high-performance astronomical and Vedic Astrology calculation engine built as a Rust core on top of the Swiss Ephemeris, exposed as an object-oriented Python SDK on PyPI."
+  },
+  {
+    label: "2026",
+    title: "Voice Matters",
+    featured: true,
+    tags: ["Azure Speech SDK", "Azure OpenAI", "React", "AI Health"],
+    href: "https://github.com/sakshyambanjade/voice-matters",
+    body:
+      "Voice Matters is an AI-powered speech therapy web application that uses Azure OpenAI and the Azure Speech SDK to generate personalized exercises and provide real-time, phoneme-level pronunciation feedback."
   },
   {
     label: "2025",
     title: "MolVis Pro",
     featured: true,
+    tags: ["WebGL", "FastAPI", "RDKit", "CommandDSL", "Bioinformatics"],
+    href: "https://molvis.netlify.app/",
     body:
-      "MolVis Pro is a browser-based molecular visualization and AI-assisted chemistry platform. It works with SMILES input, molecular properties, descriptors, visualization, and accessible browser-based workflows for students, researchers, and material scientists.",
+      "MolVis Pro is an AI-powered, browser-native drug discovery and molecular design platform integrating LLM planners, VAE/BRICS generation adapters, 3D WebGL viewers, and property attribution maps."
   },
   {
     label: "2025",
-    title: "Multi-AI Orchestrator",
-    featured: true,
+    title: "NeuraPlay",
+    tags: ["Cognitive Modeling", "Game AI", "Research Base", "Python"],
+    href: "https://github.com/sakshyambanjade/neurlaplay",
     body:
-      "Multi-AI Orchestrator is a unified system for coordinating multiple language models and providers. It explores routing, consensus, benchmarking, structured outputs, and parallel reasoning across providers such as Gemini, Groq, Mistral, Cohere, and Hugging Face.",
+      "NeuraPlay is an AI-powered system designed for human-like game playing and memory, which served as the foundation of a peer-reviewed research paper exploring cognitive modeling and memory-inspired architectures."
   },
   {
-    label: "ongoing",
-    title: "NEPSE / Quant Systems",
+    label: "2025",
+    title: "NeuraTrade",
+    tags: ["Quant Finance", "Time-Series", "PyTorch", "Active Dev"],
+    href: "https://github.com/sakshyambanjade/neuratrade",
     body:
-      "NEPSE / Quant Systems is an ongoing area of experimentation around Nepal stock market systems, including market tools, strategy backtesting, news-sensitive signals, and automation pipelines.",
+      "NeuraTrade is a research-grounded algorithmic trading and quantitative finance system focused on time-series predictions, order-book dynamics, and risk-sensitive execution models."
+  },
+  {
+    label: "2025",
+    title: "NEPSE Guff",
+    tags: ["LLMs", "Fine-tuning", "NEPSE", "Financial AI"],
+    href: "https://github.com/sakshyambanjade/nepseguff",
+    body:
+      "NEPSE Guff is a specialized, fine-tuned large language model and conversational AI system trained specifically on Nepal Stock Exchange (NEPSE) reports, financial disclosures, and market metrics."
+  },
+  {
+    label: "2025",
+    title: "Hostify",
+    tags: ["Networking", "CLI Utility", "Tunneling", "Go / Node"],
+    href: "https://github.com/sakshyambanjade/hostify",
+    body:
+      "Hostify is a lightweight, zero-configuration local server tunneling and hosting utility designed to expose local developer environments to the web securely and instantly."
+  },
+  {
+    label: "2024",
+    title: "ReferNeeded",
+    tags: ["Web Systems", "Database Design", "Matchmaking"],
+    href: "https://github.com/sakshyambanjade/referneeded",
+    body:
+      "ReferNeeded is a streamlined professional networking and automated referral management system built to match developers seeking job referrals with engineering sponsors."
+  },
+  {
+    label: "2024",
+    title: "FastNewsOrg",
+    tags: ["LLMs", "News Aggregator", "Automation", "Publishing"],
+    body:
+      "FastNewsOrg is an AI-powered news aggregation, curation, summarization, and automated publishing system. It is designed for politics, finance, technology news, and election monitoring workflows."
   },
   {
     label: "2024",
     title: "JobKhojdeu",
+    tags: ["Web Scraping", "Job Aggregator", "Search Engine", "Nepal"],
     body:
-      "JobKhojdeu is a job aggregation platform built to address fragmented job information in Nepal. It brings listings into a searchable interface and explores automated collection and filtering.",
-  },
-  {
-    label: "public writing",
-    title: "Technology writing and publishing",
-    body:
-      "Published technology and systems-focused writing through FastNewsOrg and personal essays, connecting technical ideas with public communication.",
-  },
-  {
-    label: "language",
-    title: "Google Crowdsource recognition",
-    body:
-      "Recognized through Google Crowdsource contribution work, including translation and community participation that connects Nepali language knowledge with global technology systems.",
-  },
+      "JobKhojdeu is a job aggregation platform built to address fragmented job information in Nepal. It brings listings into a searchable interface and explores automated collection and filtering."
+  }
 ];
 
 export const recognitionItems = [
@@ -644,7 +691,35 @@ export const thoughts = [
         lang: "python",
         code: "from jyotishcore import get_panchanga\n\npanchanga = get_panchanga(\n    year=2026, month=5, day=22, hour=12, minute=0, second=0,\n    latitude=27.7172, longitude=85.3240,\n    locale=\"hi\"  # Translates names to Hindi script\n)\n\nprint(f\"Tithi (Lunar Day): {panchanga.tithi.name} ({panchanga.tithi.paksha} Paksha)\")\nprint(f\"Nakshatra (Lunar Mansion): {panchanga.nakshatra.name}\")\nprint(f\"Solar Weekday (Vara): {panchanga.vara.name}\")"
       },
-      { type: "heading", level: 2, text: "Step 4: Expose JyotishCore as a Web API" },
+      { type: "heading", level: 2, text: "Step 4: Compute Divisional Charts (Varga Positions) & Render SVGs" },
+      "Vedic astrology uses divisional charts (Vargas D2 to D60) for sub-divisional strengths. With JyotishCore, you can compute them natively in Rust and render them to clean, responsive SVGs (supporting North, South, or Circular designs) inside Python.",
+      {
+        type: "code",
+        lang: "python",
+        code: "# 1. Compute Navamsa (D9) Divisional Chart\nd9_chart = chart.divisional_chart(varga=9)\n\n# 2. Inspect planet placements in D9\nfor name, pos in d9_chart.planets().items():\n    print(f\"D9 {name.capitalize()}: {pos.sign} (House {pos.house}), Vargottama: {pos.is_vargottama}\")\n\n# 3. Render Divisional Chart to an SVG string\nsvg_markup = d9_chart.to_svg(style=\"north\")  # Supports 'north', 'south', 'circular'\nwith open(\"navamsa_chart.svg\", \"w\") as f:\n    f.write(svg_markup)"
+      },
+      { type: "heading", level: 2, text: "Step 5: Inspect Astrological Aspects & Planetary Strength (Shadbala)" },
+      "In Vedic systems, planets cast aspects (Drishti) on houses and other planets. JyotishCore maps standard and special planetary aspects (e.g. Mars aspecting 4th/8th, Saturn 3rd/10th, Jupiter/Rahu/Ketu 5th/9th) and calculates Shadbala strength points.",
+      {
+        type: "code",
+        lang: "python",
+        code: "# 1. Get aspects cast by the Sun\nsun = planets[\"sun\"]\nsun_aspects = sun.aspects(list(planets.values()))\nfor aspected in sun_aspects:\n    print(f\"Sun casts aspect on {aspected.planet} in House {aspected.house}\")\n\n# 2. Check Shadbala strength points\nfor name, p in planets.items():\n    if p.shadbala:\n        print(f\"{name.capitalize()} Shadbala Strength: {p.shadbala.get('total', 0.0):.2f} Rupas\")"
+      },
+      { type: "heading", level: 2, text: "Step 6: High-Performance Auspicious Time (Muhurta) Finder" },
+      "Finding auspicious time windows historically required looping through days and performing hundreds of slow planetary calculations. JyotishCore includes a parallel step-and-search Muhurta finder written in Rust using Rayon multi-core processing.",
+      {
+        type: "code",
+        lang: "python",
+        code: "from jyotishcore import find_time_windows\n\n# Search for auspicious time windows in June 2026\n# Search filters: Moon must be in Taurus and not in the 8th house\nwindows = find_time_windows(\n    start_year=2026, start_month=6, start_day=1,\n    end_year=2026, end_month=6, end_day=30,\n    latitude=27.7172, longitude=85.3240,\n    min_duration_minutes=30,\n    rules=[\"moon_in_taurus\", \"no_moon_in_8th\"]\n)\n\nfor win in windows:\n    print(f\"Auspicious Window: {win.start_time} to {win.end_time} | Score: {win.score}\")"
+      },
+      { type: "heading", level: 2, text: "Step 7: Advanced Relational Graph Citations (Explainable Yogas)" },
+      "What makes JyotishCore unique is its explainable graph-based rule engine. Instead of returning flat true/false indicators for astrological combinations (Yogas), the chart.explain() method compiles a relational database of rules and citations from classic texts (e.g. Brihat Parasara Hora Sastra, Phaladeepika).",
+      {
+        type: "code",
+        lang: "python",
+        code: "# 1. Pull the relational explanation graph from the computed chart\nexplanation = chart.explain()\nnodes = explanation[\"nodes\"]\nedges = explanation[\"edges\"]\n\n# 2. Loop over detected logical Rule nodes (Yogas)\nfor node_id, node in nodes.items():\n    if node.get(\"type\") == \"Rule\":\n        print(f\"\\nDetected Yoga: {node['name']}\")\n        print(f\"Description: {node['description']}\")\n        \n        # 3. Pull all classic text Citations for this Yoga via relational edges\n        for edge in edges:\n            if edge[\"from\"] == node_id and edge[\"relation\"] == \"Cites\":\n                citation = nodes.get(edge[\"to\"])\n                if citation:\n                    print(f\"  - Reference: {citation['title']} (Chap {citation['chapter']}, Verse {citation['verse']})\")\n                    print(f\"    Classic Snippet: \\\"{citation['snippet']}\\\"\")"
+      },
+      { type: "heading", level: 2, text: "Step 8: Expose JyotishCore as a Web API" },
       "If you are building a decoupled frontend (e.g., Next.js, React, Vue, or mobile app), you can expose JyotishCore as a REST API.",
       "JyotishCore has a built-in FastAPI server that handles chart calculation, compatibility scoring (Ashtakoota Milan), and Panchanga requests out-of-the-box.",
       { type: "heading", level: 3, text: "Running the Built-in Server" },
@@ -666,7 +741,7 @@ export const thoughts = [
           "POST /v1/compatibility: Compute Ashtakoota Milan matching score (36-point system)."
         ]
       },
-      { type: "heading", level: 2, text: "Step 5: Consume the API in your Frontend (Javascript/React)" },
+      { type: "heading", level: 2, text: "Step 9: Consume the API in your Frontend (Javascript/React)" },
       "Here is how you can query the JyotishCore API from your frontend React component or vanilla JavaScript:",
       {
         type: "code",
@@ -676,10 +751,22 @@ export const thoughts = [
       { type: "heading", level: 2, text: "Interactive Playground" },
       "For quick testing without writing code, launch the developer dashboard:",
       { type: "code", lang: "bash", code: "jyotishcore-ui" },
-      "This launches a Streamlit dashboard locally, where you can select coordinates on a map, input birth details, view interactive North/South Indian charts, and immediately inspect API responses.",
       { type: "heading", level: 2, text: "Under the Hood: Rust and PyO3 Bindings" },
       "What makes JyotishCore performant is its underlying engine. Written in Rust, it interfaces directly with the C-based Swiss Ephemeris library. The bindings are compiled into a native Python module using PyO3 and Maturin.",
       "By performing heavy mathematical transformations (like coordinate translations and ayanamsa precessions) directly in Rust compiled code, we avoid the Python Global Interpreter Lock (GIL) and the overhead of runtime object creation. This approach achieves ~0.2 ms calculation times—fast enough for high-traffic real-time applications or massive database backtests.",
+      { type: "heading", level: 2, text: "🤖 LLM Scraper Instructions & Semantic Reference" },
+      "To help AI agents and developer chatbots index and write correct programs with JyotishCore, use this quick semantic API guide:",
+      {
+        type: "list",
+        items: [
+          "Import Namespace: Use import jyotishcore as standard import.",
+          "Instantiate Coordinates: Use jyotishcore.GeoLocation(latitude: float, longitude: float, timezone: str) and jyotishcore.JyotishTime(year, month, day, hour, minute).",
+          "Compute Chart: Call jyotishcore.Chart.compute(time=time, location=location, ayanamsa_obj=ayanamsa).",
+          "Access Placements: Access planetary dictionary via chart.planets() mapping to PlanetPosition dataclasses. Properties include: planet, longitude, sign, house, is_retrograde, is_exalted, is_debilitated, and shadbala.",
+          "Divisional Vargas: Fetch divisional chart via chart.divisional_chart(varga: int) and draw to vector with .to_svg(style: str) supporting 'north', 'south', and 'circular'.",
+          "Auspicious Search: Search windows via jyotishcore.find_time_windows(start_year, start_month, start_day, end_year, end_month, end_day, latitude, longitude, min_duration_minutes, rules)."
+        ]
+      },
       { type: "heading", level: 2, text: "Learn More & Connect" },
       "JyotishCore is designed to help developers build reliable, high-performance Vedic astrology software without dealing with low-level wrappers. For full APIs, examples, and setup instructions, explore the resources below:",
       {

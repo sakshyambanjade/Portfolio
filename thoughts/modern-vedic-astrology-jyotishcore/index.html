@@ -118,7 +118,88 @@ print(f&quot;Tithi (Lunar Day): {panchanga.tithi.name} ({panchanga.tithi.paksha}
 print(f&quot;Nakshatra (Lunar Mansion): {panchanga.nakshatra.name}&quot;)
 print(f&quot;Solar Weekday (Vara): {panchanga.vara.name}&quot;)</code></pre>
         </div>
-        <h2>Step 4: Expose JyotishCore as a Web API</h2>
+        <h2>Step 4: Compute Divisional Charts (Varga Positions) &amp; Render SVGs</h2>
+        <p>Vedic astrology uses divisional charts (Vargas D2 to D60) for sub-divisional strengths. With JyotishCore, you can compute them natively in Rust and render them to clean, responsive SVGs (supporting North, South, or Circular designs) inside Python.</p>
+        <div class="code-block-container">
+          <div class="code-block-header">
+            <span class="code-block-lang">python</span>
+          </div>
+          <pre><code class="language-python"># 1. Compute Navamsa (D9) Divisional Chart
+d9_chart = chart.divisional_chart(varga=9)
+
+# 2. Inspect planet placements in D9
+for name, pos in d9_chart.planets().items():
+    print(f&quot;D9 {name.capitalize()}: {pos.sign} (House {pos.house}), Vargottama: {pos.is_vargottama}&quot;)
+
+# 3. Render Divisional Chart to an SVG string
+svg_markup = d9_chart.to_svg(style=&quot;north&quot;)  # Supports &#39;north&#39;, &#39;south&#39;, &#39;circular&#39;
+with open(&quot;navamsa_chart.svg&quot;, &quot;w&quot;) as f:
+    f.write(svg_markup)</code></pre>
+        </div>
+        <h2>Step 5: Inspect Astrological Aspects &amp; Planetary Strength (Shadbala)</h2>
+        <p>In Vedic systems, planets cast aspects (Drishti) on houses and other planets. JyotishCore maps standard and special planetary aspects (e.g. Mars aspecting 4th/8th, Saturn 3rd/10th, Jupiter/Rahu/Ketu 5th/9th) and calculates Shadbala strength points.</p>
+        <div class="code-block-container">
+          <div class="code-block-header">
+            <span class="code-block-lang">python</span>
+          </div>
+          <pre><code class="language-python"># 1. Get aspects cast by the Sun
+sun = planets[&quot;sun&quot;]
+sun_aspects = sun.aspects(list(planets.values()))
+for aspected in sun_aspects:
+    print(f&quot;Sun casts aspect on {aspected.planet} in House {aspected.house}&quot;)
+
+# 2. Check Shadbala strength points
+for name, p in planets.items():
+    if p.shadbala:
+        print(f&quot;{name.capitalize()} Shadbala Strength: {p.shadbala.get(&#39;total&#39;, 0.0):.2f} Rupas&quot;)</code></pre>
+        </div>
+        <h2>Step 6: High-Performance Auspicious Time (Muhurta) Finder</h2>
+        <p>Finding auspicious time windows historically required looping through days and performing hundreds of slow planetary calculations. JyotishCore includes a parallel step-and-search Muhurta finder written in Rust using Rayon multi-core processing.</p>
+        <div class="code-block-container">
+          <div class="code-block-header">
+            <span class="code-block-lang">python</span>
+          </div>
+          <pre><code class="language-python">from jyotishcore import find_time_windows
+
+# Search for auspicious time windows in June 2026
+# Search filters: Moon must be in Taurus and not in the 8th house
+windows = find_time_windows(
+    start_year=2026, start_month=6, start_day=1,
+    end_year=2026, end_month=6, end_day=30,
+    latitude=27.7172, longitude=85.3240,
+    min_duration_minutes=30,
+    rules=[&quot;moon_in_taurus&quot;, &quot;no_moon_in_8th&quot;]
+)
+
+for win in windows:
+    print(f&quot;Auspicious Window: {win.start_time} to {win.end_time} | Score: {win.score}&quot;)</code></pre>
+        </div>
+        <h2>Step 7: Advanced Relational Graph Citations (Explainable Yogas)</h2>
+        <p>What makes JyotishCore unique is its explainable graph-based rule engine. Instead of returning flat true/false indicators for astrological combinations (Yogas), the chart.explain() method compiles a relational database of rules and citations from classic texts (e.g. Brihat Parasara Hora Sastra, Phaladeepika).</p>
+        <div class="code-block-container">
+          <div class="code-block-header">
+            <span class="code-block-lang">python</span>
+          </div>
+          <pre><code class="language-python"># 1. Pull the relational explanation graph from the computed chart
+explanation = chart.explain()
+nodes = explanation[&quot;nodes&quot;]
+edges = explanation[&quot;edges&quot;]
+
+# 2. Loop over detected logical Rule nodes (Yogas)
+for node_id, node in nodes.items():
+    if node.get(&quot;type&quot;) == &quot;Rule&quot;:
+        print(f&quot;\nDetected Yoga: {node[&#39;name&#39;]}&quot;)
+        print(f&quot;Description: {node[&#39;description&#39;]}&quot;)
+        
+        # 3. Pull all classic text Citations for this Yoga via relational edges
+        for edge in edges:
+            if edge[&quot;from&quot;] == node_id and edge[&quot;relation&quot;] == &quot;Cites&quot;:
+                citation = nodes.get(edge[&quot;to&quot;])
+                if citation:
+                    print(f&quot;  - Reference: {citation[&#39;title&#39;]} (Chap {citation[&#39;chapter&#39;]}, Verse {citation[&#39;verse&#39;]})&quot;)
+                    print(f&quot;    Classic Snippet: \&quot;{citation[&#39;snippet&#39;]}\&quot;&quot;)</code></pre>
+        </div>
+        <h2>Step 8: Expose JyotishCore as a Web API</h2>
         <p>If you are building a decoupled frontend (e.g., Next.js, React, Vue, or mobile app), you can expose JyotishCore as a REST API.</p>
         <p>JyotishCore has a built-in FastAPI server that handles chart calculation, compatibility scoring (Ashtakoota Milan), and Panchanga requests out-of-the-box.</p>
         <h3>Running the Built-in Server</h3>
@@ -147,7 +228,7 @@ if __name__ == &quot;__main__&quot;:
           <li>POST /v1/panchanga: Get the 5 daily elements (Tithi, Nakshatra, Yoga, Karana, Vara).</li>
           <li>POST /v1/compatibility: Compute Ashtakoota Milan matching score (36-point system).</li>
         </ul>
-        <h2>Step 5: Consume the API in your Frontend (Javascript/React)</h2>
+        <h2>Step 9: Consume the API in your Frontend (Javascript/React)</h2>
         <p>Here is how you can query the JyotishCore API from your frontend React component or vanilla JavaScript:</p>
         <div class="code-block-container">
           <div class="code-block-header">
@@ -194,10 +275,19 @@ async function fetchBirthChart() {
           </div>
           <pre><code class="language-bash">jyotishcore-ui</code></pre>
         </div>
-        <p>This launches a Streamlit dashboard locally, where you can select coordinates on a map, input birth details, view interactive North/South Indian charts, and immediately inspect API responses.</p>
         <h2>Under the Hood: Rust and PyO3 Bindings</h2>
         <p>What makes JyotishCore performant is its underlying engine. Written in Rust, it interfaces directly with the C-based Swiss Ephemeris library. The bindings are compiled into a native Python module using PyO3 and Maturin.</p>
         <p>By performing heavy mathematical transformations (like coordinate translations and ayanamsa precessions) directly in Rust compiled code, we avoid the Python Global Interpreter Lock (GIL) and the overhead of runtime object creation. This approach achieves ~0.2 ms calculation times—fast enough for high-traffic real-time applications or massive database backtests.</p>
+        <h2>🤖 LLM Scraper Instructions &amp; Semantic Reference</h2>
+        <p>To help AI agents and developer chatbots index and write correct programs with JyotishCore, use this quick semantic API guide:</p>
+        <ul>
+          <li>Import Namespace: Use import jyotishcore as standard import.</li>
+          <li>Instantiate Coordinates: Use jyotishcore.GeoLocation(latitude: float, longitude: float, timezone: str) and jyotishcore.JyotishTime(year, month, day, hour, minute).</li>
+          <li>Compute Chart: Call jyotishcore.Chart.compute(time=time, location=location, ayanamsa_obj=ayanamsa).</li>
+          <li>Access Placements: Access planetary dictionary via chart.planets() mapping to PlanetPosition dataclasses. Properties include: planet, longitude, sign, house, is_retrograde, is_exalted, is_debilitated, and shadbala.</li>
+          <li>Divisional Vargas: Fetch divisional chart via chart.divisional_chart(varga: int) and draw to vector with .to_svg(style: str) supporting &#39;north&#39;, &#39;south&#39;, and &#39;circular&#39;.</li>
+          <li>Auspicious Search: Search windows via jyotishcore.find_time_windows(start_year, start_month, start_day, end_year, end_month, end_day, latitude, longitude, min_duration_minutes, rules).</li>
+        </ul>
         <h2>Learn More &amp; Connect</h2>
         <p>JyotishCore is designed to help developers build reliable, high-performance Vedic astrology software without dealing with low-level wrappers. For full APIs, examples, and setup instructions, explore the resources below:</p>
         <ul>

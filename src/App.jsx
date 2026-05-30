@@ -416,48 +416,102 @@ function ResearchSection() {
 }
 
 function CaseStudyCard({ item }) {
-  return (
-    <article className="case-study">
-      <header className="case-study-header">
-        <p className="case-study-icon" aria-hidden="true">
-          {item.icon}
-        </p>
-        <div>
-          <h3>{item.title}</h3>
-          <p className="quiet">problem to hypothesis to signal to trade-off</p>
-        </div>
-      </header>
+  const slug = item.title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
-      <div className="case-study-grid">
-        <div>
-          <h4>Problem</h4>
-          <p>{item.problem}</p>
+  return (
+    <article className={`case-study case-study-${slug}`}>
+      <details>
+        <summary>
+          <div className="case-study-summary-header">
+            <span className="case-study-icon" aria-hidden="true">
+              {item.icon}
+            </span>
+            <div className="case-study-summary-title">
+              <h3>
+                {item.href ? (
+                  <a href={item.href} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
+                    {item.title}
+                  </a>
+                ) : (
+                  item.title
+                )}
+              </h3>
+              <p className="quiet">{item.result}</p>
+              {item.tags ? (
+                <div className="case-study-tags">
+                  {item.tags.map((tag) => (
+                    <span key={tag} className="tech-chip">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
+            </div>
+          </div>
+          <span className="case-study-toggle-btn">details</span>
+        </summary>
+
+        <div className="case-study-grid">
+          <div>
+            <h4>Problem</h4>
+            <p>{item.problem}</p>
+          </div>
+          <div>
+            <h4>Hypothesis</h4>
+            <p>{item.hypothesis}</p>
+          </div>
+          <div>
+            <h4>Method</h4>
+            <ul className="mini-list">
+              {item.method.map((point) => (
+                <li key={point}>{point}</li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h4>Result</h4>
+            <p>{item.result}</p>
+          </div>
+          <div>
+            <h4>Trade-off</h4>
+            <p>{item.tradeoff}</p>
+          </div>
+          <div>
+            <h4>Reproducibility note</h4>
+            <p>{item.reproduce}</p>
+          </div>
         </div>
-        <div>
-          <h4>Hypothesis</h4>
-          <p>{item.hypothesis}</p>
-        </div>
-        <div>
-          <h4>Method</h4>
-          <ul className="mini-list">
-            {item.method.map((point) => (
-              <li key={point}>{point}</li>
+      </details>
+    </article>
+  );
+}
+
+function SupportingCard({ item }) {
+  const hasLink = !!item.href;
+  const title = hasLink ? (
+    <a href={item.href} target="_blank" rel="noopener noreferrer">
+      {item.title} <span className="external-link-arrow">↗</span>
+    </a>
+  ) : (
+    item.title
+  );
+
+  return (
+    <article className="supporting-card">
+      <div className="supporting-card-header">
+        <span className="supporting-card-year">{item.label}</span>
+        {item.tags ? (
+          <div className="supporting-card-tags">
+            {item.tags.map((tag) => (
+              <span key={tag} className="tech-chip supporting-tech-chip">
+                {tag}
+              </span>
             ))}
-          </ul>
-        </div>
-        <div>
-          <h4>Result</h4>
-          <p>{item.result}</p>
-        </div>
-        <div>
-          <h4>Trade-off</h4>
-          <p>{item.tradeoff}</p>
-        </div>
-        <div>
-          <h4>Reproducibility note</h4>
-          <p>{item.reproduce}</p>
-        </div>
+          </div>
+        ) : null}
       </div>
+      <h3>{title}</h3>
+      <p>{item.body}</p>
     </article>
   );
 }
@@ -480,13 +534,15 @@ function ProjectsSection() {
       </div>
 
       <div className="supporting-work">
-        <h3>supporting systems & public work</h3>
-        {supportingWork.map((item) => (
-          <Entry item={item} key={`${item.label}-${item.title}`} />
-        ))}
+        <h2>supporting systems & public work</h2>
+        <div className="supporting-projects-grid">
+          {supportingWork.map((item) => (
+            <SupportingCard item={item} key={`${item.label}-${item.title}`} />
+          ))}
+        </div>
       </div>
 
-      <p className="quiet">
+      <p className="quiet project-footer-note">
         The through-line is simple: build useful systems, turn ideas into visible output, and make Nepal part of
         serious global AI and technology conversations.
       </p>
