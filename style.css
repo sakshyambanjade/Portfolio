@@ -742,6 +742,24 @@ h4 {
   margin-top: 32px;
 }
 
+.thought-image {
+  margin: 0 0 28px;
+}
+
+.thought-image img {
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--soft);
+}
+
+.thought-image figcaption {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 .thought-nav {
   min-height: 56px;
   display: flex;
@@ -1268,5 +1286,4 @@ h4 {
   text-align: center;
   font-style: italic;
 }
-
 

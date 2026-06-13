@@ -13,7 +13,7 @@ export const profile = {
     "I prefer async-first collaboration, pull requests for review, concise Markdown notes, and experiment logs that make decisions easy to trace later.",
   skepticalQuestion:
     "If you reach out, tell me one claim in AI, systems, or product work that you are skeptical about. Good collaboration starts with honest questions.",
-  lastUpdated: "2026-05-22",
+  lastUpdated: "2026-06-13",
   email: "hi@sakshyambanjade.com.np",
   links: [
     ["GitHub", "https://github.com/sakshyambanjade"],
@@ -652,6 +652,29 @@ export const featuredTechnicalThoughtSlugs = [
 ];
 
 export const thoughts = [
+  {
+    slug: "the-journey-ends",
+    title: "The Journey Ends",
+    summary:
+      "A reflection from Seoul on nervous beginnings, listening deeply, and leaving the International Leadership Workshop with gratitude and new connections.",
+    meta: "Thought 11",
+    paragraphs: [
+      {
+        type: "image",
+        src: "/youth-leadership-workshop-seoul.jpg",
+        alt: "Participants at the 12th Youth Leadership Workshop on GCED in Seoul",
+        caption: "12th Youth Leadership Workshop on GCED, Seoul.",
+      },
+      "I feel confused, happy, and excited to go home. But when I first came to Seoul, the feeling was very different. I was carrying one question with me: would I be able to thrive in a place I had never been before?",
+      "I joined the International Leadership Workshop, and even though I was nervous at first, I was selected. When I arrived, I was still unsure about what the week would bring. But throughout this journey, I met more than 36 people from 20 different countries, and every one of them carried a wonderful story.",
+      "Everyone here is working for change: change for the world, for society, and for the communities they belong to. During the workshop, I wanted to be a good listener, not only a speaker. This was my first event of this kind, so I wanted to learn more, understand everyone's journey, and connect with their experiences.",
+      "I wanted to speak like everyone else, create impact, and be confident like Joseph and Sira. But I slowly realized that they are not the only ones who can inspire others. I also had meaningful conversations with Tezendra Dai, my buddy Hasim, and many others. In small ways, I created connections with almost everyone.",
+      "Even though I did not speak the most, I learned by observing and listening. In Seoul, a place I had never been before, I saw how different everyone was, while still moving toward the same destination: creating a better future.",
+      "If you were part of this journey, do not forget to enjoy every moment. I am genuinely happy to see you growing, and I hope we meet again next time. Until then, this journey may have ended, but a new one begins.",
+      "Thank you to everyone who guided me throughout this journey, kept me motivated, and helped bring people from the GCED movement together.",
+      "Grateful to be here.",
+    ],
+  },
   {
     slug: "modern-vedic-astrology-jyotishcore",
     title: "How to Use JyotishCore to Build a Modern Vedic Astrology Web App (Python & Rust)",

@@ -15,7 +15,7 @@ import {
 } from "../src/content.js";
 
 const siteUrl = "https://sakshyambanjade.com.np";
-const lastmod = "2026-05-22";
+const lastmod = "2026-06-13";
 const defaultImagePath = "/og-image.png";
 const defaultImageUrl = `${siteUrl}${defaultImagePath}`;
 const rootDir = path.resolve(process.env.OUTPUT_DIR || ".");
@@ -455,6 +455,11 @@ function thoughtBody(thought, index) {
             .map((item) => `          <li>${escapeHtml(item)}</li>`)
             .join("\n");
           return `        <ul>\n${listItems}\n        </ul>`;
+        } else if (paragraph.type === "image") {
+          return `        <figure class="thought-image">
+          <img src="${escapeHtml(paragraph.src)}" alt="${escapeHtml(paragraph.alt || "")}" loading="lazy" />
+          ${paragraph.caption ? `<figcaption>${escapeHtml(paragraph.caption)}</figcaption>` : ""}
+        </figure>`;
         } else if (paragraph.type === "html") {
           return `        <div>${paragraph.content}</div>`;
         }

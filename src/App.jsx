@@ -1140,6 +1140,13 @@ function ThoughtPage() {
                     ))}
                   </ul>
                 );
+              } else if (paragraph.type === "image") {
+                return (
+                  <figure className="thought-image" key={pIdx}>
+                    <img src={paragraph.src} alt={paragraph.alt || ""} loading="lazy" />
+                    {paragraph.caption ? <figcaption>{paragraph.caption}</figcaption> : null}
+                  </figure>
+                );
               } else if (paragraph.type === "html") {
                 return <div key={pIdx} dangerouslySetInnerHTML={{ __html: paragraph.content }} />;
               }
